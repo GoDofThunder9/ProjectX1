@@ -1,0 +1,124 @@
+.popular-tours {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  
+  .text-content {
+    max-width: 480px;
+  }
+  
+  .title {
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .wave-decoration {
+    display: inline-block;
+    width: 60px;
+  }
+  
+  .wave {
+    width: 100%;
+    height: auto;
+  }
+  
+  .description {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  
+  .destinations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .destinations-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .destination-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .destination-name {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .destination-count {
+    color: #FF6B51;
+    font-size: 16px;
+  }
+  
+  .all-destinations-btn {
+    background-color: #FF6B51;
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .all-destinations-btn:hover {
+    background-color: #ff5538;
+  }
+  
+  .map-container {
+    width: 100%;
+    position: relative;
+  }
+  
+  .world-map {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  @media (max-width: 968px) {
+    .content-wrapper {
+      grid-template-columns: 1fr;
+    }
+  
+    .text-content {
+      max-width: 100%;
+    }
+  
+    .map-container {
+      order: -1;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .title {
+      font-size: 32px;
+    }
+  
+    .destinations-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+  
+  

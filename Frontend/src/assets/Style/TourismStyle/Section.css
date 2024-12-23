@@ -1,0 +1,105 @@
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.5)
+    );
+  }
+  
+  .content {
+    position: absolute;
+    bottom: 15%;
+    left: 10%;
+    color: white;
+    z-index: 2;
+  }
+  
+  .content h2 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .content p {
+    font-size: 1.2rem;
+    margin: 0;
+    opacity: 0.9;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: background-color 0.3s ease;
+    z-index: 3;
+  }
+  
+  .nav-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+  
+  .nav-button.prev {
+    left: 20px;
+  }
+  
+  .nav-button.next {
+    right: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .content h2 {
+      font-size: 2.5rem;
+    }
+    
+    .content p {
+      font-size: 1rem;
+    }
+  }
+  
+  

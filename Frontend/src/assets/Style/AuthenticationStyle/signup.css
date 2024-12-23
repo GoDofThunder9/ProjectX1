@@ -1,0 +1,123 @@
+:root {
+    --bg-light: #F8FAFC;
+    --bg-dark: #D9EAFD;
+    --text-primary: #BCCCDC;
+    --text-secondary: #9AA6B2;
+    --btn-primary: #007bff;
+    --btn-primary-hover: #0056b3;
+    --mainColor: #64bcf4;
+    --hoverColor: #5bacdf;
+}
+
+.main2 {
+    font-family: Arial, sans-serif;
+    background: var(--bg-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+    margin: 0;
+    color: var(--text-secondary);
+    overflow: hidden;
+}
+
+.signin-container {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    transition: all 0.3s ease;
+}
+
+.signin-container:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.signin-title {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 30px;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 204, 220, 0.3);
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #000;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.form-input::placeholder {
+    color: black;
+    opacity: 0.7;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--mainColor);
+    box-shadow: 0 0 0 3px rgba(100, 188, 244, 0.2);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.signin-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 0.9rem 1.9rem;
+    background-color: var(--mainColor);
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 5px 15px rgba(100, 188, 244, 0.4);
+}
+
+.signin-btn:hover {
+    background-color: var(--hoverColor);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(100, 188, 244, 0.5);
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.forgot-password a {
+    color: var(--btn-primary);
+    text-decoration: none;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.forgot-password a:hover {
+    color: var(--btn-primary-hover);
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .signin-container {
+        margin: 0 15px;
+        padding: 30px 20px;
+    }
+}

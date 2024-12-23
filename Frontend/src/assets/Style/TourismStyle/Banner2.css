@@ -1,0 +1,217 @@
+/* General Section Styling */
+.tg-sectionspace {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.tg-haslayout {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Tour Destinations */
+.tg-toursdestinations {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+}
+
+/* Big Box */
+.tg-tourdestinationbigbox {
+    position: relative;
+    overflow: hidden;
+    grid-row: span 2;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Smaller Boxes */
+.tg-tourdestination {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Styling */
+.tg-tourdestination img, 
+.tg-tourdestinationbigbox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.tg-hoverbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+.tg-tourdestination:hover img, 
+.tg-tourdestinationbigbox:hover img {
+    transform: scale(1.1);
+}
+
+.tg-tourdestination:hover .tg-hoverbox, 
+.tg-tourdestinationbigbox:hover .tg-hoverbox {
+    opacity: 1;
+}
+
+/* Text Styling */
+.tg-adventuretitle h2 {
+    font-family: 'Arial', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.tg-description p {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    margin: 10px 0 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* National Park and Adult Vacations Box */
+.tg-tourdestination:nth-child(2) .tg-adventuretitle h2,
+.tg-tourdestination:nth-child(3) .tg-adventuretitle h2 {
+    font-size: 24px;
+}
+
+/* Divider (Wave Line) */
+.tg-hoverbox::after {
+    content: '~~~~';
+    display: block;
+    font-size: 20px;
+    margin: 10px 0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+  }
+  
+  .popular-tours {
+    padding: 40px;
+    background-color: #fff;
+  }
+  
+  .popular-tours-heading {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .tour-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .tour-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .discount-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff6b6b;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .card-content {
+    padding: 15px;
+  }
+  
+  .card-content h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #333;
+  }
+  
+  .card-content p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .price {
+    font-size: 1rem;
+    color: #ff6b6b;
+  }
+  
+  .old-price {
+    text-decoration: line-through;
+    font-size: 0.9rem;
+    color: #999;
+    margin-right: 5px;
+  }
+  

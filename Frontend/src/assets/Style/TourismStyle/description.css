@@ -1,0 +1,326 @@
+/* General Section Styling */
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+}
+
+.tg-sectionspace {
+    padding: 60px 0;
+    background-color: #ffffff;
+}
+
+.tg-zerotoppadding {
+    padding-top: 0;
+}
+
+.tg-haslayout {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Features Section */
+.tg-features {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    text-align: center;
+}
+
+.tg-feature {
+    background: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 20px 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tg-feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Feature Title Styling */
+.tg-featuretitle h2 {
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: #333333;
+}
+
+.tg-featuretitle h2 span {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f77d32;
+    margin-right: 5px;
+}
+
+/* Feature Description */
+.tg-description p {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666666;
+    margin: 0;
+}
+
+.tour-slider {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 16px;
+}
+
+.slider-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.slider-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.title-icon {
+    display: inline-block;
+}
+
+.title-icon svg {
+    width: 32px;
+    height: 32px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+}
+
+.navigation-buttons1 {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-button1 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #e2e8f0;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-button1:hover {
+    background: #f8fafc;
+}
+
+.nav-button1 svg {
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+}
+
+.tours-container {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.tours-container::-webkit-scrollbar {
+    display: none;
+}
+
+.tour-card {
+    min-width: 380px;
+    background: #f9f9f9; /* Light gray background for a subtle look */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    scroll-snap-align: start;
+}
+
+.card-image-container {
+    position: relative;
+}
+
+.card-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    filter: brightness(0.9); /* Slightly darken image */
+}
+
+.discount-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #ff6f61; /* Soft red-orange to match the discount color */
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+.card-content {
+    padding: 24px;
+    background: #ffffff; /* Pure white for contrast */
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #333333; /* Dark gray for readability */
+}
+
+.card-description {
+    color: #555555; /* Medium gray for body text */
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.tour-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.duration {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: #888888; /* Soft gray for icons and labels */
+}
+
+.rating-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #ffcc00; /* Bright yellow for stars */
+}
+
+.star.filled {
+    fill: #ffcc00; /* Same yellow for filled stars */
+}
+
+.review-count {
+    font-size: 0.875rem;
+    color: #888888; /* Match the label color */
+    margin-left: 4px;
+}
+
+.price-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.price-label {
+    font-size: 0.875rem;
+    color: #888888; /* Muted gray for 'From' label */
+}
+
+.price-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6f61; /* Match the discount badge color */
+}
+
+@media (max-width: 768px) {
+    .tour-card {
+        min-width: 300px;
+    }
+
+    .slider-title {
+        font-size: 2rem;
+    }
+}
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .service-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .service-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+  
+  .service-number {
+    color: #FF5722;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  
+  .service-title {
+    color: #1A1A1A;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .service-description {
+    color: #666666;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .services-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  

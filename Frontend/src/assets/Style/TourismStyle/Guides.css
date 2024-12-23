@@ -1,0 +1,138 @@
+.guides-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+  }
+  
+  .guides-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .guides-title {
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  
+  .wave-decoration {
+    display: inline-block;
+    width: 60px;
+  }
+  
+  .wave {
+    width: 100%;
+    height: auto;
+  }
+  
+  .guides-subtitle {
+    color: #666;
+    font-size: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 0 auto;
+  }
+  
+  .guide-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .guide-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .guide-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    background: #f8f9fa;
+  }
+  
+  .guide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .guide-info {
+    padding: 24px;
+    text-align: center;
+  }
+  
+  .guide-name {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .guide-title {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .social-icon {
+    color: #666;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .social-icon:hover {
+    color: #333;
+  }
+  
+  .guide-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+  }
+  
+  @media (max-width: 1024px) {
+    .guides-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .guides-section {
+      padding: 40px 20px;
+    }
+  
+    .guides-title {
+      font-size: 32px;
+    }
+  
+    .guides-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .guide-image {
+      height: 250px;
+    }
+  }
+  
+  
