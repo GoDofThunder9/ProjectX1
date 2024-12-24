@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema(
   {
-    name:{
+    Fullname:{
       type:String,
       required:true
     },
@@ -10,14 +10,42 @@ const userSchema = new mongoose.Schema(
       type:String,
       required:true
     },
-    tel:{
+    phone:{
       type:String,
       required:true
     },
-    area:{
+    Password:{
       type:String,
       required:true
-    }
+    },
+    City:{
+      type:String,
+      required:true
+    },
+    Country:{
+      type:String,
+      required:true
+    },
+    isVerifed:{
+      type:Boolean,
+      default:false,
+  },
+  otp: {
+    type: String,
+    default: null,
+  },
+  otpExpiresAt: {
+    type: Date,
+    default: null,
+  },
+  resetPasswordToken: {
+    type: String,
+    default: null,
+  },
+  resetPasswordExpiresAt: {
+    type: Date,
+    default: null,
+  }
   },
   {
     timestamps: true,

@@ -1,7 +1,6 @@
 const express = require("express");
-const formcontroller = require('../controller/formcontroller');
 const route =express.Router();
 console.log("router loaded");
-
-route.post('/form',formcontroller.Form);
+route.use('/',require('./home'));
+route.use('/',require('./Auth'));
 module.exports = route;
