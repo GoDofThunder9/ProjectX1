@@ -58,14 +58,14 @@
     transition: all 0.3s ease;
   }
   
-  /* .tourism-card:hover .overlay {
+  .tourism-card:hover .overlay {
     background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0.2) 0%,
       rgba(0, 0, 0, 0.6) 40%,
       rgba(0, 0, 0, 0.9) 100%
     );
-  } */
+  }
   
   .overlay h2 {
     color: white;

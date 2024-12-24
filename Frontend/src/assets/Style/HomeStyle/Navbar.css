@@ -1,10 +1,3 @@
-/* General reset */
-body, html {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
 
 /* Navbar styles */
 .navbar {
@@ -15,8 +8,11 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: sticky;
+  position: fixed; /* Stick the navbar at the top */
   top: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0); /* Transparent white */
+  backdrop-filter: blur(10px); /* Optional: adds a glass-like blur effect */
   z-index: 1000;
 }
 
@@ -43,10 +39,11 @@ body, html {
 
 .navbar-item {
   text-decoration: none;
-  color: black;
+  color: rgb(67, 66, 66);
   font-size: 1rem;
   padding: 0.5rem;
   transition: color 0.3s ease;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .navbar-item:hover {
@@ -68,21 +65,19 @@ body, html {
 }
 
 .navbar-button.sign-in {
-  background-color: #fff;
-  color: #ff6347;
+  background-color: #ff6347;
+  color: #fff;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .navbar-button.sign-in:hover {
-  background-color: #f0f0f0;
+  background-color: #f73715;
 }
 
 .navbar-button.sign-up {
-  background-color: #000;
-  color: #fff;
-}
-
-.navbar-button.sign-up:hover {
-  background-color: #333;
+  background-color: white;
+  color: #ff6347;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 /* Hamburger toggle */

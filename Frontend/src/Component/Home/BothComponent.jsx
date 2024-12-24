@@ -2,8 +2,9 @@ import React from 'react';
 import "../../assets/Style/HomeStyle/BothComponent.css"
 import tourismPhoto from '../../assets/Images/newtoursim.jpg';
 import foodPhoto from '../../assets/Images/foodPhoto.jpg'
-
+import { useNavigate } from 'react-router-dom';
 const TourismShowcase = () => {
+  const navigate = useNavigate();
   return (
     <div className="tourism-container">
       <div className="tourism-card">
@@ -11,7 +12,9 @@ const TourismShowcase = () => {
             <img src={tourismPhoto} alt="" />
           <div className="overlay">
             <h2>Travelling for Travellers</h2>
-            <button className="explore-btn">Explore Culinary Tours</button>
+            <button onClick={()=>{
+              navigate('/Tourism');
+            }} className="explore-btn">Explore Culinary Tours</button>
           </div>
         </div>
       </div>

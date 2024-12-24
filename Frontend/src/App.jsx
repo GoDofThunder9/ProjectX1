@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import ProtectedRoute from "./Component/Authentication/ProtectedRoute";
 import "bootstrap/dist/css/bootstrap.min.css"; // Correct Bootstrap CSS import
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Correct Bootstrap JS import
 import Component from './Component/Home/BothComponent';
@@ -42,6 +43,7 @@ function App() {
           <Route
             path="Tourism"
             element={
+              <ProtectedRoute>
               <>
               <TourismBanner/>
               <Banner2/>
@@ -51,6 +53,7 @@ function App() {
               <Guides/>
               <Logo/>
               </>
+              </ProtectedRoute>
             }
           />
           <Route path="/login"

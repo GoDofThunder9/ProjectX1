@@ -25,23 +25,29 @@ function signin() {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8080/login', formData, {
-        withCredentials:true // Include cookies in the request
-      });  
+        withCredentials: true, // Include cookies in the request
+      });
       if (response.status === 200) {
-                const userId = response.data.userId;
-                const userName = response.data.userName;
-                localStorage.setItem('userId', userId);
-                localStorage.setItem('userName', userName);
-                console.log("User logged in successfully:", response);
-                  setMessage('Login successful!');
-                  navigate('/');
-                } else {
-                    setMessage(response.data.message || 'Login failed!');
-                }
+        const userId = response.data.userId;
+        const userName = response.data.userName;
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('userName', userName);
+        console.log('User logged in successfully:', response);
+        setMessage('Login successful!');
+  
+        // Redirect to home page and reload
+        navigate('/');
+        window.location.reload(); // Force reload after navigation
+      } else {
+        setMessage(response.data.message || 'Login failed!');
+      }
     } catch (error) {
-      setMessage(error.response?.data?.message || 'An error occurred. Please try again.');
+      setMessage(
+        error.response?.data?.message || 'An error occurred. Please try again.'
+      );
     }
   };
+  
 
   return (
     <div className="main1">
