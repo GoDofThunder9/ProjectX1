@@ -1,27 +1,65 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faBriefcase, faBullhorn } from '@fortawesome/free-solid-svg-icons';
-import '../../assets/Style/HomeStyle/AboutUs.css';
+import { FaCog, FaHeadset, FaBolt, FaPalette, FaChartLine, FaShieldAlt } from 'react-icons/fa';
+import '../../assets/Style/HomeStyle/Aboutus.css';
 
-function AboutUs() {
+function Aboutus() {
+  const features = [
+    {
+      icon: <FaCog />,
+      title: 'Modern Design',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. JustFreeSlide.com'
+    },
+    {
+      icon: <FaHeadset />,
+      title: '24X7 User Support',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. JustFreeSlide.com'
+    },
+    {
+      icon: <FaBolt />,
+      title: 'Fast',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. JustFreeSlide.com'
+    },
+    {
+      icon: <FaPalette />,
+      title: 'Creative Design',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. JustFreeSlide.com'
+    },
+    {
+      icon: <FaChartLine />,
+      title: 'Business Growth',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. JustFreeSlide.com'
+    },
+    {
+      icon: <FaShieldAlt />,
+      title: 'Safe',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. JustFreeSlide.com'
+    }
+  ];
+
   return (
-    <div className="about-us-container">
-      <div className="about-us-text">
-        <h2 className="about-us-heading">About Us</h2>
-        <p className="about-us-description">
-          We are a team of passionate individuals who strive to make a difference. Our goal is to provide innovative solutions that help our clients grow and succeed. With years of experience and a commitment to excellence, we are dedicated to delivering high-quality services and building lasting relationships.
-        </p>
-        <div className="about-us-icons">
-          <FontAwesomeIcon icon={faUsers} />
-          <FontAwesomeIcon icon={faBriefcase} />
-          <FontAwesomeIcon icon={faBullhorn} />
+    <div className="why-choose-us">
+      <div className="container">
+        <div className="header">
+          <h2>
+            Why Choose <span>Us</span>
+          </h2>
+          <p>Get more from our side feel free to connect</p>
         </div>
-      </div>
-      <div className="about-us-image">
-        <img src="https://via.placeholder.com/500" alt="About Us" />
+
+        <div className="features-grid">
+          {features.map((feature, index) => (
+            <div key={index} className="feature-card">
+              <div className="icon-wrapper">
+                {feature.icon}
+              </div>
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
-export default AboutUs;
+export default Aboutus;

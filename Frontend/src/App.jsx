@@ -1,14 +1,13 @@
-import Navbar from './Component/Home/Navbar';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css"; // Correct Bootstrap CSS import
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Correct Bootstrap JS import
-import Footer from './Component/Home/Footer';
-import Component from './Component/Home/component';
+import Component from './Component/Home/BothComponent';
+import Component1 from './Component/Home/BothComponent2';
 import Banner from './Component/Home/Banner';
-import AboutUs from './Component/Home/AboutUs';
 import Form from './Component/Home/Form';
-import Review from './Component/Home/Review';
+import Footer from './Component/Home/Footer';
+import Reviews from "./Component/Home/Reviews"
 import Signin from './Component/Authentication/signin';
 import Signup from './Component/Authentication/signup';
 import EmailVerify from './Component/Email Verification/EmailVerify';
@@ -19,11 +18,13 @@ import Destination from './Component/Tourism/Destination';
 import Section from "./Component/Tourism/Section"
 import Guides from './Component/Tourism/Guides';
 import Logo from './Component/Tourism/logo';
+import Aboutus from "./Component/Home/AboutUs";
+import Navbar from "./Component/Home/Navbar";
 function App() {
   return (
     <>
       <BrowserRouter>
-          <Navbar />
+          <Navbar/>
         <Routes>
           <Route
             path="/"
@@ -31,8 +32,9 @@ function App() {
               <>
               <Banner/>
               <Component/>
-              <AboutUs/>
-              <Review/>
+              <Component1/>
+              <Aboutus/>
+              <Reviews/>
               <Form/>
               </>
             }
@@ -58,7 +60,7 @@ function App() {
           <Route path="/verify"
           element={<EmailVerify/>}/>
         </Routes>
-        <Footer />
+        <Footer/>
       </BrowserRouter>
     </>
   );

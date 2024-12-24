@@ -1,46 +1,27 @@
-import React from 'react'
-import shape from '../../assets/Images/shape.png'
-import '../../assets/Style/HomeStyle/Banner.css'
-import person from "../../assets/Images/person.png"
-function Banner() {
+import React from 'react';
+import '../../assets/Style/HomeStyle/Banner.css';
+import v3 from '../../assets/Images/v3.mp4'
+
+const VideoBanner = () => {
   return (
-<>
-<main>
-    <div className='big-wrapper light'>
-    <img src={shape} alt="" className="shape" />
-    <div className="showcase-area">
-            <div className="container">
-              <div className="left">
-                <div className="big-title">
-                  <h1>Future is here,</h1>
-                  <h1>Start Exploring now.</h1>
-                </div>
-                <p className="text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Delectus eius distinctio odit, magni magnam qui ex perferendis
-                  vitae!
-                </p>
-                <div className="cta">
-                  <a href="#" className="btn">Get started</a>
-                </div>
-              </div>
-
-              <div className="right">
-                <img src={person} alt="Person" className="person" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bottom-area">
-            <div className="container">
-              <button className="toggle-btn">
-              </button>
-            </div>
-          </div>
+    <div className="video-banner">
+      <video 
+        className="banner-video"
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+      >
+        <source src={v3} type="video/mp4" />
+      </video>
+      <div className="banner-content">
+        <h1>Welcome to Our Site</h1>
+        <p>Discover amazing content and experiences</p>
+        <button className="cta-button">Learn More</button>
+      </div>
     </div>
-</main>
-</>
-  )
-}
+  );
+};
 
-export default Banner
+export default VideoBanner;
+
