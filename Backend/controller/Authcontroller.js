@@ -225,7 +225,7 @@ module.exports.login = async function (req, res) {
           payload,
           process.env.JWT_SECRET,
           { expiresIn: 3600 }, // 1 hour
-          (err, token) => {
+          (err, token) =>{
             if (err) {
               return res.status(500).json({ error: "Error signing token" });
             }
@@ -249,8 +249,21 @@ module.exports.login = async function (req, res) {
     });
   });
 };
+module.exports.verifyToken = (req, res, next) => {
+  const token = req.cookies.token; // Assuming token is stored in cookies
 
+  if (!token) {
+    return res.status(403).json({ message: 'No token provided' });
+  }
 
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // Replace JWT_SECRET with your secret key
+    req.user = decoded; // Attach decoded token data (e.g., user ID) to the request
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+};
 module.exports.logout = async function (req, res) {
   // Clear the JWT cookie
   res.clearCookie("token");
