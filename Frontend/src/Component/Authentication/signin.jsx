@@ -34,7 +34,6 @@ function signin() {
         localStorage.setItem('userName', userName);
         console.log('User logged in successfully:', response);
         setMessage('Login successful!');
-  
         // Redirect to home page and reload
         navigate('/');
         window.location.reload(); // Force reload after navigation

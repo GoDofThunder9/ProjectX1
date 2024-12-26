@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import ProtectedRoute from "./Component/Authentication/ProtectedRoute";
 import "bootstrap/dist/css/bootstrap.min.css"; // Correct Bootstrap CSS import
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Correct Bootstrap JS import
 import Component from './Component/Home/BothComponent';
@@ -21,6 +20,9 @@ import Guides from './Component/Tourism/Guides';
 import Logo from './Component/Tourism/logo';
 import Aboutus from "./Component/Home/AboutUs";
 import Navbar from "./Component/Home/Navbar";
+import ProtectedRoute from "./Component/Authentication/ProtectedRoute";
+import TourismUploader from './Component/AdminPanel/TourismUploader'
+import TourismDelete from './Component/AdminPanel/TourismDelete'
 function App() {
   return (
     <>
@@ -40,6 +42,8 @@ function App() {
               </>
             }
           />
+          
+          
           <Route
             path="Tourism"
             element={
@@ -62,6 +66,9 @@ function App() {
           element={<Signup/>}/>
           <Route path="/verify"
           element={<EmailVerify/>}/>
+          
+        <Route path="/Admin/upload" element={<TourismUploader/>}></Route>
+        <Route path="/Admin/delete" element={<TourismDelete/>}></Route>
         </Routes>
         <Footer/>
       </BrowserRouter>
