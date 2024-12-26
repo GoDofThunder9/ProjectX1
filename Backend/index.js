@@ -6,7 +6,10 @@ const session = require("express-session");
 const cors = require('cors');
 const  MongoStore = require('connect-mongo');
 const cookieParser = require("cookie-parser");
+const path = require('path');
 const app = express();
+
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use(express.json()); 
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
