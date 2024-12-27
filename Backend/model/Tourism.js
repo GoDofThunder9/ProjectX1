@@ -54,7 +54,7 @@ let storage = multer.diskStorage({
     const fileExtension = path.extname(file.originalname).toLowerCase();
 
     // Validate .jpg format
-    if (fileExtension !== '.jpg', '.jpeg', '.png', '.gif') {
+    if (fileExtension !== '.jpg') {
       return cb(new Error('Only .jpg files are allowed'));
     }
 
@@ -65,7 +65,7 @@ let storage = multer.diskStorage({
 
 // Configure Multer file filter
 const fileFilter = (req, file, cb) => {
-  const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+  const allowedMimeTypes = ['image/jpeg'];
   if (allowedMimeTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
