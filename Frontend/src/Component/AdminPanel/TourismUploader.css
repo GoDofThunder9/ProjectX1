@@ -18,7 +18,7 @@
     font-weight: bold;
     text-align: center; /* Center the title horizontally */
     color: #333333;
-    border-bottom: 1px solid #05101bf5;
+    /* border-bottom: 1px solid #05101bf5; */
     padding-bottom: 0.5rem;
     /* position: relative; */
   }
