@@ -11,6 +11,7 @@ const TourList = () => {
     const fetchTours = async () => {
       try {
         const response = await axios.get('http://localhost:8080/tours');
+        console.log(response);
         if (response.status === 200) {
           setTours(response.data.tours); // Assuming backend returns an array in `tours`
         }

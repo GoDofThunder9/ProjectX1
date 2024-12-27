@@ -3,6 +3,7 @@ const mongooose = require('mongoose')
 const tourSchema = require('../model/Tourism')
 const FoodSchema = require('../model/food')
 const path = require('path')
+const fs = require('fs');
 
 module.exports.TourData = async function (req,res) {
   const tours = await tourSchema.find();
@@ -60,7 +61,6 @@ module.exports.TourismUpload = async function (req, res) {
       }
     });
   };
-  const fs = require('fs');
   // const path = require('path');
   
   module.exports.deleteTour = async function (req, res) {
@@ -145,4 +145,40 @@ module.exports.TourismUpload = async function (req, res) {
       res.status(500).json({ message: "Server error", error: err.message });
     }
   });
+};
+module.exports.deleteFood = async function (req, res) {
+  try {
+    const { name } = req.body;
+
+    if (!name) {
+      return res.status(400).json({ message: 'Name is required to delete the food item' });
+    }
+
+    // Find the food item by name and delete it
+    const deletedFood = await FoodSchema.findOneAndDelete({ name });
+
+    if (!deletedFood) {
+      return res.status(404).json({ message: 'Food item not found with the provided name' });
+    }
+    // If an image exists, delete it from the assets folder
+    if (deletedFood.image) {
+      const imagePath = path.join(__dirname, '..', deletedFood.image).replace(/\\/g, '/');
+      fs.unlink(imagePath, (err) => {
+        if (err) {
+          console.error('Error deleting the image file:', err.message);
+          return res.status(500).json({
+            message: 'Food item deleted, but failed to delete the associated image file',
+            error: err.message,
+          });
+        }
+
+        console.log(`Image file deleted successfully: ${imagePath}`);
+      });
+    }
+
+    res.status(200).json({ message: 'Food item deleted successfully', deletedFood });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
 };
