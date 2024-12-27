@@ -54,7 +54,7 @@ const TourForm = () => {
       {/* Title at the top */}
       
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-      <h2>Create a Tour</h2>
+      <h2 className='Form_title_uploader'>Create a Tour</h2>
         <div className="form-group">
           <label htmlFor="title">Title:</label>
           <input

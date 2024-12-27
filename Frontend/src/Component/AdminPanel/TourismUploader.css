@@ -12,16 +12,16 @@
   }
   
   /* Title Styling */
-  h2 {
+  .Form_title_uploader {
     margin: 0 0 2rem;
     font-size: 2rem;
-    font-weight: bold;
-    text-align: center; /* Center the title horizontally */
-    color: #333333;
-    /* border-bottom: 1px solid #05101bf5; */
+     font-weight: bold;  
+    text-align: center; /*Center the title horizontally */
+    color: #110b0b;
+    border-bottom: 1px solid #05101bf5;
     padding-bottom: 0.5rem;
-    /* position: relative; */
-  }
+    position: relative;
+  } 
   
   
   /* Form Fields */
