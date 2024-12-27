@@ -23,6 +23,11 @@ import Navbar from "./Component/Home/Navbar";
 import ProtectedRoute from "./Component/Authentication/ProtectedRoute";
 import TourismUploader from './Component/AdminPanel/TourismUploader'
 import TourismDelete from './Component/AdminPanel/TourismDelete'
+import FoodBanner from "./Component/Food/FoodBanner";
+import OurStory from "./Component/Food/OurStory";
+import Testimonials from "./Component/Food/Testimonial";
+import Expert from "./Component/Food/Expert";
+import Menu from "./Component/Food/Menu"
 function App() {
   return (
     <>
@@ -42,8 +47,20 @@ function App() {
               </>
             }
           />
-          
-          
+          <Route
+          path="Food"
+          element={
+            <ProtectedRoute>
+              <>
+              <FoodBanner/>
+              <OurStory/>
+              <Menu/>
+              <Expert/>
+              <Testimonials/>
+              </>
+            </ProtectedRoute>
+            }
+            />
           <Route
             path="Tourism"
             element={

@@ -1,0 +1,93 @@
+.experts-section {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 64px 16px;
+    text-align: center;
+    background: white;
+  }
+  
+  .section-header {
+    margin-bottom: 48px;
+    
+  }
+  
+  .section-subtitle {
+    color: #ef4444;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-family: "Dancing Script", serif;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #666;
+  }
+  
+  .section-description {
+    color: #666;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+  
+  .experts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 32px;
+  }
+  
+  @media (min-width: 768px) {
+    .experts-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .expert-card {
+    background: #fff;
+  }
+  
+  .expert-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    margin-bottom: 24px;
+  }
+  
+  .expert-name {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  
+  .expert-role {
+    color: #ef4444;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  
+  .expert-description {
+    color: #666;
+    margin-bottom: 24px;
+    padding: 0 16px;
+  }
+  
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  .social-link {
+    color: rgb(92, 200, 236);
+    transition: color 0.2s;
+  }
+  
+  .social-link:hover {
+    color: #4b5563;
+  }
+  
+  
