@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './TourismUploader.css'; // Make sure this points to your CSS file
 
 const TourForm = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ const TourForm = () => {
     rating: '',
     reviews: '',
   });
-  const [imageFile, setImageFile] = useState(null); // Separate state for file
+  const [imageFile, setImageFile] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,27 +21,25 @@ const TourForm = () => {
     }));
   };
 
-  // Handle file input
   const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]); // Store the selected file
+    setImageFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = new FormData(); // Create FormData object
-    // Append fields to FormData
+    const data = new FormData();
     data.append('title', formData.title);
     data.append('description', formData.description);
     data.append('duration', formData.duration);
     data.append('price', formData.price);
     data.append('rating', formData.rating);
     data.append('reviews', formData.reviews);
-    data.append('image', imageFile); // Append the file
+    data.append('image', imageFile);
 
     try {
       const response = await axios.post('http://localhost:8080/tourismUpload', data, {
-        headers: { 'Content-Type': 'multipart/form-data' }, // Required for file uploads
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
       if (response.status === 200) {
         console.log('Tour created successfully:', response.data);
@@ -52,9 +51,10 @@ const TourForm = () => {
 
   return (
     <div className="form-container">
-      <h2>Create a Tour</h2>
+      {/* Title at the top */}
+      
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        {/* Title */}
+      <h2>Create a Tour</h2>
         <div className="form-group">
           <label htmlFor="title">Title:</label>
           <input
@@ -67,7 +67,6 @@ const TourForm = () => {
           />
         </div>
 
-        {/* Description */}
         <div className="form-group">
           <label htmlFor="description">Description:</label>
           <textarea
@@ -79,7 +78,6 @@ const TourForm = () => {
           />
         </div>
 
-        {/* Image */}
         <div className="form-group">
           <label htmlFor="image">Image:</label>
           <input
@@ -92,7 +90,6 @@ const TourForm = () => {
           />
         </div>
 
-        {/* Other Fields */}
         <div className="form-group">
           <label htmlFor="duration">Duration (days):</label>
           <input
@@ -147,8 +144,9 @@ const TourForm = () => {
           />
         </div>
 
-        {/* Submit Button */}
-        <button type="submit">Submit</button>
+        <button type="submit" className="submit-button">
+          Submit
+        </button>
       </form>
     </div>
   );

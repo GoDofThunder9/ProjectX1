@@ -1,0 +1,81 @@
+/* Form Container */
+/* Form Container */
+.form-container {
+    max-width: 700px;
+    margin: 5rem auto; /* Added margin to prevent navbar overlap */
+    padding: 2.5rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e0e0e0;
+    position: relative;
+  }
+  
+  /* Title Styling */
+  h2 {
+    margin: 0 0 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center; /* Center the title horizontally */
+    color: #333333;
+    border-bottom: 1px solid #05101bf5;
+    padding-bottom: 0.5rem;
+    /* position: relative; */
+  }
+  
+  
+  /* Form Fields */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555555;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    background: #f9fafc;
+    font-size: 1rem;
+    color: #333333;
+    transition: all 0.3s;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  /* Input focus styles */
+  input:focus,
+  textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    background: #ffffff;
+  }
+  
+  /* Submit Button */
+  .submit-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
