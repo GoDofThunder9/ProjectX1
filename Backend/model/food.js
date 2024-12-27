@@ -1,42 +1,33 @@
 const mongoose = require('mongoose');
 const multer = require('multer');
 const path = require('path');
-const AVATAR_PATH = path.join('/assets/TourismImages');
+const AVATAR_PATH = path.join('/assets/FoodImages');
 console.log("AVATAR PATH" , AVATAR_PATH)
 
 // Define the schema
-const tourSchema = new mongoose.Schema({
-  title: {
+const FoodSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
     trim: true,
     unique: true,
   },
-  description: {
+  category: {
     type: String,
     required: true,
   },
   image: {
     type: String,
-  },
-  duration: {
-    type: Number,
     required: true,
-    min: 1,
   },
   price: {
     type: Number,
     required: true,
     min: 0,
   },
-  rating: {
-    type: Number,
-    min: 1,
-    max: 5,
-  },
-  reviews: {
-    type: Number,
-    min: 0,
+  description: {
+    type: String,
+    required: true,
   },
 }, {
   timestamps: true,
@@ -54,7 +45,7 @@ let storage = multer.diskStorage({
     const fileExtension = path.extname(file.originalname).toLowerCase();
 
     // Validate .jpg format
-    if (fileExtension !== '.jpg', '.jpeg', '.png', '.gif') {
+    if (fileExtension !== '.jpg') {
       return cb(new Error('Only .jpg files are allowed'));
     }
 
@@ -65,7 +56,7 @@ let storage = multer.diskStorage({
 
 // Configure Multer file filter
 const fileFilter = (req, file, cb) => {
-  const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+  const allowedMimeTypes = ['image/jpeg'];
   if (allowedMimeTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
@@ -74,14 +65,14 @@ const fileFilter = (req, file, cb) => {
 };
 
 // Add Multer instance to the schema
-tourSchema.statics.uploadAvatar = multer({
+FoodSchema.statics.uploadAvatar = multer({
   storage: storage,
   fileFilter: fileFilter,
 }).single('image');
 
-tourSchema.statics.avatarPath = AVATAR_PATH;
+FoodSchema.statics.avatarPath = AVATAR_PATH;
 
 // Create the model
-const Tour = mongoose.model('Tour', tourSchema);
+const Food = mongoose.model('Food', FoodSchema);
 
-module.exports = Tour;
+module.exports = Food;

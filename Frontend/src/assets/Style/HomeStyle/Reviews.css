@@ -4,6 +4,7 @@
     margin: 0 auto;
     padding: 80px 20px;
     background-color: #f8f9fa;
+    /* margin-top: 100px; */
   }
   
   .testimonials-title {
@@ -28,7 +29,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
-    margin-top: 20px;
+    margin-top: 100px;
   }
   
   .testimonial-card {
@@ -39,6 +40,7 @@
     text-align: center;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
   }
   
   .testimonial-card:hover {
@@ -80,6 +82,7 @@
     font-weight: 600;
     color: #FF6B4A;
     margin-bottom: 12px;
+    position: relative;
   }
   
   .testimonial-quote {
@@ -133,6 +136,7 @@
     .testimonial-image-background {
       width: 120px;
       height: 60px;
+      margin-bottom: -200px;
     }
   
     .testimonial-image {

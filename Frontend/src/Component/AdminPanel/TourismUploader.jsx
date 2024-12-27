@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './TourismUploader.css'; // Make sure this points to your CSS file
+import './TourismUploader.css'; // Ensure this path is correct
 
 const TourForm = () => {
   const [formData, setFormData] = useState({
@@ -51,16 +51,17 @@ const TourForm = () => {
 
   return (
     <div className="form-container">
-      {/* Title at the top */}
-      
+      {/* Title */}
+      <h2 className="Form_title_uploader">Create a Tour</h2>
+
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-      <h2 className='Form_title_uploader'>Create a Tour</h2>
         <div className="form-group">
-          <label htmlFor="title">Title:</label>
+          <label className="label_tourism" htmlFor="title">Title:</label>
           <input
             type="text"
             id="title"
             name="title"
+            className="input_tourism"
             value={formData.title}
             onChange={handleChange}
             required
@@ -68,10 +69,11 @@ const TourForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="description">Description:</label>
+          <label className="label_tourism" htmlFor="description">Description:</label>
           <textarea
             id="description"
             name="description"
+            className="textarea_tourism"
             value={formData.description}
             onChange={handleChange}
             required
@@ -79,11 +81,12 @@ const TourForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="image">Image:</label>
+          <label className="label_tourism" htmlFor="image">Image:</label>
           <input
             type="file"
             id="image"
             name="image"
+            className="input_tourism"
             accept="image/*"
             onChange={handleFileChange}
             required
@@ -91,11 +94,12 @@ const TourForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="duration">Duration (days):</label>
+          <label className="label_tourism" htmlFor="duration">Duration (days):</label>
           <input
             type="number"
             id="duration"
             name="duration"
+            className="input_tourism"
             value={formData.duration}
             onChange={handleChange}
             min="1"
@@ -104,11 +108,12 @@ const TourForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="price">Price ($):</label>
+          <label className="label_tourism" htmlFor="price">Price ($):</label>
           <input
             type="number"
             id="price"
             name="price"
+            className="input_tourism"
             value={formData.price}
             onChange={handleChange}
             min="0"
@@ -117,11 +122,12 @@ const TourForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="rating">Rating (1-5):</label>
+          <label className="label_tourism" htmlFor="rating">Rating (1-5):</label>
           <input
             type="number"
             id="rating"
             name="rating"
+            className="input_tourism"
             value={formData.rating}
             onChange={handleChange}
             min="1"
@@ -132,11 +138,12 @@ const TourForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="reviews">Reviews:</label>
+          <label className="label_tourism" htmlFor="reviews">Reviews:</label>
           <input
             type="number"
             id="reviews"
             name="reviews"
+            className="input_tourism"
             value={formData.reviews}
             onChange={handleChange}
             min="0"
@@ -144,9 +151,7 @@ const TourForm = () => {
           />
         </div>
 
-        <button type="submit" className="submit-button">
-          Submit
-        </button>
+        <button type="submit" className="submit-button">Submit</button>
       </form>
     </div>
   );

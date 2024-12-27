@@ -28,6 +28,7 @@ import OurStory from "./Component/Food/OurStory";
 import Testimonials from "./Component/Food/Testimonial";
 import Expert from "./Component/Food/Expert";
 import Menu from "./Component/Food/Menu"
+import FoodUploader from "./Component/AdminPanel/FoodUploader"
 function App() {
   return (
     <>
@@ -86,6 +87,7 @@ function App() {
           
         <Route path="/Admin/upload" element={<TourismUploader/>}></Route>
         <Route path="/Admin/delete" element={<TourismDelete/>}></Route>
+        <Route path="/Admin/food/upload" element={<FoodUploader/>}></Route>
         </Routes>
         <Footer/>
       </BrowserRouter>
