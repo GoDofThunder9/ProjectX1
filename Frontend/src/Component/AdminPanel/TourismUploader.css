@@ -1,4 +1,3 @@
-Form Container
 .form-container {
   max-width: 700px;
   margin: 5rem auto; /* Added margin to prevent navbar overlap */
@@ -14,20 +13,21 @@ Form Container
 .Form_title_uploader {
   margin: 0 0 2rem;
   font-size: 2rem;
-  font-weight: bold;
-  text-align: center; /* Center the title horizontally */
+   font-weight: bold;  
+  text-align: center; /*Center the title horizontally */
   color: #110b0b;
   border-bottom: 1px solid #05101bf5;
   padding-bottom: 0.5rem;
   position: relative;
-}
+} 
+
 
 /* Form Fields */
 .form-group {
   margin-bottom: 1.5rem;
 }
 
-.label_tourism {
+label {
   font-size: 1rem;
   font-weight: 500;
   color: #555555;
@@ -35,9 +35,8 @@ Form Container
   display: inline-block;
 }
 
-/* Input and Textarea Styling */
-.input_tourism,
-.textarea_tourism {
+input,
+textarea {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #cccccc;
@@ -48,13 +47,13 @@ Form Container
   transition: all 0.3s;
 }
 
-.textarea_tourism {
+textarea {
   resize: vertical;
 }
 
-/* Input and Textarea Focus Styling */
-.input_tourism:focus,
-.textarea_tourism:focus {
+/* Input focus styles */
+input:focus,
+textarea:focus {
   border-color: #007bff;
   outline: none;
   background: #ffffff;

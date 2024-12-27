@@ -52,9 +52,10 @@ const TourForm = () => {
   return (
     <div className="form-container">
       {/* Title */}
-      <h2 className="Form_title_uploader">Create a Tour</h2>
+      
 
       <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <h2 className="Form_title_uploader">Create a Tour</h2>
         <div className="form-group">
           <label className="label_tourism" htmlFor="title">Title:</label>
           <input
