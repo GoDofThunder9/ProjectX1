@@ -67,10 +67,10 @@
     border-top-right-radius: 70px;
   }
   
-  .testimonial-image {
+  .testimonial-image-new {
     position: relative;
-    width: 120px;
-    height: 120px;
+    /* width: 120px; */
+    height: 139px;
     border-radius: 50%;
     object-fit: cover;
     border: 5px solid #fff;
