@@ -30,6 +30,9 @@ import Expert from "./Component/Food/Expert";
 import Menu from "./Component/Food/Menu"
 import FoodUploader from "./Component/AdminPanel/FoodUploader"
 import FoodDelete from "./Component/AdminPanel/FoodDelete"
+import HeroSection from "./Component/CabBooking/HeroSection";
+import FeaturedCars from "./Component/CabBooking/FeaturedCars";
+import BannerCar  from "./Component/CabBooking/BannerCar";
 function App() {
   return (
     <>
@@ -90,6 +93,14 @@ function App() {
         <Route path="/Admin/delete" element={<TourismDelete/>}></Route>
         <Route path="/Admin/food/upload" element={<FoodUploader/>}></Route>
         <Route path="/Admin/food/delete" element={<FoodDelete/>}></Route>
+        <Route path="/CabBooking" element={
+          <>
+          <HeroSection/>
+          <FeaturedCars/>
+          {/* <BannerCar/> */}
+          </>
+        }>
+          </Route>
         </Routes>
         <Footer/>
       </BrowserRouter>
