@@ -33,6 +33,7 @@ import FoodDelete from "./Component/AdminPanel/FoodDelete"
 import HeroSection from "./Component/CabBooking/HeroSection";
 import FeaturedCars from "./Component/CabBooking/FeaturedCars";
 import BannerCar  from "./Component/CabBooking/BannerCar";
+import TestimonialSlider from "./Component/CabBooking/TestimonialSlider";
 function App() {
   return (
     <>
@@ -97,7 +98,8 @@ function App() {
           <>
           <HeroSection/>
           <FeaturedCars/>
-          {/* <BannerCar/> */}
+          <BannerCar/>
+          <TestimonialSlider/>
           </>
         }>
           </Route>

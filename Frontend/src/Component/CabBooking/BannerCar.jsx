@@ -1,40 +1,46 @@
 import React from 'react';
-import '../../assets/Style/CabBooking/BannerCar.css'
-import { IoCarOutline} from 'react-icons/io5';
-import HeroSection from './HeroSection';
-import FeaturedCars from './FeaturedCars';
+import '../../assets/Style/CabBooking/BannerCar.css';
 
 const BannerCar = () => {
+  const features = [
+    {
+      icon: "🚕",
+      title: "Reliable Service",
+      description: "Lorem ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+      icon: "💰",
+      title: "Lowest Prices",
+      description: "Lorem ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+      icon: "🕒",
+      title: "24/7 Support",
+      description: "Lorem ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+      icon: "✅",
+      title: "Best Cars",
+      description: "Lorem ipsum is simply dummy text of the printing and typesetting industry."
+    }
+  ];
+
   return (
-    <>
-    <section className="get-start">
-    <div className="container">
-      <h2 className="section-title">Get started with 4 simple steps</h2>
-      <ul className="get-start-list">
-        {[
-          { icon: "person-add-outline", title: "Create a profile", text: "If you are going to use a passage of Lorem Ipsum, you need to be sure." },
-          { icon: "car-outline", title: "Tell us what car you want", text: "Various versions have evolved over the years, sometimes by accident, sometimes on purpose" },
-          { icon: "person-outline", title: "Match with seller", text: "It to make a type specimen book. It has survived not only five centuries, but also the leap into electronic" },
-          { icon: "card-outline", title: "Make a deal", text: "There are many variations of passages of Lorem available, but the majority have suffered alteration" },
-        ].map((step, index) => (
-          <li key={index}>
-            <div className="get-start-card">
-              <div className={`card-icon icon-${index + 1}`}>
-                <IoCarOutline />
-              </div>
-              <h3 className="card-title">{step.title}</h3>
-              <p className="card-text">{step.text}</p>
-              {index === 0 && <a href="#" className="card-link">Get started</a>}
+    <div className="why-choose-us11">
+      <h2>Why Choose Us?</h2>
+      <div className="features-container11">
+        {features.map((feature, index) => (
+          <div key={index} className="feature11">
+            <div className="icon-circle11">
+              <span className="icon11">{feature.icon}</span>
             </div>
-          </li>
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
-  </section>
-  </>
   );
 };
 
-
 export default BannerCar;
-

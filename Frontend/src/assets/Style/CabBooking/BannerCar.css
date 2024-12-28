@@ -1,502 +1,70 @@
-:root {
-  /* --pale-purple-pantone: hsl(262, 63%, 92%);
-  --medium-sea-green: hsl(152, 63%, 43%);
-  --lavender-blush: hsl(336, 35%, 92%);
-  --carolina-blue: hsl(204, 91%, 53%);
-  --columbia-blue: hsl(204, 92%, 90%);
-  --alice-blue-1: hsl(216, 38%, 95%);
-  --alice-blue-2: hsl(216, 75%, 97%);
-  --alice-blue-3: hsl(216, 38%, 95%);
-  --alice-blue-4: hsl(217, 33%, 92%);
-  --independence: hsl(219, 21%, 39%);
-  --deep-cerise: hsl(329, 63%, 52%);
-  --eerie-black: hsl(210, 11%, 15%);
-  --space-cadet: hsl(240, 22%, 25%);
-  --blue-jeans: hsl(204, 80%, 63%);
-  --slate-blue: hsl(262, 60%, 57%);
-  --beau-blue: hsl(208, 86%, 92%);
-  --honey-dew: hsl(152, 48%, 89%);
-  --mimi-pink: hsl(329, 63%, 90%);
-  --red-salsa: hsl(0, 79%, 63%);
-  --sapphire: hsl(211, 100%, 35%);
-  --manatee: hsl(219, 14%, 60%);
-  --white: hsl(0, 0%, 100%); */
-  /* Adding a Tomato-inspired HSL shade to the palette */
---tomato-light: hsl(9, 73%, 87%); /* Lightened */
---tomato-base: hsl(9, 73%, 63%); /* Base color from FF6347 */
---tomato-dark: hsl(9, 73%, 43%); /* Darkened */
-
-/* Adjusting text color for compatibility */
---text-black: hsl(0, 0%, 0%);
-
-
-  --gradient: linear-gradient(to top, var(--alice-blue-2), var(--alice-blue-3));
-
-  --ff-nunito: 'Nunito', sans-serif;
-  --ff-open-sans: 'Open Sans', sans-serif;
-
-  --fs-1: 2.125rem;
-  --fs-2: 1.875rem;
-  --fs-3: 1.5rem;
-  --fs-4: 1.375rem;
-  --fs-5: 1.125rem;
-  --fs-6: 0.875rem;
-  --fs-7: 0.625rem;
-
-  --fw-400: 400;
-  --fw-600: 600;
-
-  --transition: 0.5s ease;
-
-  --section-padding: 50px;
-
-  --radius-10: 10px;
-  --radius-14: 14px;
-  --radius-18: 18px;
-
-  --shadow-1: 3px 3px 9px hsla(240, 14%, 69%, 0.2);
-  --shadow-2: 3px 3px 9px hsla(204, 92%, 59%, 0.3);
+.why-choose-us11 {
+  padding: 64px 16px;
+  text-align: center;
 }
 
-/* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.why-choose-us11 h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 48px;
+  color: #333;
 }
 
-body {
-  font-family: var(--ff-open-sans);
-  color: var(--white);
-  font-size: 1rem;
-  line-height: 1.5;
-  /* background: #1a1a1a; */
-}
-
-ul { list-style: none; }
-a { text-decoration: none; }
-
-.container {
-  padding-inline: 15px;
+.features-container11 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 32px;
   max-width: 1200px;
-  margin-inline: auto;
+  margin: 0 auto;
 }
 
-.btn1 {
-  background: var(--carolina-blue);
-  color: var(--white);
-  /* padding: 2.75rem 1rem; */
-  border: none;
-  border-radius: var(--radius-14);
-  font-family: var(--ff-nunito);
-  font-size: var(--fs-6);
-  font-weight: var(--fw-600);
-  cursor: pointer;
-  transition: var(--transition);
-  height: 50px;
-  margin-top: 30px;
-}
-
-.btn:hover { background: var(--sapphire); }
-
-.section-title {
-  color: var(--white);
-  font-size: var(--fs-2);
-  font-weight: var(--fw-400);
-  margin-bottom: 30px;
-}
-
-/* Hero Section */
-.hero {
-  padding-top: 450px;
-  /* padding-bottom: var(--section-padding); */
-}
-
-.hero-title {
-  color: var(--white);
-  font-size: var(--fs-1);
-  font-weight: var(--fw-600);
-  margin-bottom: 15px;
-}
-
-.hero-text {
-  color: var(--white);
-  margin-bottom: 30px;
-}
-
-.hero-form {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: var(--shadow-1);
-  border-radius: var(--radius-18);
+.feature11 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
 }
 
-.input-wrapper:not(:last-child) {
-  margin-bottom: 15px;
-}
-
-.input-label {
-  color: var(--white);
-  font-size: var(--fs-6);
-  margin-bottom: 10px;
-}
-
-.input-field {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-10);
-  outline: none;
-  transition: var(--transition);
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--white);
-}
-
-.input-field::placeholder {
-  color: var(--white);
-}
-
-.input-field:focus {
-  border-color: var(--carolina-blue);
-}
-
-/* Featured Cars Section */
-.featured-car {
-  padding-block: var(--section-padding);
-}
-
-.featured-car-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
-}
-
-.featured-car-card {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid var(--white);
-  border-radius: var(--radius-18);
-  padding: 10px;
-  box-shadow: var(--shadow-1);
-}
-
-.card-banner img {
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius-18);
-}
-
-.card-content {
-  padding: 20px 10px;
-}
-
-.card-title-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.card-title {
-  color: var(--white);
-  font-size: var(--fs-4);
-  font-weight: var(--fw-400);
-}
-
-.card-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
-  margin-bottom: 15px;
-}
-
-.card-list-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.card-list-item svg {
-  font-size: 20px;
-  color: var(--carolina-blue);
-}
-
-.card-item-text {
-  color: var(--white);
-  font-size: var(--fs-6);
-}
-
-.card-price-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-}
-
-.card-price {
-  font-family: var(--ff-nunito);
-  font-size: var(--fs-6);
-  color: var(--white);
-}
-
-.card-price strong {
-  font-size: var(--fs-3);
-  font-weight: var(--fw-400);
-}
-
-.fav-btn {
-  background: var(--beau-blue);
-  color: var(--blue-jeans);
-  padding: 8px;
-  border: none;
+.icon-circle11 {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #ff9800;
   border-radius: 50%;
-  transition: var(--transition);
-}
-
-.fav-btn:hover {
-  background: var(--lavender-blush);
-  color: var(--red-salsa);
-}
-
-/* Get Started Section */
-.get-start {
-  padding-block: var(--section-padding);
-}
-
-.get-start-list {
-  display: grid;
-  gap: 20px;
-}
-
-.get-start-card {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: var(--radius-18);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: var(--transition);
-}
-
-.get-start-card:hover {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: var(--shadow-1);
-}
-
-.card-icon {
-  background: var(--icon-card-bg, var(--columbia-blue));
-  color: var(--icon-card-color, var(--carolina-blue));
-  height: 50px;
-  width: 50px;
-  display: grid;
-  place-items: center;
-  border-radius: var(--radius-14);
-  margin-bottom: 20px;
-}
-
-.card-icon svg {
-  font-size: 26px;
-}
-
-.icon-1 {
-  --icon-card-bg: var(--mimi-pink);
-  --icon-card-color: var(--deep-cerise);
-}
-
-.icon-2 {
-  --icon-card-bg: var(--columbia-blue);
-  --icon-card-color: var(--carolina-blue);
-}
-
-.icon-3 {
-  --icon-card-bg: var(--honey-dew);
-  --icon-card-color: var(--medium-sea-green);
-}
-
-.icon-4 {
-  --icon-card-bg: var(--pale-purple-pantone);
-  --icon-card-color: var(--slate-blue);
-}
-
-.card-title {
-  color: var(--white);
-  font-family: var(--ff-nunito);
-  font-weight: var(--fw-400);
-  margin-bottom: 15px;
-}
-
-.card-text {
-  color: var(--white);
-}
-
-.card-link {
-  color: var(--carolina-blue);
-  font-weight: var(--fw-600);
-  margin-top: 10px;
-  transition: var(--transition);
-}
-
-.card-link:hover {
-  color: var(--sapphire);
-}
-
-/* Blog Section */
-.blog {
-  padding-block: var(--section-padding);
-}
-
-.blog-list {
-  display: grid;
-  gap: 30px;
-}
-
-.blog-card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-18);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: var(--shadow-1);
-  overflow: hidden;
-}
-
-.blog-card .card-banner {
-  position: relative;
-}
-
-.blog-card .card-banner img {
-  width: 100%;
-  height: auto;
-}
-
-.blog-card .card-badge {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  padding: 5px 15px;
-}
-
-.blog-card .card-content {
-  padding: 20px;
-}
-
-.blog-card .card-title {
-  margin-bottom: 20px;
-}
-
-.blog-card .card-title > a {
-  color: var(--white);
-  transition: var(--transition);
-}
-
-.blog-card .card-title > a:hover {
-  color: var(--carolina-blue);
-}
-
-.blog-card .card-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.blog-card .publish-date,
-.blog-card .comments {
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: var(--fs-6);
-  color: var(--white);
+  justify-content: center;
+  margin-bottom: 16px;
 }
 
-/* Media Queries */
-@media (min-width: 580px) {
-  .hero-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-  }
-
-  .hero-form .btn {
-    grid-column: span 2;
-  }
+.icon11 {
+  font-size: 32px;
 }
 
+.feature11 h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.feature11 p {
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.5;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Media Queries for Responsive Design */
 @media (min-width: 768px) {
-  .featured-car-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .get-start-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .blog-list {
+  .features-container11 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 992px) {
-  .hero {
-    position: relative;
-    min-height: 85vh;
-    display: flex;
-    align-items: center;
-  }
-
-  .hero-form {
+@media (min-width: 1024px) {
+  .features-container11 {
     grid-template-columns: repeat(4, 1fr);
-  }
-
-  .hero-form .btn {
-    grid-column: span 1;
-  }
-
-  .hero-banner {
-    display: block;
-    background: url("/assets/images/hero-banner.jpg") no-repeat;
-    background-size: cover;
-    background-position: left;
-    position: absolute;
-    top: 100px;
-    bottom: 50px;
-    left: 65%;
-    width: 500px;
-    border-radius: 30px;
-    z-index: -1;
-  }
-
-  .hero-banner::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-  }
-
-  .featured-car-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .get-start-list {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .blog-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 1200px) {
-  .hero-content {
-    max-width: 600px;
-  }
-
-  .hero-banner {
-    left: auto;
-    right: 50px;
-    width: 630px;
   }
 }
 

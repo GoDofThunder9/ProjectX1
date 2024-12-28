@@ -156,7 +156,7 @@ const FeaturedCars = () => {
                 <button className="btn fav-btn" aria-label="Add to favourite list">
                   <IoHeartOutline />
                 </button>
-                <button className="btn">Add to cart</button>
+                <button className="btn">Rent</button>
               </div>
             </div>
           </div>

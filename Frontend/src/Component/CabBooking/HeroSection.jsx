@@ -27,7 +27,6 @@ function HeroSection() {
 
       <section className="hero" id="home">
     <div className="container">
-
       <form className="hero-form">
         <div className="input-wrapper">
           <label htmlFor="input-1" className="input-label">Car, model, or brand</label>

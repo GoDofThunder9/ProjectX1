@@ -1,6 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
+:root {
+  --primary: hsl(0, 79%, 63%);
+  --primary-light: hsl(0, 79%, 73%);
+  --primary-dark: hsl(0, 79%, 53%);
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+  --grey-light: hsl(0, 0%, 95%);
+  --grey-medium: hsl(0, 0%, 75%);
+  --grey-dark: hsl(0, 0%, 50%);
 
+  --gradient: linear-gradient(to top, var(--grey-light), var(--white));
+
+  --ff-nunito: 'Nunito', sans-serif;
+  --ff-open-sans: 'Open Sans', sans-serif;
+
+  --fs-1: 2.125rem;
+  --fs-2: 1.875rem;
+  --fs-3: 1.5rem;
+  --fs-4: 1.375rem;
+  --fs-5: 1.125rem;
+  --fs-6: 0.875rem;
+  --fs-7: 0.625rem;
+
+  --fw-400: 400;
+  --fw-600: 600;
+
+  --transition: 0.5s ease;
+
+  --section-padding: 50px;
+
+  --radius-10: 10px;
+  --radius-14: 14px;
+  --radius-18: 18px;
+
+  --shadow-1: 3px 3px 9px hsla(0, 0%, 0%, 0.1);
+  --shadow-2: 3px 3px 9px hsla(0, 79%, 53%, 0.3);
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container{
+  margin-top: 420px;
+}
 .background-video-cab {
   position: absolute;
   top: 0;
@@ -10,80 +56,79 @@
   object-fit: cover; /* Ensures the video fills the screen without distortion */
   z-index: -1; /* Keeps the video behind all content */
 }
+.hero-form {
+  background: rgba(255, 255, 255, 0.1); /* Transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for visibility */
+  box-shadow: var(--shadow-1); /* Soft shadow effect */
+  border-radius: var(--radius-18);
+  padding: 20px;
+  backdrop-filter: blur(10px); /* Adds a frosted glass effect */
+  -webkit-backdrop-filter: blur(10px); /* Support for Safari */
+  transition: var(--transition);
+}
 
+.input-label {
+  color: var(--white); /* Keeps labels white for dark background */
+  font-size: var(--fs-6);
+  margin-bottom: 10px;
+}
 
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle input border for visibility */
+  border-radius: var(--radius-10);
+  outline: none;
+  transition: var(--transition);
+  background: rgba(255, 255, 255, 0.2); /* Slight transparency for input background */
+  color: var(--white); /* White text for better contrast on dark background */
+}
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .hero {
-    height: 600px;
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Lighter placeholder text */
+}
+
+.input-field:focus {
+  border-color: var(--primary-light); /* Slightly lighter primary color */
+  background: rgba(255, 255, 255, 0.3); /* Slightly less transparent on focus */
+}
+
+.btn1 {
+  background: #ff6347; /* Slightly transparent button for a consistent theme */
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-14);
+  font-family: var(--ff-nunito);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-600);
+  cursor: pointer;
+  transition: var(--transition);
+  height: 50px;
+  margin-top: 30px;
+}
+
+.btn1:hover {
+  background:#ef4444 ; /* Fully opaque on hover */
+}
+
+@media (min-width: 580px) {
+  .hero-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
   }
 
-  .hero-title {
-    font-size: 40px;
-  }
-
-  .hero-stats {
-    gap: 16px; /* Reduces the gap for smaller screens */
-  }
-
-  .hero-stat {
-    font-size: 20px;
-    flex: 1 1 calc(50% - 16px); /* Two stats per row */
-  }
-
-  .hero-button {
-    padding: 10px 20px;
-    font-size: 16px;
+  .hero-form .btn1 {
+    grid-column: span 2;
   }
 }
 
-@media (max-width: 768px) {
-  .hero {
-    height: 400px;
+@media (min-width: 992px) {
+  .hero-form {
+    grid-template-columns: repeat(4, 1fr);
   }
 
-  .hero-title {
-    font-size: 32px;
-  }
-
-  .hero-stats {
-    flex-direction: column; /* Stacks stats vertically */
-    gap: 16px;
-  }
-
-  .hero-stat {
-    font-size: 18px;
-    flex: 1 1 auto; /* Full width for each stat */
-  }
-
-  .hero-button {
-    padding: 10px 18px;
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    height: 300px;
-  }
-
-  .hero-title {
-    font-size: 24px;
-  }
-
-  .hero-stats {
-    gap: 12px;
-  }
-
-  .hero-stat {
-    font-size: 16px;
-    padding: 12px; /* Reduces padding for smaller screens */
-    flex: 1 1 auto; /* Full width for each stat */
-  }
-
-  .hero-button {
-    padding: 8px 16px;
-    font-size: 14px;
+  .hero-form .btn1 {
+    grid-column: span 1;
   }
 }
