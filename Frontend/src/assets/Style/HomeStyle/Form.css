@@ -1,28 +1,27 @@
-/* FeedbackForm.css */
-.form-container {
-  min-height: 59vh;
+/* FeedbackFormHome.css */
+.home-form-container {
+  min-height: 30vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  width: 584px;
+  width: 100%;
 }
 
-.form-wrapper {
+.home-form-wrapper {
   width: 100%;
   max-width: 500px;
   background: white;
-  /* padding: 2rem; */
   border-radius: 10px;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   transition: transform 0.3s ease;
+  padding: 2rem;
 }
 
-.form-wrapper:hover {
+.home-form-wrapper:hover {
   transform: translateY(-5px);
 }
 
-.form-title {
+.home-form-title {
   text-align: center;
   color: #333;
   margin-bottom: 2rem;
@@ -30,27 +29,27 @@
   font-weight: bold;
 }
 
-.feedback-form {
+.home-feedback-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.input-group {
+.home-input-group {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.icon {
+.home-icon {
   position: absolute;
   left: 12px;
   color: #666;
   transition: color 0.3s ease;
 }
 
-.input-group input,
-.input-group textarea {
+.home-input-group input,
+.home-input-group textarea {
   width: 100%;
   padding: 10px 40px;
   border: 1px solid #ddd;
@@ -59,23 +58,23 @@
   transition: all 0.3s ease;
 }
 
-.input-group textarea {
+.home-input-group textarea {
   min-height: 100px;
   resize: vertical;
 }
 
-.input-group input:focus,
-.input-group textarea:focus {
+.home-input-group input:focus,
+.home-input-group textarea:focus {
   border-color: #ff6347;
   outline: none;
 }
 
-.input-group:focus-within .icon {
+.home-input-group:focus-within .home-icon {
   color: #ff6347;
 }
 
-.submit-btn {
-  background-color: #ff6347; /* Coral color from the image */
+.home-submit-btn {
+  background-color: #ff6347;
   color: white;
   padding: 12px;
   border: none;
@@ -89,25 +88,25 @@
   transition: all 0.3s ease;
 }
 
-.submit-btn:hover {
+.home-submit-btn:hover {
   background-color: #ff5233;
   transform: translateY(-2px);
 }
 
-.submit-btn:disabled {
+.home-submit-btn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
-.send-icon {
+.home-send-icon {
   transition: transform 0.3s ease;
 }
 
-.submit-btn:hover .send-icon {
+.home-submit-btn:hover .home-send-icon {
   transform: translateX(4px);
 }
 
-.spinner {
+.home-spinner {
   width: 20px;
   height: 20px;
   border: 2px solid #fff;
@@ -123,16 +122,16 @@
 
 /* Responsive Design */
 @media (max-width: 480px) {
-  .form-wrapper {
+  .home-form-wrapper {
     padding: 1.5rem;
   }
 
-  .form-title {
+  .home-form-title {
     font-size: 1.25rem;
   }
 
-  .input-group input,
-  .input-group textarea {
+  .home-input-group input,
+  .home-input-group textarea {
     font-size: 0.9rem;
   }
 }

@@ -4,6 +4,9 @@
     margin-bottom: 2rem;
     flex-wrap: wrap;
   }
+  body{
+    background: white;
+  }
   .menu-nav button {
     padding: 0.75rem 1.5rem;
     border: none;
@@ -132,6 +135,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
+    background: white;
   }
   
   .featured-car-card {

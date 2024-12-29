@@ -97,7 +97,7 @@ const FeaturedCars = () => {
     //       </ul>
     //     </div>
     //   </section>
-    <section className="menu-section">
+    <section style={{background:"white"}} className="menu-section">
       <h3 className="section-subtitle">Discover</h3>
       <h2 className="section-title">Our Menu</h2>
       <p className="section-description">

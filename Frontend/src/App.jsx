@@ -34,22 +34,26 @@ import HeroSection from "./Component/CabBooking/HeroSection";
 import FeaturedCars from "./Component/CabBooking/FeaturedCars";
 import BannerCar  from "./Component/CabBooking/BannerCar";
 import TestimonialSlider from "./Component/CabBooking/TestimonialSlider";
+import Forgot from "./Component/Email Verification/Forgot";
+import ResetPassword from "./Component/Email Verification/Reset";
+import NewPassword from "./Component/Email Verification/NewPassword";
 function App() {
   return (
     <>
       <BrowserRouter>
-          <Navbar/>
         <Routes>
           <Route
             path="/"
             element={
               <>
+               <Navbar/>
               <Banner/>
               <Component/>
               <Component1/>
               <Aboutus/>
               <Reviews/>
               <Form/>
+              <Footer/>
               </>
             }
           />
@@ -58,11 +62,13 @@ function App() {
           element={
             <ProtectedRoute>
               <>
+              <Navbar/>
               <FoodBanner/>
               <OurStory/>
               <Menu/>
               <Expert/>
               <Testimonials/>
+              <Footer/>
               </>
             </ProtectedRoute>
             }
@@ -72,6 +78,7 @@ function App() {
             element={
               <ProtectedRoute>
               <>
+              <Navbar/>
               <TourismBanner/>
               <Banner2/>
               <Description/>
@@ -79,6 +86,7 @@ function App() {
               <Section/>
               <Guides/>
               <Logo/>
+              <Footer/>
               </>
               </ProtectedRoute>
             }
@@ -96,15 +104,20 @@ function App() {
         <Route path="/Admin/food/delete" element={<FoodDelete/>}></Route>
         <Route path="/CabBooking" element={
           <>
+           <Navbar/>
           <HeroSection/>
           <FeaturedCars/>
           <BannerCar/>
           <TestimonialSlider/>
+          <Footer/>
           </>
         }>
           </Route>
+        <Route path='/forgot' element={<Forgot/>}/>
+        <Route path='/reset' element={<ResetPassword/>}/>
+        <Route path='/verify' element={<EmailVerify/>}/>
+        <Route path='/newpass' element={<NewPassword/>}/>
         </Routes>
-        <Footer/>
       </BrowserRouter>
     </>
   );

@@ -37,13 +37,13 @@ function Form() {
   };
 
   return (
-    <div className="form-container">
-      <div className="form-wrapper">
-        <h2 className="form-title">Share Your Feedback</h2>
+    <div className="home-form-container">
+      <div className="home-form-wrapper">
+        <h2 className="home-form-title">Share Your Feedback</h2>
         
-        <form onSubmit={handleSubmit} className="feedback-form">
-          <div className="input-group">
-            <div className="icon">
+        <form onSubmit={handleSubmit} className="home-feedback-form">
+          <div className="home-input-group">
+            <div className="home-icon">
               <FaUser />
             </div>
             <input
@@ -56,8 +56,8 @@ function Form() {
             />
           </div>
 
-          <div className="input-group">
-            <div className="icon">
+          <div className="home-input-group">
+            <div className="home-icon">
               <FaEnvelope />
             </div>
             <input
@@ -70,8 +70,8 @@ function Form() {
             />
           </div>
 
-          <div className="input-group">
-            <div className="icon">
+          <div className="home-input-group">
+            <div className="home-icon">
               <FaPhone />
             </div>
             <input
@@ -84,8 +84,8 @@ function Form() {
             />
           </div>
 
-          <div className="input-group">
-            <div className="icon">
+          <div className="home-input-group">
+            <div className="home-icon">
               <FaCommentAlt />
             </div>
             <input
@@ -98,8 +98,8 @@ function Form() {
             />
           </div>
 
-          <div className="input-group">
-            <div className="icon">
+          <div className="home-input-group">
+            <div className="home-icon">
               <FaCommentAlt />
             </div>
             <textarea
@@ -113,14 +113,14 @@ function Form() {
 
           <button 
             type="submit" 
-            className="submit-btn"
+            className="home-submit-btn"
             disabled={isSubmitting}
           >
             {isSubmitting ? (
-              <div className="spinner" />
+              <div className="home-spinner" />
             ) : (
               <>
-                Submit <FaPaperPlane className="send-icon" />
+                Submit <FaPaperPlane className="home-send-icon" />
               </>
             )}
           </button>

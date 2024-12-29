@@ -53,7 +53,7 @@ const DestinationSlider = () => {
           <div className="image-container">
             <img src={destination.image} alt={destination.title} />
             <div className="overlay1"></div>
-            <div className="content">
+            <div className="content-Tourism">
               <h2>{destination.title}</h2>
               <p>{destination.subtitle}</p>
             </div>
