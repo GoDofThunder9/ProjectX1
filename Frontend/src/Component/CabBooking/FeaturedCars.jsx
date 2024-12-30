@@ -38,9 +38,67 @@ const FeaturedCabs = () => {
       : cabs.filter(cab => cab.type === activeCategory);
 
   return (
+    // <section className="featured-car" id="featured-car">
+    //     <div className="container">
+    //       <div className="title-wrapper">
+    //         <h2 className="section-title">Featured cars</h2>
+    //         <a href="#" className="featured-car-link">
+    //           <span>View more</span>
+    //         </a>
+    //       </div>
+    //       <ul className="featured-car-list">
+    //         {[
+    //           { name: "Toyota RAV4", year: 2021, price: 440, image: img1 },
+    //           { name: "BMW 3 Series", year: 2019, price: 350, image: img1 },
+    //           { name: "Volkswagen T-Cross", year: 2020, price: 400, image: img1 },
+    //         ].map((car, index) => (
+    //           <li key={index}>
+    //             <div className="featured-car-card">
+    //               <figure className="card-banner">
+    //                 <img src={car.image} alt={car.name} loading="lazy" />
+    //               </figure>
+    //               <div className="card-content">
+    //                 <div className="card-title-wrapper">
+    //                   <h3 className="card-title"><a href="#">{car.name}</a></h3>
+    //                   <data className="year" value={car.year}>{car.year}</data>
+    //                 </div>
+    //                 <ul className="card-list">
+    //                   <li className="card-list-item">
+    //                     <IoPeopleOutline />
+    //                     <span className="card-item-text">4 People</span>
+    //                   </li>
+    //                   <li className="card-list-item">
+    //                     <IoFlashOutline />
+    //                     <span className="card-item-text">Hybrid</span>
+    //                   </li>
+    //                   <li className="card-list-item">
+    //                     <IoSpeedometerOutline />
+    //                     <span className="card-item-text">6.1km / 1-litre</span>
+    //                   </li>
+    //                   <li className="card-list-item">
+    //                     <IoHardwareChipOutline />
+    //                     <span className="card-item-text">Automatic</span>
+    //                   </li>
+    //                 </ul>
+    //                 <div className="card-price-wrapper">
+    //                   <p className="card-price">
+    //                     <strong>${car.price}</strong> / month
+    //                   </p>
+    //                   <button className="btn fav-btn" aria-label="Add to favourite list">
+    //                     <IoHeartOutline />
+    //                   </button>
+    //                   <button className="btn">Rent now</button>
+    //                 </div>
+    //               </div>
+    //             </div>
+    //           </li>
+    //         ))}
+    //       </ul>
+    //     </div>
+    //   </section>
     <section className="menu-section">
-      <h3 className="section-subtitle">Explore</h3>
-      <h2 className="section-title">Our Cabs</h2>
+      <h3 className="section-subtitle">Discover</h3>
+      <h2 className="section-title">Our Menu</h2>
       <p className="section-description">
         Choose from a wide range of cabs suited for your travel needs, whether it's a quick ride or a luxury experience.
       </p>

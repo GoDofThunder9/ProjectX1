@@ -1,62 +1,91 @@
 import React, { useState } from 'react';
 import "../../assets/Style/Email Verification/emailverification.css";
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 function EmailVerify() {
   const location = useLocation();
-  const email = location.state?.email;
+  const email = location.state?.email || "your email";
   const navigate = useNavigate();
-  // Initialize state with email and empty OTP string
-  const [code, setCode] = useState({
-    email: email,
-    otp: '' // now otp is a string
-  });
-   
-  // Handle OTP input changes
+
+  // OTP state
+  const [otp, setOtp] = useState(["", "", "", ""]);
+  const [message, setMessage] = useState("");
+
+  // Handle OTP input
   const handleInputChange = (e, index) => {
-    let newOtp = code.otp.split('');
-    newOtp[index] = e.target.value;
-    setCode({ ...code, otp: newOtp.join('') });
+    const value = e.target.value;
+    if (/^[0-9]?$/.test(value)) {
+      const newOtp = [...otp];
+      newOtp[index] = value;
+      setOtp(newOtp);
+
+      // Auto-focus on the next input
+      if (value && index < 3) {
+        document.getElementById(`otp-${index + 1}`).focus();
+      }
+    }
   };
 
-  // Verify user with the entered OTP code
+  // Handle OTP submission
   const verifyUser = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/verify-email', code);
-      navigate('/login');
-      alert("User verified successfully:");
+      const otpCode = otp.join(""); // Combine OTP array to a string
+      const response = await axios.post('http://localhost:8080/verify-email', { email, otp: otpCode });
+
+      if (response.status === 200) {
+        setMessage("Verification successful!");
+        setTimeout(() => navigate('/login'), 2000); // Redirect to login after success
+      }
     } catch (error) {
-      console.log("Error during verification:", error);
+      setMessage("Invalid OTP or verification failed. Please try again.");
+    }
+  };
+
+  // Resend OTP handler
+  const resendOtp = async () => {
+    try {
+      await axios.post('http://localhost:8080/resendotp', { email });
+      setMessage("A new OTP has been sent to your email.");
+    } catch {
+      setMessage("Failed to resend OTP. Please try again.");
     }
   };
 
   return (
     <div className="email-verify">
       <div className="email-container">
-        <div className="email-header">
-          <h1 className='email-heading'>Email Verification</h1>
-        </div>
-        <p className='email-subheading'>We sent a code to {email}</p>
+        <h1 className="email-heading">Email Verification</h1>
+        <p className="email-subheading">A code has been sent to <strong>{email}</strong></p>
         <div className="code-input">
-          {Array(4).fill().map((_, index) => (
+          {otp.map((digit, index) => (
             <input
               key={index}
               type="text"
+              id={`otp-${index}`}
               maxLength="1"
               className="code-input-field"
-              value={code.otp[index] || ''}
+              value={digit}
               onChange={(e) => handleInputChange(e, index)}
+              onKeyDown={(e) => {
+                if (e.key === "Backspace" && index > 0 && !digit) {
+                  document.getElementById(`otp-${index - 1}`).focus();
+                }
+              }}
             />
           ))}
         </div>
+        {message && <p className="verification-message">{message}</p>}
         <button className="continue-button" onClick={verifyUser}>
-          Continue
+          Verify
         </button>
         <p className="resend-link">
-          Didn't receive the email?
-          <a href="#" onClick={(e) => e.preventDefault()}>
-            Click to resend
+          Didn’t receive the email?{" "}
+          <a href="#" onClick={(e) => {
+            e.preventDefault();
+            resendOtp();
+          }}>
+            Resend OTP
           </a>
         </p>
       </div>

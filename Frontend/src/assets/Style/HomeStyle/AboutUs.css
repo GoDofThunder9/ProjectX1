@@ -1,9 +1,9 @@
-.why-choose-us {
-    padding: 80px 20px;
-    min-height: 100vh;
+.why-choose-us-Home {
+    padding: 40px 20px;
+    min-height: 40vh;
   }
   
-  .container {
+  .container-Home {
     max-width: 1200px;
     margin: 0 auto;
   }

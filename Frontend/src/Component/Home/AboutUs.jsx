@@ -37,8 +37,8 @@ function Aboutus() {
   ];
 
   return (
-    <div className="why-choose-us">
-      <div className="container">
+    <div className="why-choose-us-Home">
+      <div className="container-Home">
         <div className="header">
           <h2>
             Why Choose <span>Us</span>

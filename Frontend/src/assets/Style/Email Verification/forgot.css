@@ -9,7 +9,7 @@
 }
 
 .forgot-password {
-  background: #ffffff;
+  background: #ffffff; /* Card background set to white */
   color: #333;
   padding: 30px;
   border-radius: 10px;
@@ -62,13 +62,13 @@
 }
 
 .forgot-input:focus {
-  border-color: #ff6347;
-  box-shadow: 0 0 5px rgba(37, 117, 252, 0.8);
+  border-color: #e78f80; /* Adjusted to match button color */
+  box-shadow: 0 0 5px rgba(231, 143, 128, 0.8);
   outline: none;
 }
 
 .forgot-button {
-  background-color: #ff6347;
+  background-color: #e78f80; /* Button color updated */
   color: #fff;
   padding: 12px 20px;
   border: none;
@@ -79,7 +79,7 @@
 }
 
 .forgot-button:hover {
-  background-color: #f94c2e;
+  background-color: #d76a6a; /* Slightly darker shade for hover */
   transform: scale(1.05);
 }
 
