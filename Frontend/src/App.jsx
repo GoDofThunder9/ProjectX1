@@ -34,6 +34,9 @@ import HeroSection from "./Component/CabBooking/HeroSection";
 import FeaturedCars from "./Component/CabBooking/FeaturedCars";
 import BannerCar  from "./Component/CabBooking/BannerCar";
 import TestimonialSlider from "./Component/CabBooking/TestimonialSlider";
+import CabUploader from "./Component/AdminPanel/CabUploader";
+import CabDelete from "./Component/AdminPanel/CabDelete"; 
+import Forgot from "./Component/Authentication/Forgot";
 function App() {
   return (
     <>
