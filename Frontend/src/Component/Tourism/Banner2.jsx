@@ -6,7 +6,7 @@ import img3 from "../../assets/Images/img3.jpg"
 function Banner2() {
   return (
     <section className="tg-sectionspace tg-haslayout">
-				<div className="container">
+				<div className="container-Tourism">
 					<div className="row">
 						<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div className="tg-toursdestinations">

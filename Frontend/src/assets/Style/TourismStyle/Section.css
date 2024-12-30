@@ -39,7 +39,7 @@
     );
   }
   
-  .content {
+  .content-Tourism {
     position: absolute;
     bottom: 15%;
     left: 10%;
@@ -47,7 +47,7 @@
     z-index: 2;
   }
   
-  .content h2 {
+  .content-Tourism h2 {
     font-size: 3.5rem;
     font-weight: 600;
     margin: 0;
@@ -55,7 +55,7 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   }
   
-  .content p {
+  .content-Tourism p {
     font-size: 1.2rem;
     margin: 0;
     opacity: 0.9;
@@ -93,11 +93,11 @@
   }
   
   @media (max-width: 768px) {
-    .content h2 {
+    .content-Tourism h2 {
       font-size: 2.5rem;
     }
     
-    .content p {
+    .content-Tourism p {
       font-size: 1rem;
     }
   }

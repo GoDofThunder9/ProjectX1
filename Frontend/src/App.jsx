@@ -34,22 +34,30 @@ import HeroSection from "./Component/CabBooking/HeroSection";
 import FeaturedCars from "./Component/CabBooking/FeaturedCars";
 import BannerCar  from "./Component/CabBooking/BannerCar";
 import TestimonialSlider from "./Component/CabBooking/TestimonialSlider";
+import Forgot from "./Component/Email Verification/Forgot";
+import ResetPassword from "./Component/Email Verification/Reset";
+import NewPassword from "./Component/Email Verification/NewPassword";
+import CabUploader from "./Component/AdminPanel/CabUploader";
+import CabDelete from "./Component/AdminPanel/CabDelete";
+import AdminPage from "./Component/AdminPanel/AdminPage/AdminPage";
+// import FoodUpdate from "./Component/AdminPanel/FoodUpdate";
 function App() {
   return (
     <>
       <BrowserRouter>
-          <Navbar/>
         <Routes>
           <Route
             path="/"
             element={
               <>
+               <Navbar/>
               <Banner/>
               <Component/>
               <Component1/>
               <Aboutus/>
               <Reviews/>
               <Form/>
+              <Footer/>
               </>
             }
           />
@@ -58,11 +66,13 @@ function App() {
           element={
             <ProtectedRoute>
               <>
+              <Navbar/>
               <FoodBanner/>
               <OurStory/>
               <Menu/>
               <Expert/>
               <Testimonials/>
+              <Footer/>
               </>
             </ProtectedRoute>
             }
@@ -72,6 +82,7 @@ function App() {
             element={
               <ProtectedRoute>
               <>
+              <Navbar/>
               <TourismBanner/>
               <Banner2/>
               <Description/>
@@ -79,8 +90,19 @@ function App() {
               <Section/>
               <Guides/>
               <Logo/>
+              <Footer/>
               </>
               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="Admin"
+            element={
+              <>
+               {/* <Navbar/> */}
+              <AdminPage/>
+              {/* <Footer/> */}
+              </>
             }
           />
           <Route path="/login"
@@ -90,21 +112,30 @@ function App() {
           <Route path="/verify"
           element={<EmailVerify/>}/>
           
-        <Route path="/Admin/upload" element={<TourismUploader/>}></Route>
-        <Route path="/Admin/delete" element={<TourismDelete/>}></Route>
+        <Route path="/Admin/tour/upload" element={<TourismUploader/>}></Route>
+        <Route path="/Admin/tour/delete" element={<TourismDelete/>}></Route>
         <Route path="/Admin/food/upload" element={<FoodUploader/>}></Route>
         <Route path="/Admin/food/delete" element={<FoodDelete/>}></Route>
+        {/* <Route path="/Admin/food/update" element={<FoodUpdate/>}></Route> */}
+        <Route path="/Admin/cab/delete" element={<CabDelete/>}></Route>
+        <Route path="/Admin/cab/upload" element={<CabUploader/>}></Route>
+        {/* <Route path="/Admin" element={<AdminPage/>}></Route> */}
         <Route path="/CabBooking" element={
           <>
+           <Navbar/>
           <HeroSection/>
           <FeaturedCars/>
           <BannerCar/>
           <TestimonialSlider/>
+          <Footer/>
           </>
         }>
           </Route>
+        <Route path='/forgot' element={<Forgot/>}/>
+        <Route path='/reset' element={<ResetPassword/>}/>
+        <Route path='/verify' element={<EmailVerify/>}/>
+        <Route path='/newpass' element={<NewPassword/>}/>
         </Routes>
-        <Footer/>
       </BrowserRouter>
     </>
   );
