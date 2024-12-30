@@ -1,0 +1,140 @@
+/* General Styling */
+.admin-page-container {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  /* Sticky Navbar Styling */
+  .admin-navbar {
+    position: sticky;
+    top: 0;
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 15px 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .navbar-title {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  /* Content Styling */
+  .admin-panel-selection {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 1000px;
+  }
+  
+  .admin-panel-selection h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #555;
+  }
+  
+  /* Admin Panel Boxes Container */
+  .admin-panel-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  /* Individual Admin Panel Box */
+  .admin-panel-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .admin-panel-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Image Styling */
+  .panel-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  /* Panel Name */
+  .panel-name {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #333;
+  }
+  
+  /* Panel Button */
+  .panel-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #4a90e2;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .panel-button:hover {
+    background-color: #357abd;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .admin-panel-box {
+      width: 90%;
+    }
+  }
+  .dropdown {
+    margin-top: 15px;
+    position: relative;
+  }
+  
+  .dropdown-select {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    appearance: none; /* Remove the default arrow on dropdown */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 18px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .dropdown-select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+  }
+  
+  .dropdown-select:hover {
+    background-color: #eaeaea;
+  }
+  
+  .dropdown-select option {
+    padding: 10px;
+    font-size: 16px;
+  }
+  

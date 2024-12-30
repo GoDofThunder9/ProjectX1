@@ -186,6 +186,55 @@ module.exports.deleteFood = async function (req, res) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
+module.exports.updateFood = async function (req, res) {
+  try {
+    const { name, updatedFields } = req.body;
+
+    if (!name || !updatedFields) {
+      return res.status(400).json({ message: 'Name and updated fields are required' });
+    }
+
+    // Find the food item by name
+    const existingFood = await FoodSchema.findOne({ name });
+
+    if (!existingFood) {
+      return res.status(404).json({ message: 'Food item not found with the provided name' });
+    }
+
+    // Update the fields provided in updatedFields
+    Object.keys(updatedFields).forEach((key) => {
+      existingFood[key] = updatedFields[key];
+    });
+
+    // If an image is being updated
+    if (req.file) {
+      const oldImagePath = path.join(__dirname, '..', existingFood.image).replace(/\\/g, '/');
+
+      // Replace the old image path with the new one
+      existingFood.image = `/assets/uploads/${req.file.filename}`;
+
+      // Delete the old image file
+      fs.unlink(oldImagePath, (err) => {
+        if (err) {
+          console.error('Error deleting the old image file:', err.message);
+          return res.status(500).json({
+            message: 'Food item updated, but failed to delete the old image file',
+            error: err.message,
+          });
+        }
+        console.log(`Old image file deleted successfully: ${oldImagePath}`);
+      });
+    }
+
+    // Save the updated food item
+    await existingFood.save();
+
+    res.status(200).json({ message: 'Food item updated successfully', updatedFood: existingFood });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
 module.exports.CabUpload = async function (req, res) {
   // Use the Multer middleware to handle file uploads
   CabSchema.uploadAvatar(req, res, async function (err) {

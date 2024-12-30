@@ -39,6 +39,8 @@ import ResetPassword from "./Component/Email Verification/Reset";
 import NewPassword from "./Component/Email Verification/NewPassword";
 import CabUploader from "./Component/AdminPanel/CabUploader";
 import CabDelete from "./Component/AdminPanel/CabDelete";
+import AdminPage from "./Component/AdminPanel/AdminPage/AdminPage";
+// import FoodUpdate from "./Component/AdminPanel/FoodUpdate";
 function App() {
   return (
     <>
@@ -93,6 +95,16 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="Admin"
+            element={
+              <>
+               {/* <Navbar/> */}
+              <AdminPage/>
+              {/* <Footer/> */}
+              </>
+            }
+          />
           <Route path="/login"
           element={<Signin/>}/>
           <Route path="/signup"
@@ -104,8 +116,10 @@ function App() {
         <Route path="/Admin/tour/delete" element={<TourismDelete/>}></Route>
         <Route path="/Admin/food/upload" element={<FoodUploader/>}></Route>
         <Route path="/Admin/food/delete" element={<FoodDelete/>}></Route>
+        {/* <Route path="/Admin/food/update" element={<FoodUpdate/>}></Route> */}
         <Route path="/Admin/cab/delete" element={<CabDelete/>}></Route>
         <Route path="/Admin/cab/upload" element={<CabUploader/>}></Route>
+        {/* <Route path="/Admin" element={<AdminPage/>}></Route> */}
         <Route path="/CabBooking" element={
           <>
            <Navbar/>
