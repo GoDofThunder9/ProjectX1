@@ -95,8 +95,8 @@ function App() {
           <Route path="/verify"
           element={<EmailVerify/>}/>
           
-        <Route path="/Admin/upload" element={<TourismUploader/>}></Route>
-        <Route path="/Admin/delete" element={<TourismDelete/>}></Route>
+        <Route path="/Admin/tourism/upload" element={<TourismUploader/>}></Route>
+        <Route path="/Admin/tourism/delete" element={<TourismDelete/>}></Route>
         <Route path="/Admin/food/upload" element={<FoodUploader/>}></Route>
         <Route path="/Admin/food/delete" element={<FoodDelete/>}></Route>
         <Route path="/Admin/cab/upload" element={<CabUploader/>}></Route>
