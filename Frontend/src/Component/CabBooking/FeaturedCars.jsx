@@ -1,43 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // For making HTTP requests
-import '../../assets/Style/CabBooking/FeaturedCars.css'
+import '../../assets/Style/CabBooking/FeaturedCars.css';
 
-import { IoPeopleOutline, IoFlashOutline, IoSpeedometerOutline, IoHardwareChipOutline, IoHeartOutline, IoTimeOutline, IoChatbubbleEllipsesOutline } from 'react-icons/io5';
-import { colors } from '@mui/material';
+import {
+  IoPeopleOutline,
+  IoFlashOutline,
+  IoSpeedometerOutline,
+  IoHardwareChipOutline,
+  IoHeartOutline,
+} from 'react-icons/io5';
 
-const FeaturedCars = () => {
-  const [menuItems, setMenuItems] = useState([]); // State to store fetched menu items
+const FeaturedCabs = () => {
+  const [cabs, setCabs] = useState([]); // State to store fetched cab items
   const [activeCategory, setActiveCategory] = useState('ALL');
   const [error, setError] = useState(null); // State to handle errors
 
-  const categories = [
-    'ALL',
-    'PIZZA/PASTA',
-    'SANDWICHES',
-    'BRUNCH',
-    'STEAK/GRILL',
-    'SALAD'
-  ];
+  const categories = ['ALL', 'SUV', 'Sedan', 'Hatchback', 'Luxury'];
 
-  // Fetch menu items from the backend
+  // Fetch cab items from the backend
   useEffect(() => {
-    const fetchMenuItems = async () => {
+    const fetchCabs = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/foods'); // Replace with your backend endpoint
-        setMenuItems(response.data.foods); // Assuming response contains a `foods` array
+        const response = await axios.get('http://localhost:8080/cabs'); // Replace with your backend endpoint
+        setCabs(Array.isArray(response.data.cabs) ? response.data.cabs : []); // Safeguard against undefined or non-array
       } catch (err) {
-        console.error("Error fetching menu items:", err);
-        setError("Failed to load menu items. Please try again later.");
+        console.error('Error fetching cab items:', err);
+        setError('Failed to load cab items. Please try again later.');
       }
     };
 
-    fetchMenuItems();
+    fetchCabs();
   }, []);
 
-  const filteredItems =
+  const filteredCabs =
     activeCategory === 'ALL'
-      ? menuItems
-      : menuItems.filter(item => item.category === activeCategory);
+      ? cabs || [] // Ensure cabs is an array
+      : cabs.filter(cab => cab.type === activeCategory);
+
   return (
     // <section className="featured-car" id="featured-car">
     //     <div className="container">
@@ -97,12 +96,11 @@ const FeaturedCars = () => {
     //       </ul>
     //     </div>
     //   </section>
-    <section style={{background:"white"}} className="menu-section">
+    <section className="menu-section">
       <h3 className="section-subtitle">Discover</h3>
       <h2 className="section-title">Our Menu</h2>
       <p className="section-description">
-        White men large of on front. Via be greater related adopted proceed entered on. Through if examine express
-        promises no. Past add size gone cold get off old.
+        Choose from a wide range of cabs suited for your travel needs, whether it's a quick ride or a luxury experience.
       </p>
 
       <nav className="menu-nav">
@@ -117,57 +115,52 @@ const FeaturedCars = () => {
         ))}
       </nav>
 
-      <div className="featured-car-list">
-      {error ? (
-        <p className="error-message">{error}</p>
-      ) : filteredItems.length > 0 ? (
-        filteredItems.map(item => (
-          <div key={item._id} className="featured-car-card">
-            <figure className="card-banner">
-              <img src={`http://localhost:8080${item.image}`} alt={item.name} loading="lazy" />
-            </figure>
-            <div className="card-content">
-              <div className="card-title-wrapper">
-                <h3 className="card-title"><a href="#">{item.name}</a></h3>
-                <data className="year" value={new Date().getFullYear()}>{new Date().getFullYear()}</data>
-              </div>
-              <ul className="card-list">
-                <li className="card-list-item">
+      <div className="menu-grid">
+        {error ? (
+          <p className="error-message">{error}</p>
+        ) : filteredCabs.length > 0 ? (
+          filteredCabs.map(cab => (
+            <div key={cab._id} className="menu-item">
+              <img
+                src={`http://localhost:8080${cab.image}`}
+                alt={cab.name}
+                className="menu-item-image"
+              />
+              <span className="menu-item-price">${cab.pricePerDay} / day</span>
+              <h3 className="menu-item-title">{cab.name}</h3>
+              <p className="menu-item-category">{cab.type}</p>
+              <ul className="menu-item-details">
+                <li>
                   <IoPeopleOutline />
-                  <span className="card-item-text">4 People</span>
+                  {cab.capacity} People
                 </li>
-                <li className="card-list-item">
+                <li>
                   <IoFlashOutline />
-                  <span className="card-item-text">{item.category}</span>
+                  {cab.fuelType || 'Petrol/Diesel'}
                 </li>
-                <li className="card-list-item">
+                <li>
                   <IoSpeedometerOutline />
-                  <span className="card-item-text">Fresh</span>
+                  {cab.mileage || 'N/A'} km/l
                 </li>
-                <li className="card-list-item">
+                <li>
                   <IoHardwareChipOutline />
-                  <span className="card-item-text">High Quality</span>
+                  {cab.transmission || 'Manual'}
                 </li>
               </ul>
-              <div className="card-price-wrapper">
-                <p className="card-price">
-                  <strong>${item.price}</strong> / item
-                </p>
-                <button className="btn fav-btn" aria-label="Add to favourite list">
+              <div className="menu-item-actions">
+                <button className="fav-btn" aria-label="Add to favourite list">
                   <IoHeartOutline />
                 </button>
-                <button className="btn">Rent</button>
+                <button className="order-button">Book Now</button>
               </div>
             </div>
-          </div>
-        ))
-      ) : (
-        <p className="no-items-message">No menu items available at the moment.</p>
-      )}
-    </div>
-
+          ))
+        ) : (
+          <p className="no-items-message">No cabs available at the moment.</p>
+        )}
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default FeaturedCars
+export default FeaturedCabs;

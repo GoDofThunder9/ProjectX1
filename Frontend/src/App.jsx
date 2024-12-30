@@ -37,6 +37,8 @@ import TestimonialSlider from "./Component/CabBooking/TestimonialSlider";
 import Forgot from "./Component/Email Verification/Forgot";
 import ResetPassword from "./Component/Email Verification/Reset";
 import NewPassword from "./Component/Email Verification/NewPassword";
+import CabUploader from "./Component/AdminPanel/CabUploader";
+import CabDelete from "./Component/AdminPanel/CabDelete";
 function App() {
   return (
     <>
@@ -98,10 +100,12 @@ function App() {
           <Route path="/verify"
           element={<EmailVerify/>}/>
           
-        <Route path="/Admin/upload" element={<TourismUploader/>}></Route>
-        <Route path="/Admin/delete" element={<TourismDelete/>}></Route>
+        <Route path="/Admin/tour/upload" element={<TourismUploader/>}></Route>
+        <Route path="/Admin/tour/delete" element={<TourismDelete/>}></Route>
         <Route path="/Admin/food/upload" element={<FoodUploader/>}></Route>
         <Route path="/Admin/food/delete" element={<FoodDelete/>}></Route>
+        <Route path="/Admin/cab/delete" element={<CabDelete/>}></Route>
+        <Route path="/Admin/cab/upload" element={<CabUploader/>}></Route>
         <Route path="/CabBooking" element={
           <>
            <Navbar/>

@@ -4,9 +4,12 @@ const AdminController = require('../controller/AdminController')
 
 route.post('/tourismUpload' , AdminController.TourismUpload);
 route.post('/foodUpload' , AdminController.FoodUpload);
+route.post('/cabUpload' , AdminController.CabUpload);
 route.delete('/deleteTour' , AdminController.deleteTour);
 route.delete('/foodDelete' , AdminController.deleteFood);
+route.delete('/cabDelete' , AdminController.deleteCab);
 route.get('/tours' , AdminController.TourData);
 route.get('/foods' , AdminController.FoodData);
+route.get('/cabs' , AdminController.CabData);
 
 module.exports = route;
