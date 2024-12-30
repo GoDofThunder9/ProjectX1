@@ -24,8 +24,8 @@ const AdminPage = () => {
       image: cabImage,
       options: [
         // { label: 'Update', link: '/admin/cabs/update' },
-        { label: 'Delete', link: '/admin/cabs/delete' },
-        { label: 'Add', link: '/admin/cabs/add' },
+        { label: 'Delete', link: '/admin/cab/delete' },
+        { label: 'Add', link: '/admin/cab/upload' },
       ],
     },
     {
@@ -34,8 +34,8 @@ const AdminPage = () => {
       image: tourismImage,
       options: [
         // { label: 'Update', link: '/admin/tourism/update' },
-        { label: 'Delete', link: '/admin/tourism/delete' },
-        { label: 'Add', link: '/admin/tourism/add' },
+        { label: 'Delete', link: '/admin/tour/delete' },
+        { label: 'Add', link: '/admin/tour/upload' },
       ],
     },
   ];
