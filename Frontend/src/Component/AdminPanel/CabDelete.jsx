@@ -93,4 +93,8 @@ const CabList = () => {
   );
 };
 
+<<<<<<< HEAD
 export default CabList;
+=======
+export default CabList;
+>>>>>>> a1881109e5ad89eb6b1789b5733b02224e82b133

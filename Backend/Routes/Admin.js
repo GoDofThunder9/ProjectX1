@@ -10,6 +10,11 @@ route.delete('/foodDelete' , AdminController.deleteFood);
 route.delete('/cabDelete' , AdminController.deleteCab);
 route.get('/tours' , AdminController.TourData);
 route.get('/foods' , AdminController.FoodData);
+<<<<<<< HEAD
 route.get('/cabs',AdminController.CabData);
+=======
+route.get('/cabs' , AdminController.CabData);
+route.put('/foodUpadte' , AdminController.updateFood);
+>>>>>>> a1881109e5ad89eb6b1789b5733b02224e82b133
 
 module.exports = route;

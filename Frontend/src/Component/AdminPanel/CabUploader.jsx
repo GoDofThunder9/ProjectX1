@@ -163,4 +163,8 @@ const AdminPortal = () => {
   );
 };
 
+<<<<<<< HEAD
 export default AdminPortal;
+=======
+export default AdminPortal;
+>>>>>>> a1881109e5ad89eb6b1789b5733b02224e82b133

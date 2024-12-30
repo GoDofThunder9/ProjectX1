@@ -79,4 +79,8 @@ CabSchema.statics.avatarPath = AVATAR_PATH;
 // Create the model
 const Cab = mongoose.model('Cab', CabSchema);
 
+<<<<<<< HEAD
 module.exports = Cab;
+=======
+module.exports = Cab;
+>>>>>>> a1881109e5ad89eb6b1789b5733b02224e82b133
