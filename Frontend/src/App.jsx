@@ -34,19 +34,11 @@ import HeroSection from "./Component/CabBooking/HeroSection";
 import FeaturedCars from "./Component/CabBooking/FeaturedCars";
 import BannerCar  from "./Component/CabBooking/BannerCar";
 import TestimonialSlider from "./Component/CabBooking/TestimonialSlider";
-<<<<<<< HEAD
 import CabUploader from "./Component/AdminPanel/CabUploader";
 import CabDelete from "./Component/AdminPanel/CabDelete"; 
-import Forgot from "./Component/Authentication/Forgot";
-=======
 import Forgot from "./Component/Email Verification/Forgot";
-import ResetPassword from "./Component/Email Verification/Reset";
-import NewPassword from "./Component/Email Verification/NewPassword";
-import CabUploader from "./Component/AdminPanel/CabUploader";
-import CabDelete from "./Component/AdminPanel/CabDelete";
-import AdminPage from "./Component/AdminPanel/AdminPage/AdminPage";
-// import FoodUpdate from "./Component/AdminPanel/FoodUpdate";
->>>>>>> a1881109e5ad89eb6b1789b5733b02224e82b133
+import NewPassword from "./Component/Email Verification/Forgot";
+import ResetPassword from "./Component/Email Verification/Forgot";
 function App() {
   return (
     <>
@@ -101,16 +93,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="Admin"
-            element={
-              <>
-               {/* <Navbar/> */}
-              <AdminPage/>
-              {/* <Footer/> */}
-              </>
-            }
-          />
           <Route path="/login"
           element={<Signin/>}/>
           <Route path="/signup"
@@ -118,23 +100,12 @@ function App() {
           <Route path="/verify"
           element={<EmailVerify/>}/>
           
-<<<<<<< HEAD
         <Route path="/Admin/tourism/upload" element={<TourismUploader/>}></Route>
         <Route path="/Admin/tourism/delete" element={<TourismDelete/>}></Route>
         <Route path="/Admin/food/upload" element={<FoodUploader/>}></Route>
         <Route path="/Admin/food/delete" element={<FoodDelete/>}></Route>
         <Route path="/Admin/cab/upload" element={<CabUploader/>}></Route>
         <Route path="/Admin/cab/delete" element={<CabDelete/>}></Route>
-=======
-        <Route path="/Admin/tour/upload" element={<TourismUploader/>}></Route>
-        <Route path="/Admin/tour/delete" element={<TourismDelete/>}></Route>
-        <Route path="/Admin/food/upload" element={<FoodUploader/>}></Route>
-        <Route path="/Admin/food/delete" element={<FoodDelete/>}></Route>
-        {/* <Route path="/Admin/food/update" element={<FoodUpdate/>}></Route> */}
-        <Route path="/Admin/cab/delete" element={<CabDelete/>}></Route>
-        <Route path="/Admin/cab/upload" element={<CabUploader/>}></Route>
-        {/* <Route path="/Admin" element={<AdminPage/>}></Route> */}
->>>>>>> a1881109e5ad89eb6b1789b5733b02224e82b133
         <Route path="/CabBooking" element={
           <>
            <Navbar/>

@@ -186,8 +186,6 @@ module.exports.deleteFood = async function (req, res) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
-<<<<<<< HEAD
-=======
 module.exports.updateFood = async function (req, res) {
   try {
     const { name, updatedFields } = req.body;
@@ -237,7 +235,6 @@ module.exports.updateFood = async function (req, res) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
->>>>>>> a1881109e5ad89eb6b1789b5733b02224e82b133
 module.exports.CabUpload = async function (req, res) {
   // Use the Multer middleware to handle file uploads
   CabSchema.uploadAvatar(req, res, async function (err) {
