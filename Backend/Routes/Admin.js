@@ -10,6 +10,7 @@ route.delete('/foodDelete' , AdminController.deleteFood);
 route.delete('/cabDelete' , AdminController.deleteCab);
 route.get('/tours' , AdminController.TourData);
 route.get('/foods' , AdminController.FoodData);
+route.get('/cabs',AdminController.CabData);
 route.get('/cabs' , AdminController.CabData);
 route.put('/foodUpadte' , AdminController.updateFood);
 

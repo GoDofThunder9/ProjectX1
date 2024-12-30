@@ -163,8 +163,4 @@ const FeaturedCabs = () => {
   );
 };
 
-<<<<<<< HEAD
 export default FeaturedCabs;
-=======
-export default FeaturedCabs;
->>>>>>> a1881109e5ad89eb6b1789b5733b02224e82b133
