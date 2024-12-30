@@ -34,6 +34,8 @@ import HeroSection from "./Component/CabBooking/HeroSection";
 import FeaturedCars from "./Component/CabBooking/FeaturedCars";
 import BannerCar  from "./Component/CabBooking/BannerCar";
 import TestimonialSlider from "./Component/CabBooking/TestimonialSlider";
+import  CabUploader  from "./Component/AdminPanel/CabUploader";
+import CabDelete from "./Component/AdminPanel/CabDelete";
 function App() {
   return (
     <>
@@ -94,6 +96,8 @@ function App() {
         <Route path="/Admin/delete" element={<TourismDelete/>}></Route>
         <Route path="/Admin/food/upload" element={<FoodUploader/>}></Route>
         <Route path="/Admin/food/delete" element={<FoodDelete/>}></Route>
+        <Route path="/Admin/cab/upload" element={<CabUploader/>}></Route>
+        <Route path="/Admin/cab/delete" element={<CabDelete/>}></Route>
         <Route path="/CabBooking" element={
           <>
           <HeroSection/>
