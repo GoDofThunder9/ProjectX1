@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed; /* Stick the navbar at the top */
+  position: absolute; /* Stick the navbar at the top */
   top: 0;
   width: 100%;
   background-color: rgba(255, 255, 255, 0); /* Transparent white */
