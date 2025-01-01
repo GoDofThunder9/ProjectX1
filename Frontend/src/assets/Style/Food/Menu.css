@@ -60,8 +60,19 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 32px;
+    overflow-y: scroll;
+    height: 460px;
+    scroll-behavior: smooth;
 
-  }
+    /* Hide scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.menu-grid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
 
   .menu-item {
     position: relative;
