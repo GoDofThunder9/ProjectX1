@@ -35,7 +35,7 @@ const FeaturedCabs = () => {
   const filteredCabs =
     activeCategory === 'ALL'
       ? cabs || [] // Ensure cabs is an array
-      : cabs.filter(cab => cab.type === activeCategory);
+      : cabs.filter(cab => cab.category === activeCategory);
 
   return (
     // <section className="featured-car" id="featured-car">
@@ -126,9 +126,9 @@ const FeaturedCabs = () => {
                 alt={cab.name}
                 className="menu-item-image"
               />
-              <span className="menu-item-price">${cab.pricePerDay} / day</span>
+              <span className="menu-item-price">${cab.price} / day</span>
               <h3 className="menu-item-title">{cab.name}</h3>
-              <p className="menu-item-category">{cab.type}</p>
+              <p className="menu-item-category">{cab.category}</p>
               <ul className="menu-item-details">
                 <li>
                   <IoPeopleOutline />
