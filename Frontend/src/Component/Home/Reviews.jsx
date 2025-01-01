@@ -6,7 +6,7 @@ import photo3 from '../../assets/Images/reviewPhoto3.jpg'
 
 const Testimonials = () => {
     return (
-      <div className="testimonials-container">
+      <div className="testimonials-container" id="Review-Home">
         <h2 className="testimonials-title">What Our Client Say</h2>
         <div className="testimonials-grid">
           <div className="testimonial-card">

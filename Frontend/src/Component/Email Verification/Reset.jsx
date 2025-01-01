@@ -14,6 +14,7 @@ function Reset() {
   });
 
   const [animate, setAnimate] = useState(false); // State to handle animation
+  const [errorMessage, setErrorMessage] = useState(''); // State for error message
 
   useEffect(() => {
     // Trigger animation when component mounts
@@ -61,13 +62,12 @@ function Reset() {
       navigate('/newpass', {
         state: {
           email: code.email,
-          token: code.token.join('')
-        }
+          token: code.token.join(''),
+        },
       });
-      alert("User verified successfully");
     } catch (error) {
       console.log("Error during verification:", error);
-      alert("Verification failed. Please try again.");
+      setErrorMessage("Verification failed. Please try again."); // Set error message on failure
     }
   };
 
@@ -78,6 +78,7 @@ function Reset() {
           <h1 className='reset-heading'>Password Reset</h1>
         </div>
         <p className='reset-subheading'>We sent a code to {email}</p>
+        {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message if present */}
         <form onSubmit={handleSubmission}>
           <div className={`code-input ${animate ? 'slide-up' : ''}`}> {/* Add class for animation */}
             {code.token.map((value, index) => (
@@ -104,7 +105,7 @@ function Reset() {
           </a>
         </p>
         <p className="back-link">
-          <a href="/sign-in">
+          <a href="/login">
             ← Back to login
           </a>
         </p>

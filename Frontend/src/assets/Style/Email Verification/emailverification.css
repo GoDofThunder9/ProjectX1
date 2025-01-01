@@ -1,14 +1,13 @@
-.forgot-container {
+.email-verify {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(135deg, #fff2ef 0%, #e78f80 100%);
-  color: #ffffff;
   font-family: "Arial", sans-serif;
 }
 
-.forgot-password {
+.email-container {
   background: #ffffff;
   color: #333;
   padding: 30px;
@@ -19,55 +18,49 @@
   width: 100%;
 }
 
-.forgot-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.forgot-heading {
+.email-heading {
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 10px;
   color: #333;
 }
 
-.forgot-subheading {
+.email-subheading {
   font-size: 16px;
   margin-bottom: 20px;
   color: #555;
 }
 
-.input-group {
+.code-input {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 20px;
-  text-align: left;
 }
 
-.forgot-label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-}
-
-.forgot-input {
-  width: 100%;
-  padding: 10px;
+.code-input-field {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 18px;
   border: 2px solid #ddd;
   border-radius: 8px;
-  font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.forgot-input:focus {
+.code-input-field:focus {
   border-color: #ff6347;
-  box-shadow: 0 0 5px rgba(37, 117, 252, 0.8);
+  box-shadow: 0 0 5px rgba(255, 99, 71, 0.8);
   outline: none;
 }
 
-.forgot-button {
+.verification-message {
+  margin-top: 10px;
+  color: #555;
+  font-size: 14px;
+}
+
+.continue-button {
   background-color: #ff6347;
   color: #fff;
   padding: 12px 20px;
@@ -78,24 +71,24 @@
   transition: background-color 0.3s, transform 0.2s;
 }
 
-.forgot-button:hover {
+.continue-button:hover {
   background-color: #f94c2e;
   transform: scale(1.05);
 }
 
-.back-to-login {
+.resend-link {
   margin-top: 20px;
   font-size: 0.9rem;
   color: #555;
 }
 
-.back-to-login a {
+.resend-link a {
   color: #2575fc;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s;
 }
 
-.back-to-login a:hover {
+.resend-link a:hover {
   color: #6a11cb;
 }

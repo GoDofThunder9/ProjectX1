@@ -3,12 +3,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../assets/Style/AuthenticationStyle/signup.css";
 
-const signup = () => {
+const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Fullname: "",
     email: "",
     phone: "",
+    countryCode: "+91",
     Password: "",
     City: "",
     Country: "",
@@ -43,7 +44,7 @@ const signup = () => {
       if (response.status === 200 || response.status === 201) {
         setMessage("Signup successful!");
         const email = formData.email;
-        setFormData({ Fullname: "", email: "", phone: "", Password: "", City: "", Country: "" });
+        setFormData({ Fullname: "", email: "", phone: "", countryCode: "+91", Password: "", City: "", Country: "" });
         setConfirmPassword("");
         navigate("/verify", { state: { email } });
       } else {
@@ -74,7 +75,9 @@ const signup = () => {
                 name="Fullname"
                 placeholder="Enter your full name"
                 value={formData.Fullname}
-                onChange={handleInputChange}style={{
+                onChange={handleInputChange}
+                maxLength="20"
+                style={{
                   padding: "0.75rem",
                   border: "1px solid #ddd",
                   borderRadius: "0.375rem",
@@ -90,7 +93,8 @@ const signup = () => {
                 name="email"
                 placeholder="Enter your email"
                 value={formData.email}
-                onChange={handleInputChange}style={{
+                onChange={handleInputChange}
+                style={{
                   padding: "0.75rem",
                   border: "1px solid #ddd",
                   borderRadius: "0.375rem",
@@ -100,13 +104,64 @@ const signup = () => {
             </div>
             <div className="form-group-new">
               <label htmlFor="phone">Phone</label>
+              <div style={{ display: "flex", gap: "0.5rem" }}>
+                <select
+                  id="country-code"
+                  name="countryCode"
+                  value={formData.countryCode}
+                  onChange={handleInputChange}
+                  style={{
+                    padding: "0.75rem",
+                    border: "1px solid #ddd",
+                    borderRadius: "0.375rem",
+                    fontSize: "0.875rem",
+                    width: "5rem",
+                  }}
+                >
+                  <option value="+91">+91 (India)</option>
+                  <option value="+63">+63 (Philippines)</option>
+                </select>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  placeholder="Enter your phone number"
+                  value={formData.phone}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, "");
+                    if (value.length <= 10) {
+                      handleInputChange({ target: { name: "phone", value } });
+                    }
+                  }}
+                  style={{
+                    padding: "0.75rem",
+                    border: "1px solid #ddd",
+                    borderRadius: "0.375rem",
+                    fontSize: "0.875rem",
+                    flex: "1",
+                  }}
+                />
+              </div>
+            </div>
+            <div className="form-group-new">
+              <label htmlFor="password">Password</label>
+              <div className="password-header-new">
+                <button
+                  type="button"
+                  className="hide-button-new"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
               <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="Enter your phone number"
-                value={formData.phone}
-                onChange={handleInputChange}style={{
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="Password"
+                placeholder="Enter your password"
+                value={formData.Password}
+                onChange={handleInputChange}
+                style={{
                   padding: "0.75rem",
                   border: "1px solid #ddd",
                   borderRadius: "0.375rem",
@@ -114,55 +169,23 @@ const signup = () => {
                 }}
               />
             </div>
-            {/* Password */}
-<div className="form-group-new">
-  <div className="password-header-new">
-    <label htmlFor="password">Password</label>
-    <button
-      type="button"
-      className="hide-button-new"
-      onClick={() => setShowPassword(!showPassword)}
-    >
-      {showPassword ? 'Hide' : 'Show'}
-    </button>
-  </div>
-  <input
-    type={showPassword ? 'text' : 'password'}
-    id="password"
-    name="Password"
-    placeholder="Enter your password"
-    value={formData.Password}
-    onChange={handleInputChange}
-    style={{
-      padding: '0.75rem',
-      border: '1px solid #ddd',
-      borderRadius: '0.375rem',
-      fontSize: '0.875rem',
-    }}
-  />
-</div>
-
-{/* Confirm Password */}
-<div className="form-group-new">
-  <div className="password-header-new">
-    <label htmlFor="confirm-password">Confirm Password</label>
-  </div>
-  <input
-    type="password"
-    id="confirm-password"
-    name="confirmPassword"
-    placeholder="Confirm your password"
-    value={confirmPassword}
-    onChange={(e) => setConfirmPassword(e.target.value)}
-    style={{
-      padding: '0.75rem',
-      border: '1px solid #ddd',
-      borderRadius: '0.375rem',
-      fontSize: '0.875rem',
-    }}
-  />
-</div>
-
+            <div className="form-group-new">
+              <label htmlFor="confirm-password">Confirm Password</label>
+              <input
+                type="password"
+                id="confirm-password"
+                name="confirmPassword"
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                style={{
+                  padding: "0.75rem",
+                  border: "1px solid #ddd",
+                  borderRadius: "0.375rem",
+                  fontSize: "0.875rem",
+                }}
+              />
+            </div>
             <div className="form-group-new">
               <label htmlFor="city">City</label>
               <input
@@ -171,7 +194,8 @@ const signup = () => {
                 name="City"
                 placeholder="Enter your city"
                 value={formData.City}
-                onChange={handleInputChange}style={{
+                onChange={handleInputChange}
+                style={{
                   padding: "0.75rem",
                   border: "1px solid #ddd",
                   borderRadius: "0.375rem",
@@ -187,13 +211,26 @@ const signup = () => {
                 name="Country"
                 placeholder="Enter your country"
                 value={formData.Country}
-                onChange={handleInputChange}style={{
+                onChange={handleInputChange}
+                style={{
                   padding: "0.75rem",
                   border: "1px solid #ddd",
                   borderRadius: "0.375rem",
                   fontSize: "0.875rem",
                 }}
               />
+            </div>
+            <div className="checkbox-group-new">
+              <div className="checkbox-item-new">
+                <input type="checkbox" id="terms" required />
+                <label htmlFor="terms">
+                  Agree to our <a href="#">Terms of use</a> and <a href="#">Privacy Policy</a>
+                </label>
+              </div>
+              <div className="checkbox-item-new">
+                <input type="checkbox" id="newsletter" />
+                <label htmlFor="newsletter">Subscribe to our monthly newsletter</label>
+              </div>
             </div>
             <button type="submit" className="signup-button-new">
               Sign up
@@ -206,4 +243,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default Signup;

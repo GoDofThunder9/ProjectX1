@@ -15,7 +15,7 @@ const AdminPage = () => {
       options: [
         // { label: 'Update', link: '/admin/food/update' },
         { label: 'Delete', link: '/admin/food/delete' },
-        { label: 'Add', link: '/admin/food/add' },
+        { label: 'Add', link: '/admin/food/upload' },
       ],
     },
     {

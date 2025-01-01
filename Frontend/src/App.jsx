@@ -40,6 +40,9 @@ import NewPassword from "./Component/Email Verification/NewPassword";
 import CabUploader from "./Component/AdminPanel/CabUploader"; 
 import CabDelete from "./Component/AdminPanel/CabDelete"; 
 import AdminPage from "./Component/AdminPanel/AdminPage/AdminPage"; 
+import NavbarCab from "./Component/CabBooking/NavbarCab";
+import PublicRoute from "./Component/Authentication/PublicRoute";
+import { Projector } from "lucide-react";
 // import FoodUpdate from "./Component/AdminPanel/FoodUpdate"; 
 function App() { 
   return ( 
@@ -105,10 +108,23 @@ function App() {
               </> 
             } 
           /> 
+
           <Route path="/login" 
-          element={<Signin/>}/> 
+          element={
+          <PublicRoute>
+          <>
+          <Signin/>
+          </>  
+          </PublicRoute>
+          }/> 
           <Route path="/signup"
-          element={<Signup/>}/> 
+          element={
+          <PublicRoute>
+          <>
+          <Signup/>
+          </>
+          </PublicRoute>
+          }/> 
           <Route path="/verify" 
           element={<EmailVerify/>}/> 
            
@@ -121,14 +137,16 @@ function App() {
         <Route path="/Admin/cab/upload" element={<CabUploader/>}></Route> 
         {/* <Route path="/Admin" element={<AdminPage/>}></Route> */} 
         <Route path="/CabBooking" element={ 
+          <ProtectedRoute>
           <> 
-           <Navbar/> 
+          <NavbarCab/> 
           <HeroSection/> 
           <FeaturedCars/> 
           <BannerCar/> 
           <TestimonialSlider/> 
           <Footer/> 
           </> 
+          </ProtectedRoute>
         }> 
           </Route> 
         <Route path='/forgot' element={<Forgot/>}/> 

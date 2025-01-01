@@ -36,15 +36,23 @@ const Signin = () => {
         console.log('User logged in successfully:', response);
         setMessage('Login successful!');
         // Redirect to home page and reload
-        navigate('/');
-        window.location.reload(); // Force reload after navigation
+        navigate('/'); // Force reload after navigation
       } else {
         setMessage(response.data.message || 'Login failed!');
       }
     } catch (error) {
-      setMessage(
-        error.response?.data?.message || 'An error occurred. Please try again.'
-      );
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        if (errorMessage.includes('email')) {
+          setMessage('The email address you entered is incorrect.');
+        } else if (errorMessage.includes('password')) {
+          setMessage('The password you entered is incorrect.');
+        } else {
+          setMessage(errorMessage || 'An error occurred. Please try again.');
+        }
+      } else {
+        setMessage('An error occurred. Please check your internet connection and try again.');
+      }
     }
   };
 
@@ -58,7 +66,7 @@ const Signin = () => {
       <div className="form-section-new">
         <div className="form-container-new">
           <div className="form-header-new">
-            <h1>Sign in</h1>
+            <h1>SIGN IN</h1>
             <p>Sign in now free to access any of our products</p>
           </div>
 
@@ -113,22 +121,6 @@ const Signin = () => {
             </div>
 
             {message && <p className="error-message">{message}</p>}
-
-            <div className="checkbox-group-new">
-              <div className="checkbox-item-new">
-                <input type="checkbox" id="terms" required />
-                <label htmlFor="terms">
-                  Agree to our <a href="#">Terms of use</a> and{' '}
-                  <a href="#">Privacy Policy</a>
-                </label>
-              </div>
-
-              <div className="checkbox-item-new">
-                <input type="checkbox" id="newsletter" />
-                <label htmlFor="newsletter">Subscribe to our monthly newsletter</label>
-              </div>
-            </div>
-
             <button type="submit" className="signup-button-new">
               Log in
             </button>

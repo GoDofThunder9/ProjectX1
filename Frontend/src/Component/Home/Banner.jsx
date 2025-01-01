@@ -17,7 +17,12 @@ const VideoBanner = () => {
       <div className="banner-content">
         <h1>Welcome to Our Site</h1>
         <p>Discover amazing content and experiences</p>
-        <button className="cta-button">Learn More</button>
+          <a style={{textDecoration:"none",
+          color:"white"
+        }} href="#Explore">
+        <button className="cta-button" >
+          Explore</button>
+          </a>
       </div>
     </div>
   );

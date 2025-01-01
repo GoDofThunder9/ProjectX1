@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const TourismShowcase = () => {
   const navigate = useNavigate();
   return (
-    <div className="tourism-container">
+    <div className="tourism-container" id='Explore'>
       <div className="tourism-card">
         <div className="image-container culinary">
             <img src={tourismPhoto} alt="" />
@@ -24,7 +24,9 @@ const TourismShowcase = () => {
             <img src={foodPhoto} alt="" />
           <div className="overlay">
             <h2>Food for Foodies</h2>
-            <button className="explore-btn">Discover Beach Getaways</button>
+            <button onClick={()=>{
+              navigate('/food')
+            }} className="explore-btn">Discover Amazeing Food</button>
           </div>
         </div>
       </div>
