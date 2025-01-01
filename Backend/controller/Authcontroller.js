@@ -118,25 +118,28 @@ module.exports.forgotPassword = async function (req, res) {
   const { email } = req.body;
   try {
     const user = await User.findOne({ email });
+
+    // If the user is not found, return a 404 response
     if (!user) {
-      return res.status(400).json({ message: "User not found" });
+      return res.status(404).json({ message: "The email you entered is not registered." });
     }
 
-    const resetToken = Math.floor(100000 + Math.random() * 900000).toString(); // Generate a 6-digit OTP
+    // Generate a 6-digit OTP for password reset
+    const resetToken = Math.floor(100000 + Math.random() * 900000).toString();
     user.resetPasswordToken = resetToken;
     user.resetPasswordExpiresAt = Date.now() + 15 * 60 * 1000; // Token expires in 15 minutes
 
     await user.save();
 
-    sendResetmail(email, resetToken); // Send OTP to user's email
-    res
-      .status(200)
-      .json({ message: "OTP sent to your email for password reset" });
+    // Send OTP to the user's email
+    sendResetmail(email, resetToken); 
+    res.status(200).json({ message: "OTP sent to your email for password reset" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "An error occurred. Please try again later." });
   }
 };
+
 
 function sendResetmail(email, resetToken) {
   const transporter = nodemailer.createTransport({
@@ -214,41 +217,53 @@ module.exports.resetPassword = async function (req, res) {
 
 module.exports.login = async function (req, res) {
   const { email, Password } = req.body;
+
+  // Check if the user exists by email
   User.findOne({ email }).then((user) => {
     if (!user) {
-      return res.status(404).json({ email: "User not found" });
+      return res.status(404).json({ message: "The email address you entered is incorrect." });
     }
+
+    // Compare provided password with the hashed password in the database
     bcrypt.compare(Password, user.Password).then((isMatch) => {
       if (isMatch) {
-        const payload = { id: user.id, Fullname: user.Fullname };
+        const payload = { id: user.id, Fullname: user.Fullname }; // Payload for JWT
+
         jwt.sign(
           payload,
           process.env.JWT_SECRET,
-          { expiresIn: 3600 }, // 1 hour
-          (err, token) =>{
+          { expiresIn: 3600 }, // Token expiry: 1 hour
+          (err, token) => {
             if (err) {
-              return res.status(500).json({ error: "Error signing token" });
+              return res.status(500).json({ message: "An error occurred while signing the token." });
             }
+
+            // Set cookie and send response
             res.cookie("token", token, {
-              httpOnly:true,  
-              Secure:false, // Set to true if using HTTPS
-              maxAge:24*60*60*1000, // 1 hour
-              SameSite:'None', // Set to 'None' for cross-site requests, 'Lax' for same-site requests
+              httpOnly: true,
+              maxAge: 24 * 60 * 60 * 1000*24, // Cookie expiry: 1 day
+              secure: false, // Set to true if using HTTPS
+              sameSite: 'Lax', // Set to 'None' for cross-site requests, 'Lax' for same-site requests
             });
+
             res.json({
               success: true,
-              token: "Bearer" + token,
+              token: "Bearer " + token,
               userId: user.id,
-              userName: user.Fullname
+              userName: user.Fullname,
             });
           }
         );
       } else {
-        return res.status(400).json({ password: "Password incorrect" });
+        return res.status(400).json({ message: "The password you entered is incorrect." });
       }
     });
+  }).catch((err) => {
+    console.error(err);
+    return res.status(500).json({ message: "An internal server error occurred. Please try again later." });
   });
 };
+
 module.exports.verifyToken = (req, res, next) => {
   const token = req.cookies.token; // Assuming token is stored in cookies
 
