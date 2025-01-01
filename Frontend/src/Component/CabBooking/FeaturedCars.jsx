@@ -148,9 +148,9 @@ const FeaturedCabs = () => {
                 </li>
               </ul>
               <div className="menu-item-actions">
-                <button className="fav-btn" aria-label="Add to favourite list">
+                {/* <button className="fav-btn" aria-label="Add to favourite list">
                   <IoHeartOutline />
-                </button>
+                </button> */}
                 <button className="order-button">Book Now</button>
               </div>
             </div>
