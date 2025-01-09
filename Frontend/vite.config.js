@@ -7,7 +7,7 @@ export default defineConfig({
     include: ['@mui/material', '@emotion/react', '@emotion/styled', '@mui/icons-material'],
   },
     server: {
-      host:'13.127.130.197',
+      host:'0.0.0.0',
       port: 5173
   }
   
