@@ -14,13 +14,13 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 app.use(cors({
-  origin:'http://localhost:5173', // Your frontend origin
+  origin:'http://13.127.130.197:5173', // Your frontend origin
   credentials:true, // Allow credentials (cookies, authorization headers, etc.)
 }));
 
 app.use("/asset", express.static("asset"));
 app.use("/", require("./Routes"));
-const port = process.env.PORT || 3000; // Default to port 3000 if PORT is not set
+const port = process.env.PORT; // Default to port 3000 if PORT is not set
 app.listen(port, (err) => {
   if (err) {
     console.log("Error:", err);
