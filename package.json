@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently \"npm run start:Frontend\" \"npm run start:Backend\"",
-    "start:frontend": "cd Frontend && npm run dev",
-    "start:backend": "cd Backend && nodemon index.js"
+    "start:Frontend": "cd Frontend && npm run dev",
+    "start:Backend": "cd Backend && nodemon index.js"
   },
   "keywords": [],
   "author": "",
