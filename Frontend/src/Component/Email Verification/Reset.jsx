@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "../../assets/Style/Email Verification/reset.css";
+import "../../assets/Style/Email_Verification/reset.css";
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 

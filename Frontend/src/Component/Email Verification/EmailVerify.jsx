@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import "../../assets/Style/Email Verification/emailverification.css";
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
+import "../../assets/Style/Email_Verification/emailverification.css";
 
 function EmailVerify() {
   const location = useLocation();

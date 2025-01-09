@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../../assets/Style/Email Verification/NewPassword.css";
+import "../../assets/Style/Email_Verification/NewPassword.css";
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 

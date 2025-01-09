@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../../assets/Style/Email Verification/forgot.css';
+import '../../assets/Style/Email_Verification/forgot.css';
 
 const Forgot = () => {
   const navigate = useNavigate();
