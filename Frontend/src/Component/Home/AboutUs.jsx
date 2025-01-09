@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaCog, FaHeadset, FaBolt, FaPalette, FaChartLine, FaShieldAlt } from 'react-icons/fa';
-import '../../assets/Style/HomeStyle/Aboutus.css';
+import '../../assets/Style/Home/AboutUs.css';
 
 function Aboutus() {
   const features = [
