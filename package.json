@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
-    "start:frontend": "cd frontend && npm run dev",
-    "start:backend": "cd backend && nodemon index.js"
+    "start": "concurrently \"npm run start:Frontend\" \"npm run start:Backend\"",
+    "start:frontend": "cd Frontend && npm run dev",
+    "start:backend": "cd Backend && nodemon index.js"
   },
   "keywords": [],
   "author": "",
