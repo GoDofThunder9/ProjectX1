@@ -8,20 +8,18 @@ const AdminPortal = () => {
     category: "",
     price: "",
     image: null,
-    description: "",
-    year:"",
+    capacity: "",
+    fuelType: "",
+    mileage: "",
+    transmission: "",
   });
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const categories = [
-    "SUV",
-    "Sedan",
-    "Semi-SUV",
-    "Coupe",
-    "Minivans",
-  ];
+  const categories = ["SUV", "Sedan", "Hatchback", "Luxury"];
+  const fuelOptions = ["Petrol", "Diesel", "Electric"];
+  const transmissionOptions = ["Automatic", "Manual"];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,9 +37,10 @@ const AdminPortal = () => {
     formDataToSend.append("category", formData.category);
     formDataToSend.append("price", formData.price);
     formDataToSend.append("image", formData.image);
-    formDataToSend.append("description", formData.description);
-    formDataToSend.append("year", formData.year);
-
+    formDataToSend.append("capacity", formData.capacity);
+    formDataToSend.append("fuelType", formData.fuelType);
+    formDataToSend.append("mileage", formData.mileage);
+    formDataToSend.append("transmission", formData.transmission);
 
     try {
       const response = await axios.post(
@@ -55,14 +54,16 @@ const AdminPortal = () => {
       );
 
       if (response.status === 201) {
-        setSuccessMessage("Menu item uploaded successfully!");
+        setSuccessMessage("Cab item uploaded successfully!");
         setFormData({
           name: "",
           category: "",
           price: "",
           image: null,
-          description: "",
-          year: "",
+          capacity: "",
+          fuelType: "",
+          mileage: "",
+          transmission: "",
         });
       }
     } catch (error) {
@@ -109,17 +110,6 @@ const AdminPortal = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="name">Year:</label>
-          <input
-            type="text"
-            id="year"
-            name="year"
-            value={formData.year}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
           <label htmlFor="price">Price:</label>
           <input
             type="text"
@@ -132,6 +122,66 @@ const AdminPortal = () => {
         </div>
 
         <div className="form-group">
+          <label htmlFor="capacity">Capacity:</label>
+          <input
+            type="text"
+            id="capacity"
+            name="capacity"
+            value={formData.capacity}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="fuelType">Fuel Type:</label>
+          <select
+            id="fuelType"
+            name="fuelType"
+            value={formData.fuelType}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Fuel Type</option>
+            {fuelOptions.map((fuel) => (
+              <option key={fuel} value={fuel}>
+                {fuel}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="mileage">Mileage:</label>
+          <input
+            type="text"
+            id="mileage"
+            name="mileage"
+            value={formData.mileage}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="transmission">Transmission:</label>
+          <select
+            id="transmission"
+            name="transmission"
+            value={formData.transmission}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Transmission</option>
+            {transmissionOptions.map((trans) => (
+              <option key={trans} value={trans}>
+                {trans}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-group">
           <label htmlFor="image">Image:</label>
           <input
             type="file"
@@ -141,18 +191,6 @@ const AdminPortal = () => {
             onChange={handleFileChange}
             required
           />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            rows="4"
-            required
-          ></textarea>
         </div>
 
         <button type="submit" className="submit-button">

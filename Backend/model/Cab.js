@@ -25,11 +25,19 @@ const CabSchema = new mongoose.Schema({
     required: true,
     min: 0,
   },
-  description: {
+  capacity: {
     type: String,
     required: true,
   },
-  year: {
+  fuelType: {
+    type: String,
+    required: true,
+  },
+  mileage: {
+    type: String,
+    required: true,
+  },
+  transmission: {
     type: String,
     required: true,
   },

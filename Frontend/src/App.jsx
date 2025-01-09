@@ -141,7 +141,7 @@ function App() {
           <> 
           <NavbarCab/> 
           <HeroSection/> 
-          <FeaturedCars/> 
+          {/* <FeaturedCars/>  */}
           <BannerCar/> 
           <TestimonialSlider/> 
           <Footer/> 
