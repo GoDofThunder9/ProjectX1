@@ -1,41 +1,41 @@
 import React from 'react';
-import { FaCog, FaHeadset, FaBolt, FaPalette, FaChartLine, FaShieldAlt } from 'react-icons/fa';
+import { FaCar, FaUtensils, FaMapMarkedAlt, FaMoneyBillWave, FaUsers, FaShieldAlt } from 'react-icons/fa';
 import '../../assets/Style/HomeStyle/AboutUs.css';
 
 function Aboutus() {
   const features = [
     {
-      icon: <FaCog />,
-      title: 'Modern Design',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. JustFreeSlide.com'
+      icon: <FaCar />,
+      title: 'Reliable Car Rentals',
+      description: 'Experience hassle-free car rentals with a wide range of options for your convenience.'
     },
     {
-      icon: <FaHeadset />,
-      title: '24X7 User Support',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. JustFreeSlide.com'
+      icon: <FaUtensils />,
+      title: 'Food Booking Services',
+      description: 'Order delicious meals from top restaurants and enjoy seamless booking through our platform.'
     },
     {
-      icon: <FaBolt />,
-      title: 'Fast',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. JustFreeSlide.com'
+      icon: <FaMapMarkedAlt />,
+      title: 'Tailored Tourism Packages',
+      description: 'Explore unique destinations with customized travel packages to suit your needs.'
     },
     {
-      icon: <FaPalette />,
-      title: 'Creative Design',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. JustFreeSlide.com'
+      icon: <FaMoneyBillWave />,
+      title: 'Affordable Pricing',
+      description: 'Get the best deals on car rentals, food bookings, and tourism services.'
     },
     {
-      icon: <FaChartLine />,
-      title: 'Business Growth',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. JustFreeSlide.com'
+      icon: <FaUsers />,
+      title: '24/7 Customer Support',
+      description: 'Our dedicated team is here to assist you anytime, ensuring a smooth experience.'
     },
     {
       icon: <FaShieldAlt />,
-      title: 'Safe',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. JustFreeSlide.com'
+      title: 'Secure Transactions',
+      description: 'Your bookings and payments are safe with our state-of-the-art security systems.'
     }
   ];
-
+  
   return (
     <div className="why-choose-us-Home" id="services-Home">
       <div className="container-Home">

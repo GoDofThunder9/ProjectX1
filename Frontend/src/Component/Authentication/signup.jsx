@@ -37,7 +37,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post("http://13.127.130.197:8080/signup", formData, {
+      const response = await axios.post("http://localhost:8080/signup", formData, {
         headers: { "Content-Type": "application/json" },
       });
 

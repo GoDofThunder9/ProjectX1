@@ -39,7 +39,7 @@ function Form() {
   return (
     <div className="home-form-container" id='Form-container'>
       <div className="home-form-wrapper">
-        <h2 className="home-form-title">Share Your Feedback</h2>
+        <h2 className="home-form-title">Contact Us</h2>
         
         <form onSubmit={handleSubmit} className="home-feedback-form">
           <div className="home-input-group">
@@ -93,7 +93,7 @@ function Form() {
               name="problem"
               value={formData.problem}
               onChange={handleChange}
-              placeholder="Problem with the Feature"
+              placeholder="Specifiy the Reason"
               required
             />
           </div>
@@ -106,7 +106,7 @@ function Form() {
               name="feedback"
               value={formData.feedback}
               onChange={handleChange}
-              placeholder="Feedback"
+              placeholder="Message For Us"
               required
             />
           </div>

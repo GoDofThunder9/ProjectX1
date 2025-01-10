@@ -129,4 +129,79 @@
     padding: 10px 20px;
   }
 }
+.connection-logo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 15px;
+  background-color: rgba(0, 0, 0, 0.7); /* Subtle background */
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 4;
+}
+
+.connection-logo a {
+  font-size: 28px; /* Default icon size */
+  color: #ffffff; /* White color */
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth animation */
+}
+
+.connection-logo .facebook {
+  color: #4267B2; /* Facebook Blue */
+}
+
+.connection-logo .facebook:hover {
+  color: #365899;
+  transform: scale(1.2); /* Facebook Darker Blue */
+}
+
+.connection-logo .whatsapp {
+  color: #25D366; /* WhatsApp Green */
+}
+
+.connection-logo .whatsapp:hover {
+  color: #21c52f; /* WhatsApp Darker Green */
+  transform: scale(1.2);
+}
+
+.connection-logo .instagram {
+  color: #E1306C; /* Instagram Pink */
+}
+
+.connection-logo .instagram:hover {
+  color: #C13584; /* Instagram Darker Pink */
+  transform: scale(1.2);
+}
+/* Media Queries for Responsiveness */
+
+/* Adjust for small screens (phones) */
+@media (max-width: 768px) {
+  .connection-logo {
+    bottom: 10px; /* Move closer to the bottom */
+    right: 10px; /* Move closer to the right */
+    padding: 8px;
+    gap: 10px;
+    z-index: 4;
+  }
+
+  .connection-logo a {
+    font-size: 24px; /* Reduce icon size */
+  }
+}
+
+/* Adjust for very small screens (small phones) */
+@media (max-width: 480px) {
+  .connection-logo {
+    bottom: 5px; /* Further adjustment */
+    right: 5px;
+    padding: 6px;
+    gap: 8px;
+  }
+
+  .connection-logo a {
+    font-size: 20px; /* Further reduce icon size */
+  }
+}
 

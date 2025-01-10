@@ -42,7 +42,7 @@ const Navbar = () => {
       <a href="/" className="navbar-item">Home</a>
       <a href="#services-Home" className="navbar-item">Services</a>
       <a href="#Review-Home" className="navbar-item">Testimonial</a>
-      <a href="#Form-container" className="navbar-item">Feedback</a>
+      <a href="#Form-container" className="navbar-item">Contact Us</a>
       </div>
       {/* Add the buttons inside the navbar-menu */}
       {isAuthenticated ? (

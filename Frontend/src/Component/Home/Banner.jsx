@@ -1,6 +1,8 @@
 import React from 'react';
 import '../../assets/Style/HomeStyle/Banner.css';
-import v3 from '../../assets/Images/v3.mp4'
+import v3 from '../../assets/Images/v3.mp4';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const VideoBanner = () => {
   return (
@@ -17,16 +19,29 @@ const VideoBanner = () => {
       <div className="banner-content">
         <h1>Welcome to Our Site</h1>
         <p>Discover amazing content and experiences</p>
-          <a style={{textDecoration:"none",
-          color:"white"
-        }} href="#Explore">
-        <button className="cta-button" >
-          Explore</button>
-          </a>
+        <a
+          style={{
+            textDecoration: "none",
+            color: "white",
+          }}
+          href="#Explore"
+        >
+          <button className="cta-button">Explore</button>
+        </a>
+      </div>
+      <div className="connection-logo">
+        <a href="https://facebook.com"  target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon className='facebook'  icon={faFacebook} />
+        </a>
+        <a href="https://wa.me/6267533139?text=Hello%20there%2C%20I%27m%20interested%20in%20your%20services!"  target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon className='whatsapp' icon={faWhatsapp} />
+        </a>
+        <a href="https://instagram.com"  target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon className='instagram' icon={faInstagram} />
+        </a>
       </div>
     </div>
   );
 };
 
 export default VideoBanner;
-
