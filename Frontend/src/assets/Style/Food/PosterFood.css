@@ -1,0 +1,115 @@
+/* General Section Styling */
+.posterFood-sectionspace {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.posterFood-haslayout {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+/* Main Container */
+.posterFood-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.posterFood-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Tour Destinations */
+.posterFood-toursdestinations {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+}
+
+/* Big Box */
+.posterFood-tourdestination-bigbox {
+  position: relative;
+  overflow: hidden;
+  grid-row: span 2;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Smaller Boxes */
+.posterFood-tourdestination {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Styling */
+.posterFood-tourdestination img, 
+.posterFood-tourdestination-bigbox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.posterFood-hoverbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.posterFood-tourdestination:hover img, 
+.posterFood-tourdestination-bigbox:hover img {
+  transform: scale(1.1);
+}
+
+/* Text Styling */
+.posterFood-description p {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  margin: 10px 0 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* National Park and Adult Vacations Box */
+.posterFood-tourdestination:nth-child(2) .posterFood-adventuretitle h2,
+.posterFood-tourdestination:nth-child(3) .posterFood-adventuretitle h2 {
+  font-size: 24px;
+}
+
+/* Divider (Wave Line) */
+.posterFood-hoverbox::after {
+  content: '~~~~';
+  display: block;
+  font-size: 20px;
+  margin: 10px 0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 769px) {
+  .posterFood-toursdestinations{
+    display: block;
+    
+  }
+
+  .posterFood-tourdestination{
+    margin-bottom: 50px;
+  }
+}

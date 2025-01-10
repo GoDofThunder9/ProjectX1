@@ -133,7 +133,7 @@ const MenuSection = () => {
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/foods'); // Replace with your backend endpoint
+        const response = await axios.get('http://65.0.199.218:8080/foods'); // Replace with your backend endpoint
         setMenuItems(response.data.foods); // Assuming response contains a `foods` array
       } catch (err) {
         console.error("Error fetching menu items:", err);
@@ -177,7 +177,7 @@ const MenuSection = () => {
           filteredItems.map(item => (
             <div key={item._id} className="menu-item">
               <img
-                src={`http://localhost:8080${item.image}`} // Assuming the backend provides a valid image path
+                src={`http://65.0.199.218:8080${item.image}`} // Assuming the backend provides a valid image path
                 alt={item.name}
                 className="menu-item-image"
               />

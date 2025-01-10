@@ -13,7 +13,7 @@ const FoodList = () => {
 
     const fetchFoodItems = async () => { 
       try {
-        const response = await axios.get('http://localhost:8080/foods');
+        const response = await axios.get('http://65.0.199.218:8080/foods');
         // console.log(response);
         if (response.status === 200) {
           setFoodItems(response.data.foods); // Assuming backend returns an array in `foodItems`
@@ -30,7 +30,7 @@ const FoodList = () => {
   // Handle delete request
   const handleDelete = async (name) => {
     try {
-      const response = await axios.delete('http://localhost:8080/foodDelete', {
+      const response = await axios.delete('http://65.0.199.218:8080/foodDelete', {
         data: { name },
       });
       console.log(response);
@@ -64,7 +64,7 @@ const FoodList = () => {
             <strong>Price:</strong> ${food.price}
           </p>
           <img
-            src={`http://localhost:8080${food.image}`}
+            src={`http://65.0.199.218:8080${food.image}`}
             alt={food.name}
             className="food-image"
           />

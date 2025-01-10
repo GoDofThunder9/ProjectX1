@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
-
 :root {
   --primary: hsl(0, 79%, 63%);
   --primary-light: hsl(0, 79%, 73%);
@@ -45,9 +44,11 @@
   padding: 0;
   box-sizing: border-box;
 }
-.container{
+
+.container {
   margin-top: 420px;
 }
+
 .background-video-cab {
   position: absolute;
   top: 0;
@@ -57,6 +58,8 @@
   object-fit: cover; /* Ensures the video fills the screen without distortion */
   z-index: -1; /* Keeps the video behind all content */
 }
+
+/* Hero Form */
 .hero-form {
   background: rgba(255, 255, 255, 0.1); /* Transparent background */
   border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for visibility */
@@ -68,10 +71,15 @@
   transition: var(--transition);
 }
 
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .input-label {
   color: var(--white); /* Keeps labels white for dark background */
   font-size: var(--fs-6);
-  margin-bottom: 10px;
 }
 
 .input-field {
@@ -109,9 +117,10 @@
 }
 
 .btn1:hover {
-  background:#ef4444 ; /* Fully opaque on hover */
+  background: #ef4444; /* Fully opaque on hover */
 }
 
+/* Responsive styles */
 @media (min-width: 580px) {
   .hero-form {
     display: grid;
@@ -119,17 +128,46 @@
     gap: 15px;
   }
 
-  .hero-form .btn1 {
-    grid-column: span 2;
+  .input-wrapper {
+    grid-column: span 1;
+  }
+
+  .btn1 {
+    grid-column: span 2; /* Button spans entire width on medium screens */
   }
 }
+
+@media (max-width: 769px) {
+  .hero-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adjust spacing for smaller screens */
+    margin-bottom: 320px;
+  }
+
+  .input-wrapper {
+    width: 100%; /* Make input fields take full width */
+  }
+
+  .btn1 {
+    width: 100%; /* Button spans full width */
+    grid-column: unset; /* Remove grid-column property */
+    text-align: center; /* Center the button text */
+  }
+}
+
 
 @media (min-width: 992px) {
   .hero-form {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .hero-form .btn1 {
-    grid-column: span 1;
+  .input-wrapper {
+    grid-column: span 1; /* Each input occupies one column */
+  }
+
+  .btn1 {
+    grid-column: span 1; /* Button occupies a single column */
   }
 }
+

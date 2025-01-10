@@ -64,7 +64,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
     opacity: 0;
     display: flex;
     flex-direction: column;
@@ -81,19 +80,10 @@
     transform: scale(1.1);
 }
 
-.tg-tourdestination:hover .tg-hoverbox, 
-.tg-tourdestinationbigbox:hover .tg-hoverbox {
-    opacity: 1;
-}
+
 
 /* Text Styling */
-.tg-adventuretitle h2 {
-    font-family: 'Arial', sans-serif;
-    font-size: 28px;
-    font-weight: bold;
-    margin: 0;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
-}
+
 
 .tg-description p {
     font-family: 'Arial', sans-serif;
@@ -215,3 +205,13 @@ body {
     margin-right: 5px;
   }
   
+  @media (max-width: 769px) {
+    .tg-toursdestinations{
+      display: block;
+      
+    }
+  
+    .tg-tourdestination{
+      margin-bottom: 50px;
+    }
+  }

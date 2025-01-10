@@ -55,7 +55,7 @@ function Reset() {
   const handleSubmission = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/verify-reset-token', {
+      const response = await axios.post('http://65.0.199.218:8080/verify-reset-token', {
         email: code.email,
         token: code.token.join(''), // Join array to form the complete token
       });

@@ -1,0 +1,225 @@
+/* General Section Styling */
+.PosterCab-sectionspace {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.PosterCab-haslayout {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+/* Main Container */
+.PosterCab-container-Tourism {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.PosterCab-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.PosterCab-col {
+  width: 100%;
+}
+
+/* Tour Destinations */
+.PosterCab-toursdestinations {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+}
+
+/* Big Box */
+.PosterCab-tourdestinationbigbox {
+  position: relative;
+  overflow: hidden;
+  grid-row: span 2;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Smaller Boxes */
+.PosterCab-tourdestination {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+}
+
+/* Image Styling */
+.PosterCab-tourdestination img, 
+.PosterCab-tourdestinationbigbox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.PosterCab-hoverbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.PosterCab-tourdestination:hover img, 
+.PosterCab-tourdestinationbigbox:hover img {
+  transform: scale(1.1);
+}
+
+/* Text Styling */
+.PosterCab-description p {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  margin: 10px 0 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* National Park and Adult Vacations Box */
+.PosterCab-tourdestination:nth-child(2) .PosterCab-adventuretitle h2,
+.PosterCab-tourdestination:nth-child(3) .PosterCab-adventuretitle h2 {
+  font-size: 24px;
+}
+
+/* Divider (Wave Line) */
+.PosterCab-hoverbox::after {
+  content: '~~~~';
+  display: block;
+  font-size: 20px;
+  margin: 10px 0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.PosterCab-body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+.PosterCab-popular-tours {
+  padding: 40px;
+  background-color: #fff;
+}
+
+.PosterCab-popular-tours-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.PosterCab-cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.PosterCab-tour-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.PosterCab-tour-card:hover {
+  transform: scale(1.05);
+}
+
+.PosterCab-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.PosterCab-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.PosterCab-discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff6b6b;
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.PosterCab-card-content {
+  padding: 15px;
+}
+
+.PosterCab-card-content h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #333;
+}
+
+.PosterCab-card-content p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.PosterCab-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.PosterCab-price {
+  font-size: 1rem;
+  color: #ff6b6b;
+}
+
+.PosterCab-old-price {
+  text-decoration: line-through;
+  font-size: 0.9rem;
+  color: #999;
+  margin-right: 5px;
+}
+
+
+
+
+@media (max-width: 769px) {
+  .PosterCab-toursdestinations{
+    display: block;
+    
+  }
+
+  .PosterCab-tourdestination{
+    margin-bottom: 50px;
+  }
+}
+
+
+

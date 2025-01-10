@@ -1,8 +1,8 @@
 import React from 'react'
-import "../../assets/Style//TourismStyle/Banner2.css"
-import img1 from "../../assets/Images/img1.jpg"
-import img2 from "../../assets/Images/img2.jpg"
-import img3 from "../../assets/Images/img3.jpg"
+import "../../assets/Style/TourismStyle/Banner2.css"
+import img1 from '../../assets/ToursimImages/img21.jpeg'
+import img2 from '../../assets/ToursimImages/img22.jpeg'
+import img3 from '../../assets/ToursimImages/img23.jpeg'
 function Banner2() {
   return (
     <section className="tg-sectionspace tg-haslayout">
@@ -16,10 +16,10 @@ function Banner2() {
 											<img src={img1} alt="image destinations"/>
 											<div className="tg-hoverbox">
 												<div className="tg-adventuretitle">
-													<h2>Ice Adventure Vacations</h2>
+													{/* <h2>Ice Adventure Vacations</h2> */}
 												</div>
 												<div className="tg-description">
-													<p>your best vacation ever</p>
+													{/* <p>your best vacation ever</p> */}
 												</div>
 											</div>
 										</a>
@@ -31,7 +31,7 @@ function Banner2() {
 											<img src={img2} alt="image destinations"/>
 											<div className="tg-hoverbox">
 												<div className="tg-adventuretitle">
-													<h2>National Park</h2>
+													{/* <h2>National Park</h2> */}
 												</div>
 											</div>
 										</a>
@@ -43,7 +43,7 @@ function Banner2() {
 											<img src={img3} alt="image destinations"/>
 											<div className="tg-hoverbox">
 												<div className="tg-adventuretitle">
-													<h2>Adult Vacations</h2>
+													{/* <h2>Adult Vacations</h2> */}
 												</div>
 											</div>
 										</a>
