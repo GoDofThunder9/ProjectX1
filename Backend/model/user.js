@@ -45,8 +45,15 @@ const userSchema = new mongoose.Schema(
   resetPasswordExpiresAt: {
     type: Date,
     default: null,
-  }
   },
+  cart: [
+    {
+      foodId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Food',  // Reference to the Food model
+        required: true,
+      },
+  }]},
   {
     timestamps: true,
   }

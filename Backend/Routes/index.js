@@ -5,4 +5,5 @@ route.use('/',require('./home'));
 route.use('/',require('./Auth'));
 route.use('/',require('./Admin'));
 route.use('/',require('./Invoice'));
+route.use('/',require('./cart'));
 module.exports = route;
