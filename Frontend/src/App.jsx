@@ -42,6 +42,8 @@ import CabDelete from "./Component/AdminPanel/CabDelete";
 import AdminPage from "./Component/AdminPanel/AdminPage/AdminPage"; 
 import NavbarCab from "./Component/CabBooking/NavbarCab";
 import PublicRoute from "./Component/Authentication/PublicRoute";
+import Cart from "./Component/Cart/cart"
+import { CartProvider } from './Component/Food/CardContext.jsx';
 import { Projector } from "lucide-react";
 // import FoodUpdate from "./Component/AdminPanel/FoodUpdate"; 
 function App() { 
@@ -72,7 +74,9 @@ function App() {
               <Navbar/> 
               <FoodBanner/> 
               <OurStory/> 
+              <CartProvider>
               <Menu/> 
+              </CartProvider>
               <Expert/> 
               <Testimonials/> 
               <Footer/> 
@@ -105,6 +109,16 @@ function App() {
                {/* <Navbar/> */} 
               <AdminPage/> 
               {/* <Footer/> */} 
+              </> 
+            } 
+          /> 
+          <Route 
+            path="Cart" 
+            element={ 
+              <> 
+               <CartProvider>
+              <Cart/> 
+               </CartProvider>
               </> 
             } 
           /> 
