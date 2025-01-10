@@ -17,4 +17,5 @@ route.post("/verify-reset-token", authcontroller.verifyResetToken);
 // Route to reset the password (after OTP is verified)
 route.post("/reset-password", authcontroller.resetPassword);
 route.post("/logout", authcontroller.logout);
+route.post("/send-feedback", authcontroller.sendFeedback)
 module.exports = route;

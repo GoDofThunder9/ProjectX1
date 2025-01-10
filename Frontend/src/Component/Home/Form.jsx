@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaUser, FaEnvelope, FaPhone, FaCommentAlt, FaPaperPlane } from 'react-icons/fa';
 import '../../assets/Style/HomeStyle/Form.css';
+import axios from 'axios';
 
 function Form() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,17 +24,29 @@ function Form() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      problem: '',
-      feedback: ''
-    });
+    try {
+      const response = await axios.post('http://localhost:8080/send-feedback' , formData);
+
+      if(response.status == 200)
+      {
+        alert("Feedback Submitted Successfully");
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          problem: '',
+          feedback: ''
+        });
+      }
+    } catch (error) {
+      console.log("Error submitting the feedback" , error);
+      alert(
+        error.response?.data?.message || "Failed to submit feedback. Please try again"
+      );
+    }
+    finally{
+      setIsSubmitting(false);
+    }
   };
 
   return (

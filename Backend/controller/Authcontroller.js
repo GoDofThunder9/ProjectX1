@@ -140,7 +140,6 @@ module.exports.forgotPassword = async function (req, res) {
   }
 };
 
-
 function sendResetmail(email, resetToken) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -288,4 +287,49 @@ module.exports.logout = async function (req, res) {
     success: true,
     message: "Logged out successfully",
   });
+}
+
+
+module.exports.sendFeedback = async (req,res) =>{
+  const {name , email , phone , problem , feedback} = req.body;
+
+  if(!name || !email || !phone || !problem || !feedback) {
+    return res.status(400).json({
+      message : "All fields are required",
+    })
+  }
+
+  const transporter = nodemailer.createTransport({
+    service : "gmail",
+    auth :{
+      user : process.env.EMAIL_USER,
+      pass : process.env.EMAIL_PASS,
+    }
+  });
+
+  //Email Content
+  const mailOptions = {
+    from : email,
+    to : process.env.EMAIL_USER,
+    subject: "New Feedback from Contact Form",
+    html: `
+      <h3>New Feedback Submission</h3>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Problem:</strong> ${problem}</p>
+      <p><strong>Feedback:</strong> ${feedback}</p>
+    `,
+  }
+
+  //send mail
+  try {
+    await transporter.sendMail(mailOptions)
+    res.status(200).json({
+      message : "Feedback sent successfully",
+    })
+  } catch (error) {
+    console.error("Error sending feedback email" , error);
+    return res.status(500).json({error : "Failed to send Feedback email. Please try again later"})
+  }
 }
