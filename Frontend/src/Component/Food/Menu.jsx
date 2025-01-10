@@ -84,7 +84,7 @@ const MenuSection = () => {
           filteredItems.map((item) => (
             <div key={item._id} className="menu-item">
               <img
-                src={`http://localhost:8080${item.image}`}
+                src={`http://65.0.199.218:8080${item.image}`}
                 alt={item.name}
                 className="menu-item-image"
               />
