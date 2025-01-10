@@ -42,7 +42,7 @@ const AdminPortal = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/foodUpload", // Your API endpoint
+        "http://65.0.199.218:8080/foodUpload", // Your API endpoint
         formDataToSend,
         {
           headers: {

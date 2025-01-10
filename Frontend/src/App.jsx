@@ -45,6 +45,8 @@ import PublicRoute from "./Component/Authentication/PublicRoute";
 import Cart from "./Component/Cart/cart"
 import { CartProvider } from './Component/Food/CardContext.jsx';
 import { Projector } from "lucide-react";
+import PosterCab from "./Component/CabBooking/PosterCab";
+import PosterFood from "./Component/Food/PosterFood";
 // import FoodUpdate from "./Component/AdminPanel/FoodUpdate"; 
 function App() { 
   return ( 
@@ -73,6 +75,7 @@ function App() {
               <> 
               <Navbar/> 
               <FoodBanner/> 
+              <PosterFood/>
               <OurStory/> 
               <CartProvider>
               <Menu/> 
@@ -155,6 +158,7 @@ function App() {
           <> 
           <NavbarCab/> 
           <HeroSection/> 
+          <PosterCab/>
           {/* <FeaturedCars/>  */}
           <BannerCar/> 
           <TestimonialSlider/> 

@@ -107,6 +107,7 @@
 @media (max-width: 768px) {
   .hero {
     height: 400px;
+    margin-top: 45px;
   }
 
   .hero-title {
@@ -131,8 +132,10 @@
 
 @media (max-width: 480px) {
   .hero {
-    height: 300px;
+    height: 625px;
+
   }
+
 
   .hero-title {
     font-size: 24px;

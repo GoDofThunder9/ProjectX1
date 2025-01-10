@@ -29,7 +29,7 @@ const Description = () => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/tours');
+        const response = await axios.get('http://65.0.199.218:8080/tours');
         // const data = Array.isArray(response.data)? response.data: Object.values(response.data); 
         // const data = Array.isArray(response.data) && Array.isArray(response.data[0]) ? response.data[0] : response.data;
         // console.log("data",response.data.tours);
@@ -77,7 +77,7 @@ const Description = () => {
 
   const handleBookNow = async (id , storedUserId) => {
     try {
-      const response = await axios.get(`http://localhost:8080/invoiceSender/${id}/${storedUserId}`);
+      const response = await axios.get(`http://65.0.199.218:8080/invoiceSender/${id}/${storedUserId}`);
 
       console.log("Booking response:", response.data);
       alert("Booking successful!");
@@ -140,7 +140,7 @@ const Description = () => {
                 <div className="card-image-container">
                   {/* {console.log(`http://localhost:8080/${tour.image}`)} */}
                   <img
-                    src={`http://localhost:8080${tour.image}`} 
+                    src={`http://65.0.199.218:8080${tour.image}`} 
                     alt={tour.title}
                     className="card-image"
                     />
