@@ -6,7 +6,7 @@ const nodemailer=require('nodemailer');
 const dotenv=require('dotenv').config();
 const User=require("../model/user");
 const tempUserStorage = new Map(); // Temporary in-memory storage for unverified usersgroups
-
+const path = require("path");
 module.exports.signup = async function (req, res) {
   const { Fullname, email, phone, Password, City, Country } = req.body;
 
@@ -55,11 +55,43 @@ function sendOTPEmail(email, otpCode) {
       pass: process.env.EMAIL_PASS,
     },
   });
+
   const mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: `"Addit Groups" <${process.env.EMAIL_USER}>`,
     to: email,
-    subject: "Email Verification",
-    text: `Your OTP for email verification is: ${otpCode}`,
+    subject: "Email Verification - Addit Groups",
+    html: `
+      <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <div style="text-align: center;">
+          <img src="cid:companyLogo" alt="Addit Groups Logo" style="max-width: 150px; margin-bottom: 20px;">
+        </div>
+        <h2 style="text-align: center; color: #333;">Welcome to Addit Groups!</h2>
+        <p style="font-size: 16px; color: #555;">
+          Thank you for choosing Addit Groups. We specialize in:
+        </p>
+        <ul style="font-size: 16px; color: #555; list-style-type: disc; padding-left: 20px;">
+          <li>Cab Booking</li>
+          <li>Food Services</li>
+          <li>Tourism</li>
+          <li>Movie Booking</li>
+        </ul>
+        <p style="font-size: 16px; color: #555;">
+          Your OTP for email verification is:
+          <strong style="font-size: 18px; color: #007BFF;">${otpCode}</strong>
+        </p>
+        <p style="font-size: 16px; color: #555;">
+          If you did not request this, please ignore this email.
+        </p>
+        <p style="font-size: 16px; color: #555;">Best Regards,<br><strong>Addit Groups Team</strong></p>
+      </div>
+    `,
+    attachments: [
+      {
+        filename: "logo.jpeg", // File name with correct extension
+        path: path.join(__dirname, "/logo.jpeg"), // Path to the file
+        cid: "companyLogo",
+      },
+    ],
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -70,6 +102,7 @@ function sendOTPEmail(email, otpCode) {
     }
   });
 }
+
 
 module.exports.sendotp = async function (req, res) {
   const { email } = req.body;
