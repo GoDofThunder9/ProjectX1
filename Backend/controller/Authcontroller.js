@@ -293,7 +293,7 @@ module.exports.login = async function (req, res) {
             res.cookie("token", token, {
               httpOnly: true,
               maxAge: 24 * 60 * 60 * 1000 * 24, // Cookie expiry: 1 day
-              secure: false, // Set to true if using HTTPS
+              secure: true, // Set to true if using HTTPS
               sameSite:'None', // Set to 'None' for cross-site requests, 'Lax' for same-site requests
             });
 
