@@ -19,7 +19,7 @@ const allowedOrigins = [
   'http://aaditgroups.com',
 ];
 
-app.use(cors({
+const corsOptions = {
   origin: (origin, callback) => {
     // Check if the origin is in the allowed list or if origin is undefined (e.g., non-browser requests)
     if (!origin || allowedOrigins.includes(origin)) {
@@ -28,8 +28,22 @@ app.use(cors({
       callback(new Error('Not allowed by CORS')); // Deny the request
     }
   },
-  credentials: true // Allow credentials (cookies, authorization headers, etc.)
-}));
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed request headers
+};
+
+app.use(cors(corsOptions));
+
+// Handle preflight requests explicitly
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.sendStatus(200); // Respond to preflight with a success status
+});
+
 
 app.use("/asset", express.static("asset"));
 app.use("/", require("./Routes"));
