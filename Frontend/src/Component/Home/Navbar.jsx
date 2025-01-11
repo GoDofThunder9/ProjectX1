@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../../assets/Style/HomeStyle/Navbar.css';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../Authentication/axiosInstance';
+import logo from "../../assets/Images/logo.jpeg";
 const Navbar = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -36,7 +37,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
   <div className="navbar-container">
-    <div className="navbar-logo">YourLogo</div>
+    <div className="navbar-logo"><img src={logo} alt="" /></div>
     <div className={`navbar-menu ${isOpen ? 'active' : ''}`}>
       <div className="containtitles">
       <a href="/" className="navbar-item">Home</a>
