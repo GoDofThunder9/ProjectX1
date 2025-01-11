@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended:true}));
 const allowedOrigins = [
   'http://65.0.199.218',
   'http://65.0.199.218:5173',
-  'http://aaditgroups.com/',
+  'http://aaditgroups.com',
 ];
 
 app.use(cors({
