@@ -5,40 +5,48 @@ const jwt = require('jsonwebtoken');
 const nodemailer=require('nodemailer');
 const dotenv=require('dotenv').config();
 const User=require("../model/user");
-module.exports.signup = async function (req,res) {
-    
-    const { Fullname, email,phone,Password,City,Country} = req.body;
-    try{
-      let user = await User.findOne({email});
-      if(user){
-        if(user.isVerifed){
-          return res.status(400).json({message:'Email already exists'})
-        }
-        else{
-          return res.status(400).json({message:'Email already in verfication process'})
-        }
-      }
-      const otpCode=Math.floor(1000+Math.random()*9000).toString();
-      const salt=await bcrypt.genSalt(10);
-      const hashedPassword=await bcrypt.hash(Password,salt);
-      user=new User({
-        Fullname,
-        email,
-        phone,
-        Password:hashedPassword,
-        City,
-        Country,
-        otp:otpCode,
-        otpExpiresAt:Date.now()+15*60*1000
-      })
-      await user.save();
-      sendOTPEmail(email, otpCode);
-      res.status(200).json({ message: 'User registered, please verify your email.' });
-    }  catch(err){
-      console.error(err);
-      res.status(500).json({ message: 'Server error' });
+const tempUserStorage = new Map(); // Temporary in-memory storage for unverified users
+
+module.exports.signup = async function (req, res) {
+  const { Fullname, email, phone, Password, City, Country } = req.body;
+
+  try {
+    // Check if email already exists in the database
+    let user = await User.findOne({ email });
+    if (user) {
+      return res.status(400).json({
+        message: user.isVerifed
+          ? "Email already exists."
+          : "Email already in verification process.",
+      });
     }
+
+    // Generate OTP
+    const otpCode = Math.floor(1000 + Math.random() * 9000).toString();
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(Password, salt);
+
+    // Temporarily store user details in memory
+    tempUserStorage.set(email, {
+      Fullname,
+      phone,
+      Password: hashedPassword,
+      City,
+      Country,
+      otp: otpCode,
+      otpExpiresAt: Date.now() + 15 * 60 * 1000, // OTP expires in 15 minutes
+    });
+
+    // Send OTP to user's email
+    sendOTPEmail(email, otpCode);
+
+    res.status(200).json({ message: "User registered. Please verify your email." });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error." });
   }
+};
+
 function sendOTPEmail(email, otpCode) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -85,35 +93,46 @@ module.exports.sendotp = async function (req, res) {
 };
 module.exports.verifyEmail = async function (req, res) {
   const { email, otp } = req.body;
-  try {
-    const user = await User.findOne({ email });
 
-    if (!user) {
+  try {
+    // Retrieve the user from temporary storage
+    const tempUser = tempUserStorage.get(email);
+
+    if (!tempUser) {
       return res
         .status(400)
         .json({ message: "No verification process found for this email." });
     }
 
     // Check if the OTP matches and is not expired
-    if (user.otp === otp && user.otpExpiresAt > Date.now()) {
-      // Update the user as verified
-      user.isVerifed = true;
-      user.otp = null;
-      user.otpExpiresAt = null;
-
+    if (tempUser.otp === otp && tempUser.otpExpiresAt > Date.now()) {
+      // Save the user to MongoDB
+      const user = new User({
+        Fullname: tempUser.Fullname,
+        email,
+        phone: tempUser.phone,
+        Password: tempUser.Password,
+        City: tempUser.City,
+        Country: tempUser.Country,
+        isVerifed: true,
+      });
       await user.save();
 
-      res
-        .status(200)
-        .json({ message: "Email verified and user registered successfully!" });
+      // Remove the user from temporary storage
+      tempUserStorage.delete(email);
+
+      res.status(200).json({
+        message: "Email verified and user registered successfully!",
+      });
     } else {
       res.status(400).json({ message: "Invalid or expired OTP." });
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error." });
   }
 };
+
 module.exports.forgotPassword = async function (req, res) {
   const { email } = req.body;
   try {
@@ -240,7 +259,7 @@ module.exports.login = async function (req, res) {
             // Set cookie and send response
             res.cookie("token", token, {
               httpOnly: true,
-              maxAge: 24 * 60 * 60 * 1000*24, // Cookie expiry: 1 day
+              maxAge: 24 * 60 * 60 * 1000 * 24, // Cookie expiry: 1 day
               secure: false, // Set to true if using HTTPS
               sameSite: 'Lax', // Set to 'None' for cross-site requests, 'Lax' for same-site requests
             });
