@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const nodemailer=require('nodemailer');
 const dotenv=require('dotenv').config();
 const User=require("../model/user");
-const tempUserStorage = new Map(); // Temporary in-memory storage for unverified users
+const tempUserStorage = new Map(); // Temporary in-memory storage for unverified usersgroups
 
 module.exports.signup = async function (req, res) {
   const { Fullname, email, phone, Password, City, Country } = req.body;
