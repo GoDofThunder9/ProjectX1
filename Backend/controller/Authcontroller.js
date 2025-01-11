@@ -294,7 +294,7 @@ module.exports.login = async function (req, res) {
               httpOnly: true,
               maxAge: 24 * 60 * 60 * 1000 * 24, // Cookie expiry: 1 day
               secure: false, // Set to true if using HTTPS
-              sameSite: 'Lax', // Set to 'None' for cross-site requests, 'Lax' for same-site requests
+              sameSite: 'None', // Set to 'None' for cross-site requests, 'Lax' for same-site requests
             });
 
             res.json({
