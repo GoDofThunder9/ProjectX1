@@ -84,7 +84,7 @@ const MenuSection = () => {
           filteredItems.map((item) => (
             <div key={item._id} className="menu-item">
               <img
-                src={`https://aaditgroups.com/api/${item.image}`}
+                src={`https://aaditgroups.com/${item.image}`}
                 alt={item.name}
                 className="menu-item-image"
               />

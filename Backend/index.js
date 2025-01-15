@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 const path = require('path');
 const app = express();
 
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/api/assets', express.static(path.join(__dirname, 'assets')));
 app.use(express.json()); 
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
@@ -43,7 +43,7 @@ app.options('*', (req, res) => {
 });
 
 
-app.use("/api/asset", express.static("asset"));
+app.use("/asset", express.static("asset"));
 app.use("/api/", require("./Routes"));
 const port = process.env.PORT || 8080; // Default to port 3000 if PORT is not set
 app.listen(port, (err) => {
