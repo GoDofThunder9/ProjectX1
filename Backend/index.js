@@ -14,9 +14,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 const allowedOrigins = [
-  'http://65.0.199.218',
-  'http://65.0.199.218:5173',
-  'http://aaditgroups.com',
+  'https://aaditgroups.com',
 ];
 
 const corsOptions = {
