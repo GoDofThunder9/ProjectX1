@@ -8,7 +8,7 @@ route.post("/verify-email", authcontroller.verifyEmail);
 route.post("/resendotp", authcontroller.sendotp);
 route.post("/api/login", authcontroller.login);
 route.post("/forgot-password", authcontroller.forgotPassword);
-route.get('/protected', verify.verifyToken,(req, res) => {
+route.get('/api/protected', verify.verifyToken,(req, res) => {
     res.json({ message: 'This is a protected route', user: req.user });
   });
 // Route to verify the OTP sent to the user's email
