@@ -140,7 +140,7 @@ const Description = () => {
                 <div className="card-image-container">
                   {/* {console.log(`http://localhost:8080/${tour.image}`)} */}
                   <img
-                    src={`https://aaditgroups.com/api${tour.image}`} 
+                    src={`https://aaditgroups.com${tour.image}`} 
                     alt={tour.title}
                     className="card-image"
                     />
