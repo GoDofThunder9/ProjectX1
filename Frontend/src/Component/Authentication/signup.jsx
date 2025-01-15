@@ -37,7 +37,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post("http://65.0.199.218:8080/signup", formData, {
+      const response = await axios.post("https://aaditgroups.com/api/signup", formData, {
         headers: { "Content-Type": "application/json" },
       });
 
