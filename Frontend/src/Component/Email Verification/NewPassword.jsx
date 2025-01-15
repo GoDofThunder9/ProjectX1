@@ -31,7 +31,7 @@ const NewPassword = () => {
       newPassword:password.newPassword
     })
     try {
-      await axios.post('http://65.0.199.218:8080/reset-password', {
+      await axios.post('https://aaditgroups.com/api/reset-password', {
         email: email,
         token: token,
         newPassword: password.newPassword

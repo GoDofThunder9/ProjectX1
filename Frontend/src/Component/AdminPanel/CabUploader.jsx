@@ -44,7 +44,7 @@ const AdminPortal = () => {
 
     try {
       const response = await axios.post(
-        "http://65.0.199.218:8080/cabUpload", // Your API endpoint
+        "https://aaditgroups.com/api/cabUpload", // Your API endpoint
         formDataToSend,
         {
           headers: {

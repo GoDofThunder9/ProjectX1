@@ -20,7 +20,7 @@ const FeaturedCabs = ({ searchCriteria }) => {
   useEffect(() => {
     const fetchCabs = async () => {
       try {
-        const response = await axios.get("http://65.0.199.218:8080/cabs"); // Replace with your backend endpoint
+        const response = await axios.get("https://aaditgroups.com/api/cabs"); // Replace with your backend endpoint
         setCabs(Array.isArray(response.data.cabs) ? response.data.cabs : []); // Safeguard against undefined or non-array
       } catch (err) {
         console.error("Error fetching cab items:", err);

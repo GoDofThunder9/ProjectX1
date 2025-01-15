@@ -25,7 +25,7 @@ function Form() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await axios.post('http://65.0.199.218:8080/send-feedback' , formData);
+      const response = await axios.post('https://aaditgroups.com/api/send-feedback' , formData);
 
       if(response.status == 200)
       {

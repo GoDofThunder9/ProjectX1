@@ -38,7 +38,7 @@ const UpdateFood = () => {
       if (formData.description) data.append('updatedFields[description]', formData.description);
       if (selectedFile) data.append('image', selectedFile);
 
-      const response = await axios.put('http://localhost:8080/food/update', data, {
+      const response = await axios.put('https://aaditgroups.com/api/food/update', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

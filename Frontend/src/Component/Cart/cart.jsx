@@ -14,7 +14,7 @@ const ShoppingCart = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await axios.get(`http://65.0.199.218:8080/fetchcartdetail/${storedUserId}`);
+        const response = await axios.get(`https://aaditgroups.com/api/fetchcartdetail/${storedUserId}`);
         setCartItems(response.data.cart); // Update context with fetched cart items (full objects)
         setIsLoading(false); // Set loading to false after fetching
         // Initialize quantities for each item in the cart
@@ -48,10 +48,10 @@ const ShoppingCart = () => {
   const removeItemFromCart = async (foodId) => {
     try {
       // Make API call to remove item from cart on the backend
-      const response = await axios.get(`http://65.0.199.218:8080/removefromcart/${foodId}/${storedUserId}`);
+      const response = await axios.get(`https://aaditgroups.com/api/removefromcart/${foodId}/${storedUserId}`);
       if (response.status === 200) {
         // After successful removal, re-fetch the updated cart items
-        const updatedResponse = await axios.get(`http://65.0.199.218:8080/fetchcartdetail/${storedUserId}`);
+        const updatedResponse = await axios.get(`https://aaditgroups.com/api/fetchcartdetail/${storedUserId}`);
         setCartItems(updatedResponse.data.cart); // Update context with the new cart
       }
     } catch (err) {
@@ -84,7 +84,7 @@ const ShoppingCart = () => {
             <div key={item.foodId} className="cart-item">
               <div className="product-info">
                 <div className="product-image">
-                  <img src={`http://65.0.199.218:8080${item.image}`} alt={item.name} />
+                  <img src={`https://aaditgroups.com/api/${item.image}`} alt={item.name} />
                 </div>
                 <div className="product-details">
                   <div className="product-name">{item.name}</div>

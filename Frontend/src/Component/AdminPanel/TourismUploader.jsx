@@ -38,7 +38,7 @@ const TourForm = () => {
     data.append('image', imageFile);
 
     try {
-      const response = await axios.post('http://65.0.199.218:8080/tourismUpload', data, {
+      const response = await axios.post('https://aaditgroups.com/api/tourismUpload', data, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       if (response.status === 200) {

@@ -17,7 +17,7 @@ const Forgot = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://65.0.199.218:8080/forgot-password', { email });
+      const response = await axios.post('https://aaditgroups.com/api/forgot-password', { email });
       alert('OTP sent successfully!');
       navigate('/reset', { state: { email } });
     } catch (error) {

@@ -19,7 +19,7 @@ const MenuSection = () => {
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
-        const response = await axios.get('http://65.0.199.218:8080/foods');
+        const response = await axios.get('https://aaditgroups.com/api/foods');
         setMenuItems(response.data.foods);
       } catch (err) {
         console.error('Error fetching menu items:', err);
@@ -34,7 +34,7 @@ const MenuSection = () => {
 
   const handleAddToCart = async (itemId) => {
     try {
-      const response = await axios.get(`http://65.0.199.218:8080/addtocart/${itemId}/${storedUserId}`);
+      const response = await axios.get(`https://aaditgroups.com/api/addtocart/${itemId}/${storedUserId}`);
       if (response.status === 200) {
         addToCart(itemId); // Add to cart in context
       }
@@ -46,7 +46,7 @@ const MenuSection = () => {
 
   const handleRemoveFromCart = async (itemId) => {
     try {
-      const response = await axios.get(`http://65.0.199.218:8080/removefromcart/${itemId}/${storedUserId}`);
+      const response = await axios.get(`https://aaditgroups.com/api/removefromcart/${itemId}/${storedUserId}`);
       if (response.status === 200) {
         removeFromCart(itemId); // Remove from cart in context
       }
@@ -84,7 +84,7 @@ const MenuSection = () => {
           filteredItems.map((item) => (
             <div key={item._id} className="menu-item">
               <img
-                src={`http://65.0.199.218:8080${item.image}`}
+                src={`https://aaditgroups.com/api/${item.image}`}
                 alt={item.name}
                 className="menu-item-image"
               />

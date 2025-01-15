@@ -10,7 +10,7 @@ const CabList = () => {
   useEffect(() => {
     const fetchCabItems = async () => {
       try {
-        const response = await axios.get('http://65.0.199.218:8080/cabs');
+        const response = await axios.get('https://aaditgroups.com/api/cabs');
         if (response.status === 200) {
           setCabItems(response.data.cabs); // Assuming backend returns an array in `cabs`
         }
@@ -25,7 +25,7 @@ const CabList = () => {
   // Handle delete request
   const handleDelete = async (name) => {
     try {
-      const response = await axios.delete('http://65.0.199.218:8080/cabDelete', {
+      const response = await axios.delete('https://aaditgroups.com/api/cabDelete', {
         data: { name },
       });
       if (response.status === 200) {
@@ -61,7 +61,7 @@ const CabList = () => {
                   <strong>Price/Day:</strong> ${cab.pricePerDay}
                 </p>
                 <img
-                  src={`http://65.0.199.218:8080${cab.image}`}
+                  src={`https://aaditgroups.com/api/${cab.image}`}
                   alt={cab.name}
                   className="cab-image"
                 />
