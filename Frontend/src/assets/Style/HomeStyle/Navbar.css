@@ -10,8 +10,8 @@
   position: fixed; /* Stick the navbar at the top */
   top: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0); /* Transparent white */
-  backdrop-filter: blur(10px); /* Optional: adds a glass-like blur effect */
+  background-color: rgba(255, 255, 255, 0); 
+  backdrop-filter: blur(10px); 
   z-index: 1000;
 }
 
@@ -38,7 +38,10 @@
   align-items: center;
   list-style: none;
 }
-
+.navbar-logo{
+  height: 60px;
+  width: 60px;
+}
 .navbar-item {
   text-decoration: none;
   color: rgb(67, 66, 66);
