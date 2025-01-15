@@ -78,7 +78,7 @@ const FeaturedCabs = ({ searchCriteria }) => {
           filteredCabs.map((cab) => (
             <div key={cab._id} className="menu-item">
               <img
-                src={`http://65.0.199.218:8080${cab.image}`}
+                src={`https://aaditgroups.com/api${cab.image}`}
                 alt={cab.name}
                 className="menu-item-image"
               />
