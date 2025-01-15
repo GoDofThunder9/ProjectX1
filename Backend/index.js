@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 const path = require('path');
 const app = express();
 
-app.use('/api/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use(express.json()); 
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
