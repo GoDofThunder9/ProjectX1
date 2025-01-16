@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './FoodUpdate.css'; // Import external CSS for styling
+import React, { useState } from "react";
+import axios from "axios";
+import "./FoodUpdate.css"; // Import external CSS for styling
 
 const UpdateFood = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    category: '',
-    price: '',
-    description: '',
+    name: "",
+    category: "",
+    price: "",
+    description: "",
   });
   const [selectedFile, setSelectedFile] = useState(null);
-  const [responseMessage, setResponseMessage] = useState('');
+  const [notification, setNotification] = useState({ type: "", message: "" });
+  const [isLoading, setIsLoading] = useState(false);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -29,34 +30,50 @@ const UpdateFood = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const data = new FormData();
-      data.append('name', formData.name);
-      if (formData.category) data.append('updatedFields[category]', formData.category);
-      if (formData.price) data.append('updatedFields[price]', formData.price);
-      if (formData.description) data.append('updatedFields[description]', formData.description);
-      if (selectedFile) data.append('image', selectedFile);
+      data.append("name", formData.name);
+      if (formData.category) data.append("updatedFields[category]", formData.category);
+      if (formData.price) data.append("updatedFields[price]", formData.price);
+      if (formData.description) data.append("updatedFields[description]", formData.description);
+      if (selectedFile) data.append("image", selectedFile);
 
-      const response = await axios.put('https://aaditgroups.com/api/food/update', data, {
+      const response = await axios.put("https://aaditgroups.com/api/food/update", data, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
 
       if (response.status === 200) {
-        setResponseMessage(`Success: ${response.data.message}`);
+        setNotification({ type: "success", message: response.data.message || "Food item updated successfully!" });
+        setFormData({
+          name: "",
+          category: "",
+          price: "",
+          description: "",
+        });
+        setSelectedFile(null);
       }
     } catch (error) {
-      setResponseMessage(
-        `Error: ${error.response?.data?.message || error.message}`
-      );
+      const errorMsg = error.response?.data?.message || "Failed to update the food item. Please try again.";
+      setNotification({ type: "error", message: errorMsg });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="update-food-container">
       <h2>Update Food Item</h2>
+
+      {/* Notification Display */}
+      {notification.message && (
+        <div className={`notification ${notification.type}`}>
+          {notification.message}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="update-food-form">
         <label htmlFor="name">Name (required)</label>
@@ -109,19 +126,10 @@ const UpdateFood = () => {
           accept=".jpg"
         />
 
-        <button type="submit">Update Food Item</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Updating..." : "Update Food Item"}
+        </button>
       </form>
-
-      {/* Response Message */}
-      {responseMessage && (
-        <p
-          className={`response-message ${
-            responseMessage.startsWith('Success') ? 'success' : 'error'
-          }`}
-        >
-          {responseMessage}
-        </p>
-      )}
     </div>
   );
 };

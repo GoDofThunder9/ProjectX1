@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './TourismUploader.css'; // Ensure this path is correct
+import React, { useState } from "react";
+import axios from "axios";
+import "./TourismUploader.css"; // Ensure this path is correct
 
 const TourForm = () => {
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    duration: '',
-    price: '',
-    rating: '',
-    reviews: '',
+    title: "",
+    description: "",
+    duration: "",
+    price: "",
+    rating: "",
+    reviews: "",
   });
   const [imageFile, setImageFile] = useState(null);
+  const [notification, setNotification] = useState({ type: "", message: "" });
+  const [isLoading, setIsLoading] = useState(false);
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -21,41 +24,70 @@ const TourForm = () => {
     }));
   };
 
+  // Handle file input changes
   const handleFileChange = (e) => {
     setImageFile(e.target.files[0]);
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const data = new FormData();
-    data.append('title', formData.title);
-    data.append('description', formData.description);
-    data.append('duration', formData.duration);
-    data.append('price', formData.price);
-    data.append('rating', formData.rating);
-    data.append('reviews', formData.reviews);
-    data.append('image', imageFile);
+    data.append("title", formData.title);
+    data.append("description", formData.description);
+    data.append("duration", formData.duration);
+    data.append("price", formData.price);
+    data.append("rating", formData.rating);
+    data.append("reviews", formData.reviews);
+    if (imageFile) data.append("image", imageFile);
 
     try {
-      const response = await axios.post('https://aaditgroups.com/api/tourismUpload', data, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const response = await axios.post(
+        "https://aaditgroups.com/api/tourismUpload",
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       if (response.status === 200) {
-        console.log('Tour created successfully:', response.data);
+        setNotification({
+          type: "success",
+          message: response.data.message || "Tour created successfully!",
+        });
+        setFormData({
+          title: "",
+          description: "",
+          duration: "",
+          price: "",
+          rating: "",
+          reviews: "",
+        });
+        setImageFile(null);
       }
     } catch (error) {
-      console.error('Error creating tour:', error.response?.data || error.message);
+      const errorMsg =
+        error.response?.data?.message ||
+        "Failed to create the tour. Please try again.";
+      setNotification({ type: "error", message: errorMsg });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="form-container">
-      {/* Title */}
-      
+      <h2 className="form-title">Create a Tour</h2>
+
+      {/* Notification Display */}
+      {notification.message && (
+        <div className={`notification ${notification.type}`}>
+          {notification.message}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-      <h2 className="Form_title_uploader">Create a Tour</h2>
         <div className="form-group">
           <label className="label_tourism" htmlFor="title">Title:</label>
           <input
@@ -152,7 +184,9 @@ const TourForm = () => {
           />
         </div>
 
-        <button type="submit" className="submit-button">Submit</button>
+        <button type="submit" className="submit-button" disabled={isLoading}>
+          {isLoading ? "Submitting..." : "Submit"}
+        </button>
       </form>
     </div>
   );
