@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./FoodUpdate.css"; // Import external CSS for styling
+import "./FoodUpdate.css"; // Ensure the CSS file exists
 
 const UpdateFood = () => {
   const [formData, setFormData] = useState({

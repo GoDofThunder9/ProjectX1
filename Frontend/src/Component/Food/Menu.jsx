@@ -115,7 +115,7 @@ const MenuSection = () => {
       <div className="cart-icon-container" onClick={() => navigate('/cart')}>
         <FontAwesomeIcon icon={faShoppingCart} className="cart-icon" />
         <span className="cart-item-count">{cartItems.length}</span>
-      </div>cd
+      </div>
     </section>
   );
 };
