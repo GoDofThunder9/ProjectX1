@@ -15,6 +15,8 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 const allowedOrigins = [
   'https://aaditgroups.com',
+  'http://localhost:5173',
+  'http://localhost:8080',
 ];
 
 const corsOptions = {
