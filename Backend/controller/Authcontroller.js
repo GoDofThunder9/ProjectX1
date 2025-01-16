@@ -111,24 +111,36 @@ function sendOTPEmail(email, otpCode) {
 
 module.exports.sendotp = async function (req, res) {
   const { email } = req.body;
+
   try {
-    const user = await User.findOne({ email });
-    if (!user) {
+    // Check if the email exists in the temporary storage
+    const tempUser = tempUserStorage.get(email);
+    if (!tempUser) {
       return res
         .status(400)
         .json({ message: "No verification process found for this email." });
     }
-    const otpCode = Math.floor(1000 + Math.random() * 9000).toString();
-    user.otp = otpCode;
-    user.otpExpiresAt = Date.now() + 15 * 60 * 1000;
 
-    await user.save();
+    // Generate a new OTP
+    const otpCode = Math.floor(1000 + Math.random() * 9000).toString();
+
+    // Update the OTP and expiry in the temporary storage
+    tempUser.otp = otpCode;
+    tempUser.otpExpiresAt = Date.now() + 15 * 60 * 1000;
+
+    // Update the temporary storage
+    tempUserStorage.set(email, tempUser);
+
+    // Send the new OTP via email
     sendOTPEmail(email, otpCode);
-    return res.status(200).json({ message: "OTP sent" });
+
+    return res.status(200).json({ message: "OTP sent successfully." });
   } catch (error) {
-    return res.status(400).json({ message: "process failed" });
+    console.error("Error in sendotp:", error);
+    return res.status(500).json({ message: "Server error." });
   }
 };
+
 module.exports.verifyEmail = async function (req, res) {
   const { email, otp } = req.body;
 
