@@ -14,8 +14,8 @@ const AdminPortal = () => {
     transmission: "",
   });
 
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [notification, setNotification] = useState({ type: "", message: "" });
+  const [isLoading, setIsLoading] = useState(false);
 
   const categories = ["SUV", "Sedan", "Hatchback", "Luxury"];
   const fuelOptions = ["Petrol", "Diesel", "Electric"];
@@ -32,6 +32,8 @@ const AdminPortal = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
     const formDataToSend = new FormData();
     formDataToSend.append("name", formData.name);
     formDataToSend.append("category", formData.category);
@@ -54,7 +56,10 @@ const AdminPortal = () => {
       );
 
       if (response.status === 201) {
-        setSuccessMessage("Cab item uploaded successfully!");
+        setNotification({
+          type: "success",
+          message: "Cab item uploaded successfully!",
+        });
         setFormData({
           name: "",
           category: "",
@@ -67,16 +72,31 @@ const AdminPortal = () => {
         });
       }
     } catch (error) {
-      console.error("Error uploading cab item:", error);
-      setErrorMessage("Failed to upload cab item. Please try again.");
+      const errorMsg =
+        error.response?.data?.message || "Failed to upload cab item.";
+      setNotification({
+        type: "error",
+        message: errorMsg,
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="admin-portal">
       <h2>Admin Portal - Add Cab Item</h2>
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+      {/* Notification Display */}
+      {notification.message && (
+        <div
+          className={`notification ${
+            notification.type === "success" ? "success" : "error"
+          }`}
+        >
+          {notification.message}
+        </div>
+      )}
 
       <form className="admin-form" onSubmit={handleSubmit}>
         <div className="form-group">
@@ -193,8 +213,12 @@ const AdminPortal = () => {
           />
         </div>
 
-        <button type="submit" className="submit-button">
-          Upload
+        <button
+          type="submit"
+          className="submit-button"
+          disabled={isLoading}
+        >
+          {isLoading ? "Uploading..." : "Upload"}
         </button>
       </form>
     </div>
