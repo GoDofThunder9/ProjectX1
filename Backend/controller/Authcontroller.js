@@ -46,7 +46,8 @@ module.exports.signup = async function (req, res) {
     res.status(500).json({ message: "Server error." });
   }
 };
-
+console.log(process.env.EMAIL_USER);  
+console.log(process.env.EMAIL_PASS);  
 function sendOTPEmail(email, otpCode) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
