@@ -52,7 +52,7 @@ const AdminPortal = () => {
         }
       );
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         setSuccessMessage("Menu item uploaded successfully!");
         setShowNotification(true);
 
