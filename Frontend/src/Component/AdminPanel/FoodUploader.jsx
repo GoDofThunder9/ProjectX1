@@ -77,12 +77,11 @@ const AdminPortal = () => {
     setSuccessMessage("");
     setErrorMessage(""); // Clear error message if any
   };
-
-  const handleNotificationClose = () => {
-    setShowNotification(false);
-    setSuccessMessage("");
-    setErrorMessage(""); // Clear error message if any
-  };
+  // const handleNotificationClose = () => {
+  //   setShowNotification(false);
+  //   setSuccessMessage("");
+  //   setErrorMessage(""); // Clear error message if any
+  // };
 
   return (
     <div className="admin-portal">
