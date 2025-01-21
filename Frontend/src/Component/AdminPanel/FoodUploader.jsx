@@ -13,6 +13,7 @@ const AdminPortal = () => {
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [showNotification, setShowNotification] = useState(false); // New state for notification
 
   const categories = [
     "PIZZA/PASTA",
@@ -53,18 +54,24 @@ const AdminPortal = () => {
 
       if (response.status === 201) {
         setSuccessMessage("Menu item uploaded successfully!");
-        setFormData({
-          name: "",
-          category: "",
-          price: "",
-          image: null,
-          description: "",
-        });
+        setShowNotification(true); // Show the notification modal
       }
     } catch (error) {
       console.error("Error uploading menu item:", error);
       setErrorMessage("Failed to upload menu item. Please try again.");
     }
+  };
+
+  const handleNotificationClose = () => {
+    setShowNotification(false);
+    setFormData({
+      name: "",
+      category: "",
+      price: "",
+      image: null,
+      description: "",
+    });
+    setSuccessMessage(""); // Clear success message
   };
 
   return (
@@ -144,6 +151,15 @@ const AdminPortal = () => {
           Upload
         </button>
       </form>
+
+      {showNotification && (
+        <div className="notification-modal">
+          <div className="notification-content">
+            <p>{successMessage}</p>
+            <button onClick={handleNotificationClose}>OK</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
