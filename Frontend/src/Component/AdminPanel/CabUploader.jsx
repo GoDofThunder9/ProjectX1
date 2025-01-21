@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./CabUploader.css";
 
 const AdminPortal = () => {
@@ -14,7 +16,6 @@ const AdminPortal = () => {
     transmission: "",
   });
 
-  const [notification, setNotification] = useState({ type: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
 
   const categories = ["SUV", "Sedan", "Hatchback", "Luxury"];
@@ -46,7 +47,8 @@ const AdminPortal = () => {
 
     try {
       const response = await axios.post(
-        "https://aaditgroups.com/api/cabUpload", // Your API endpoint
+        "https://aaditgroups.com/api/cabUpload",
+        //  "http://localhost:8080/api/cabUpload" ,// Your API endpoint
         formDataToSend,
         {
           headers: {
@@ -56,10 +58,7 @@ const AdminPortal = () => {
       );
 
       if (response.status === 201) {
-        setNotification({
-          type: "success",
-          message: "Cab item uploaded successfully!",
-        });
+        toast.success("Cab item uploaded successfully!");
         setFormData({
           name: "",
           category: "",
@@ -74,10 +73,7 @@ const AdminPortal = () => {
     } catch (error) {
       const errorMsg =
         error.response?.data?.message || "Failed to upload cab item.";
-      setNotification({
-        type: "error",
-        message: errorMsg,
-      });
+      toast.error(errorMsg);
     } finally {
       setIsLoading(false);
     }
@@ -85,18 +81,8 @@ const AdminPortal = () => {
 
   return (
     <div className="admin-portal">
+      <ToastContainer />
       <h2>Admin Portal - Add Cab Item</h2>
-
-      {/* Notification Display */}
-      {notification.message && (
-        <div
-          className={`notification ${
-            notification.type === "success" ? "success" : "error"
-          }`}
-        >
-          {notification.message}
-        </div>
-      )}
 
       <form className="admin-form" onSubmit={handleSubmit}>
         <div className="form-group">

@@ -13,7 +13,6 @@ const AdminPage = () => {
       name: 'Food Management',
       image: foodImage,
       options: [
-        // { label: 'Update', link: '/admin/food/update' },
         { label: 'Delete', link: '/admin/food/delete' },
         { label: 'Add', link: '/admin/food/upload' },
       ],
@@ -23,7 +22,6 @@ const AdminPage = () => {
       name: 'Cab Management',
       image: cabImage,
       options: [
-        // { label: 'Update', link: '/admin/cabs/update' },
         { label: 'Delete', link: '/admin/cab/delete' },
         { label: 'Add', link: '/admin/cab/upload' },
       ],
@@ -33,12 +31,19 @@ const AdminPage = () => {
       name: 'Tourism Management',
       image: tourismImage,
       options: [
-        // { label: 'Update', link: '/admin/tourism/update' },
         { label: 'Delete', link: '/admin/tour/delete' },
         { label: 'Add', link: '/admin/tour/upload' },
       ],
     },
   ];
+
+  const handleDropdownChange = (e, panelId) => {
+    const selectedValue = e.target.value;
+    if (selectedValue !== 'default') {
+      window.location.href = selectedValue; // Navigate to the selected link
+      e.target.value = 'default'; // Reset the dropdown to the default value
+    }
+  };
 
   return (
     <div className="admin-page-container">
@@ -58,11 +63,8 @@ const AdminPage = () => {
               <div className="dropdown">
                 <select
                   className="dropdown-select"
-                  onChange={(e) => {
-                    if (e.target.value !== 'default') {
-                      window.location.href = e.target.value;
-                    }
-                  }}
+                  defaultValue="default"
+                  onChange={(e) => handleDropdownChange(e, panel.id)}
                 >
                   <option value="default">Select Action</option>
                   {panel.options.map((option, index) => (

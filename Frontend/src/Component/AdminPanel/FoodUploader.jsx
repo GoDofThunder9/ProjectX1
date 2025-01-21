@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./FoodUploader.css";
 
 const AdminPortal = () => {
@@ -10,9 +12,6 @@ const AdminPortal = () => {
     image: null,
     description: "",
   });
-
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
 
   const categories = [
     "PIZZA/PASTA",
@@ -52,7 +51,10 @@ const AdminPortal = () => {
       );
 
       if (response.status === 201) {
-        setSuccessMessage("Menu item uploaded successfully!");
+        // Show success toast notification
+        toast.success("Menu item uploaded successfully!");
+
+        // Reset form data
         setFormData({
           name: "",
           category: "",
@@ -63,15 +65,18 @@ const AdminPortal = () => {
       }
     } catch (error) {
       console.error("Error uploading menu item:", error);
-      setErrorMessage("Failed to upload menu item. Please try again.");
+
+      // Show error toast notification
+      toast.error("Failed to upload menu item. Please try again.");
     }
   };
 
   return (
     <div className="admin-portal">
       <h2>Admin Portal - Add Menu Item</h2>
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+      {/* Toastify Container */}
+      <ToastContainer position="top-right" autoClose={3000} />
 
       <form className="admin-form" onSubmit={handleSubmit}>
         <div className="form-group">
