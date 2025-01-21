@@ -13,6 +13,10 @@ const AdminPortal = () => {
     description: "",
   });
 
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showNotification, setShowNotification] = useState(false);
+
   const categories = [
     "PIZZA/PASTA",
     "SANDWICHES",
@@ -41,7 +45,7 @@ const AdminPortal = () => {
 
     try {
       const response = await axios.post(
-        "https://aaditgroups.com/api/foodUpload", // Your API endpoint
+        "https://aaditgroups.com/api/foodUpload",
         formDataToSend,
         {
           headers: {
@@ -51,10 +55,7 @@ const AdminPortal = () => {
       );
 
       if (response.status === 201) {
-        // Show success toast notification
-        toast.success("Menu item uploaded successfully!");
-
-        // Reset form data
+        setSuccessMessage("Menu item uploaded successfully!");
         setFormData({
           name: "",
           category: "",
@@ -69,6 +70,18 @@ const AdminPortal = () => {
       // Show error toast notification
       toast.error("Failed to upload menu item. Please try again.");
     }
+  };
+
+  const handleNotificationClose = () => {
+    setShowNotification(false);
+    setSuccessMessage("");
+    setErrorMessage(""); // Clear error message if any
+  };
+
+  const handleNotificationClose = () => {
+    setShowNotification(false);
+    setSuccessMessage("");
+    setErrorMessage(""); // Clear error message if any
   };
 
   return (
@@ -149,6 +162,15 @@ const AdminPortal = () => {
           Upload
         </button>
       </form>
+
+      {showNotification && (
+        <div className="notification-modal">
+          <div className="notification-content">
+            <p>{successMessage}</p>
+            <button onClick={handleNotificationClose}>OK</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
