@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../../assets/Style/HomeStyle/Banner.css';
 import v3 from '../../assets/Images/v3.mp4';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const VideoBanner = () => {
+  const [isVideoVisible , setIsVideoVisible] = useState(false);
+  const videoRef = useRef(null);
+  
+  useEffect(()=>{
+    const observer = new IntersectionObserver(
+      (entries) =>{
+        entries.forEach((entry)=>{
+          if(entries.isIntersecting){
+            setIsVideoVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      {threshold : 0.5}
+    );
+    
+    if(videoRef.current)
+    {
+      observer.observe(videoRef.current);
+    }
+
+    return ()=>observer.disconnect();
+  },[]);
+
+
   return (
-    <div className="video-banner">
-      <video 
+    <div className="video-banner" ref={videoRef}>
+      {isVideoVisible && (
+        <video 
         className="banner-video"
         autoPlay 
         loop 
@@ -16,6 +42,7 @@ const VideoBanner = () => {
       >
         <source src={v3} type="video/mp4" />
       </video>
+      )}
       <div className="banner-content">
         <h1>Welcome to Our Site</h1>
         <p>Discover amazing content and experiences</p>
