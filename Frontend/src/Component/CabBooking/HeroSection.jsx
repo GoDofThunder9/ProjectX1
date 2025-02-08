@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../assets/Style/CabBooking/HeroSection.css";
 import BannerimageCar from "../../assets/CabImages/CabBanner.mp4";
 import FeaturedCars from "./FeaturedCars"; // Adjust the import path as needed
@@ -11,6 +11,28 @@ function HeroSection({ cars }) {
   });
 
   const [filteredCars, setFilteredCars] = useState([]);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
+  const videoContainerRef = useRef (null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVideoVisible(true); // Load video when visible
+            observer.disconnect(); // Stop observing
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger when 50% of the video container is visible
+    );
+
+    if (videoContainerRef.current) {
+      observer.observe(videoContainerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,18 +62,20 @@ function HeroSection({ cars }) {
 
   return (
     <>
-      <div className="app">
-        <video
-          className="background-video-cab"
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/hero-bg-poster.jpg"
-        >
-          <source src={BannerimageCar} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <div className="app" ref={videoContainerRef}>
+      {isVideoVisible && (
+          <video
+            className="background-video-cab"
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/hero-bg-poster.jpg"
+          >
+            <source src={BannerimageCar} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        )}
       </div>
 
       <section className="hero" id="home">

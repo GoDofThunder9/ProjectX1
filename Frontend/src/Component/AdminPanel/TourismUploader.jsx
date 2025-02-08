@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./TourismUploader.css"; // Ensure this path is correct
 
 const TourForm = () => {
@@ -12,7 +14,6 @@ const TourForm = () => {
     reviews: "",
   });
   const [imageFile, setImageFile] = useState(null);
-  const [notification, setNotification] = useState({ type: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
 
   // Handle input changes
@@ -51,11 +52,9 @@ const TourForm = () => {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
+
       if (response.status === 200) {
-        setNotification({
-          type: "success",
-          message: response.data.message || "Tour created successfully!",
-        });
+        toast.success(response.data.message || "Tour created successfully!");
         setFormData({
           title: "",
           description: "",
@@ -70,7 +69,7 @@ const TourForm = () => {
       const errorMsg =
         error.response?.data?.message ||
         "Failed to create the tour. Please try again.";
-      setNotification({ type: "error", message: errorMsg });
+      toast.error(errorMsg);
     } finally {
       setIsLoading(false);
     }
@@ -80,12 +79,8 @@ const TourForm = () => {
     <div className="form-container">
       <h2 className="form-title">Create a Tour</h2>
 
-      {/* Notification Display */}
-      {notification.message && (
-        <div className={`notification ${notification.type}`}>
-          {notification.message}
-        </div>
-      )}
+      {/* Toastify Container */}
+      <ToastContainer position="top-right" autoClose={3000} />
 
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-group">

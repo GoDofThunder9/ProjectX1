@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 import '../../assets/Style/Food/FoodBanner.css';
 import Bannerimage1 from '../../assets/Images/hero-bg.mp4';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faCocktail, faConciergeBell } from '@fortawesome/free-solid-svg-icons';
 
 function FoodBanner() {
+  const [isVideoVisible , setIsVideoVisible] = useState(false);
+  const videoContainerRef = useRef(null);
+
+  useEffect(()=>{
+    const observer = new IntersectionObserver(
+      (entries)=>{
+        entries.forEach((entry)=>{
+          if(entry.isIntersecting){
+            setIsVideoVisible(true);
+            observe.disconnect();
+          }
+        });
+      },
+      {threshold : 0.5}
+    );
+
+    if(videoContainerRef.current) {
+      observer.observe(videoContainerRef.current)
+    }
+
+  },[])
+
   return (
     <>
-      <div className="app">
-        <video
+      <div className="app" ref={videoContainerRef}>
+        {isVideoVisible && (
+          <video
           className="background-video"
           autoPlay
           loop
@@ -19,6 +42,7 @@ function FoodBanner() {
           <source src={Bannerimage1} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        )}
       </div>
       <section className="hero">
         <div className="hero-content">

@@ -9,6 +9,7 @@ const fs = require('fs');
 module.exports.TourData = async function (req,res) {
   const tours = await tourSchema.find();
   res.status(200).json({ tours});
+  // console.log(res);
 }
 module.exports.FoodData = async function (req,res) {
   const foods = await FoodSchema.find();
@@ -289,7 +290,7 @@ module.exports.CabUpload = async function (req, res) {
 
       // Save to the database
       await newCab.save();
-
+      console.log(newCab);
       // Respond with success
       res
         .status(201)

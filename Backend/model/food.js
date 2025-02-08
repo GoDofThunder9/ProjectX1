@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const path = require('path');
 const AVATAR_PATH = path.join('/assets/FoodImages');
-console.log("AVATAR PATH" , AVATAR_PATH)
+console.log("AVATAR PATH", AVATAR_PATH);
 
 // Define the schema
 const FoodSchema = new mongoose.Schema({
@@ -36,7 +36,6 @@ const FoodSchema = new mongoose.Schema({
 // Configure Multer storage
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    // cb(null, path.join(__dirname, '..', AVATAR_PATH)); 
     const destinationPath = path.join(__dirname, '..', AVATAR_PATH).replace(/\\/g, '/');
     cb(null, destinationPath);
   },
@@ -44,9 +43,10 @@ let storage = multer.diskStorage({
     // Extract the original file extension
     const fileExtension = path.extname(file.originalname).toLowerCase();
 
-    // Validate .jpg format
-    if (fileExtension !== '.jpg') {
-      return cb(new Error('Only .jpg files are allowed'));
+    // Validate .jpg, .jpeg, and .png formats
+    const allowedExtensions = ['.jpg', '.jpeg', '.png'];
+    if (!allowedExtensions.includes(fileExtension)) {
+      return cb(new Error('Only .jpg, .jpeg, or .png files are allowed'));
     }
 
     // Use the original filename
@@ -56,11 +56,11 @@ let storage = multer.diskStorage({
 
 // Configure Multer file filter
 const fileFilter = (req, file, cb) => {
-  const allowedMimeTypes = ['image/jpeg'];
+  const allowedMimeTypes = ['image/jpeg', 'image/png'];
   if (allowedMimeTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new Error('Only .jpg files are allowed'), false);
+    cb(new Error('Only .jpg, .jpeg, or .png files are allowed'), false);
   }
 };
 
