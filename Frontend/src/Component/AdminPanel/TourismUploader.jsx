@@ -45,7 +45,7 @@ const TourForm = () => {
 
     try {
       const response = await axios.post(
-        "https://aaditgroups.com/api/tourismUpload",
+        `${import.meta.env.VITE_API_URL}/api/tourismUpload`,
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },

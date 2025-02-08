@@ -23,7 +23,7 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://aaditgroups.com/api/login', formData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, formData, {
         withCredentials: true, // Include cookies in the request
       });
       if (response.status === 200) {

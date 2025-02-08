@@ -20,7 +20,7 @@ const FeaturedCabs = ({ searchCriteria }) => {
   useEffect(() => {
     const fetchCabs = async () => {
       try {
-        const response = await axios.get("https://aaditgroups.com/api/cabs"); // Replace with your backend endpoint
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/cabs`); // Replace with your backend endpoint
         setCabs(Array.isArray(response.data.cabs) ? response.data.cabs : []); // Safeguard against undefined or non-array
       } catch (err) {
         console.error("Error fetching cab items:", err);
@@ -30,6 +30,24 @@ const FeaturedCabs = ({ searchCriteria }) => {
 
     fetchCabs();
   }, []);
+
+  // Function to handle booking a cab
+  const handleBookNow = async (cabId) => {
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/invoice`, {
+        cabId: cabId,
+      });
+
+      if (response.data.success) {
+        alert("Invoice generated successfully!");
+      } else {
+        alert("Failed to generate invoice.");
+      }
+    } catch (error) {
+      console.error("Error generating invoice:", error);
+      alert("Error processing your request.");
+    }
+  };
 
   // Combine search criteria and category filtering
   const filteredCabs = cabs.filter((cab) => {
@@ -50,6 +68,7 @@ const FeaturedCabs = ({ searchCriteria }) => {
 
     return matchesCategory && matchesModel && matchesPayment && matchesCapacity;
   });
+
   return (
     <section className="menu-section">
       <h3 className="section-subtitle">Discover</h3>
@@ -78,7 +97,7 @@ const FeaturedCabs = ({ searchCriteria }) => {
           filteredCabs.map((cab) => (
             <div key={cab._id} className="menu-item">
               <img
-                src={`https://aaditgroups.com/api${cab.image}`}
+                src={`${import.meta.env.VITE_API_URL}/api${cab.image}`}
                 alt={cab.name}
                 className="menu-item-image"
               />
@@ -104,7 +123,13 @@ const FeaturedCabs = ({ searchCriteria }) => {
                 </li>
               </ul>
               <div className="menu-item-actions">
-                <button className="order-button">Book Now</button>
+                <button
+                  key={cab._id} // Added key here
+                  className="order-button"
+                  onClick={() => handleBookNow(cab._id)}
+                >
+                  Book Now
+                </button>
               </div>
             </div>
           ))

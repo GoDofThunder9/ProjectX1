@@ -31,7 +31,7 @@ const NewPassword = () => {
       newPassword:password.newPassword
     })
     try {
-      await axios.post('https://aaditgroups.com/api/reset-password', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/reset-password`, {
         email: email,
         token: token,
         newPassword: password.newPassword

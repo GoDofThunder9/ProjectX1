@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://aaditgroups.com/api', // Your backend URL
+  baseURL: `${import.meta.env.VITE_API_URL}/api`, // Your backend URL
   withCredentials: true, // Include cookies in requests
 });
 

@@ -31,7 +31,7 @@ function EmailVerify() {
   const verifyUser = async () => {
     try {
       const otpCode = otp.join(""); // Combine OTP array to a string
-      const response = await axios.post('https://aaditgroups.com/api/verify-email', { email, otp: otpCode });
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/verify-email`, { email, otp: otpCode });
 
       if (response.status === 200) {
         setMessage("Verification successful!");
@@ -45,7 +45,7 @@ function EmailVerify() {
   // Resend OTP handler
   const resendOtp = async () => {
     try {
-      await axios.post('https://aaditgroups.com/api/resendotp', { email });
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/resendotp`, { email });
       setMessage("A new OTP has been sent to your email.");
     } catch {
       setMessage("Failed to resend OTP. Please try again.");

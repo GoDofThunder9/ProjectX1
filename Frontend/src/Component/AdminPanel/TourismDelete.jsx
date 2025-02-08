@@ -10,7 +10,7 @@ const TourList = () => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await axios.get('https://aaditgroups.com/api/tours');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/tours`);
         console.log(response);
         if (response.status === 200) {
           setTours(response.data.tours); // Assuming backend returns an array in `tours`
@@ -26,7 +26,7 @@ const TourList = () => {
   // Handle delete request
   const handleDelete = async (title) => {
     try {
-      const response = await axios.delete('https://aaditgroups.com/api/deleteTour', {
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/deleteTour`, {
         data: { title },
       });
 

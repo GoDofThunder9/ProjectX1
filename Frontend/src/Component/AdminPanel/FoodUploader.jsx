@@ -43,7 +43,7 @@ const AdminPortal = () => {
 
     try {
       const response = await axios.post(
-        "https://aaditgroups.com/api/foodUpload",
+        `${import.meta.env.VITE_API_URL}/api/foodUpload`,
         formDataToSend,
         {
           headers: {

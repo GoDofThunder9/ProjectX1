@@ -29,7 +29,7 @@ const Description = () => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const response = await axios.get('https://aaditgroups.com/api/tours');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/tours`);
         // const data = Array.isArray(response.data)? response.data: Object.values(response.data); 
         // const data = Array.isArray(response.data) && Array.isArray(response.data[0]) ? response.data[0] : response.data;
         // console.log("data",response.data.tours);
@@ -53,7 +53,6 @@ const Description = () => {
       });
     }
   };
-
   // StarRating Component
   const StarRating = ({ rating, reviews }) => {
     return (
@@ -75,17 +74,19 @@ const Description = () => {
   };
   const storedUserId = localStorage.getItem('userId');
 
-  const handleBookNow = async (id , storedUserId) => {
+  const handleBookNow = async (id, storedUserId) => {
     try {
-      const response = await axios.get(`https://aaditgroups.com/api/invoiceSender/${id}/${storedUserId}`);
-
-      console.log("Booking response:", response.data);
-      alert("Booking successful!");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/invoiceSender/${id}/${storedUserId}`);
+        
+        if (response.status === 200 && response.data.whatsappUrl) {
+            window.open(response.data.whatsappUrl, "_blank"); // Open WhatsApp link in a new tab
+        }
     } catch (error) {
-      console.error("Error booking tour:", error);
-      // alert("Failed to book the tour. Please try again.");
+        console.error("Error booking tour:", error);
+        // alert("Failed to book the tour. Please try again.");
     }
-  };
+};
+
 
   return (
     <>
@@ -140,7 +141,7 @@ const Description = () => {
                 <div className="card-image-container">
                   {/* {console.log(`http://localhost:8080/${tour.image}`)} */}
                   <img
-                    src={`https://aaditgroups.com/api${tour.image}`} 
+                    src={`${import.meta.env.VITE_API_URL}/api${tour.image}`} 
                     alt={tour.title}
                     className="card-image"
                     />

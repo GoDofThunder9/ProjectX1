@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CabDelete.css'; // Import the external CSS file
-
 const CabList = () => {
   const [cabItems, setCabItems] = useState([]); // Stores the list of cab items
   const [responseMessage, setResponseMessage] = useState(''); // Stores success/error messages
@@ -10,7 +9,7 @@ const CabList = () => {
   useEffect(() => {
     const fetchCabItems = async () => {
       try {
-        const response = await axios.get('https://aaditgroups.com/api/cabs');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/cabs`);
         if (response.status === 200) {
           setCabItems(response.data.cabs); // Assuming backend returns an array in `cabs`
         }
@@ -25,7 +24,7 @@ const CabList = () => {
   // Handle delete request
   const handleDelete = async (name) => {
     try {
-      const response = await axios.delete('https://aaditgroups.com/api/cabDelete', {
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/cabDelete`, {
         data: { name },
       });
       if (response.status === 200) {
@@ -61,7 +60,7 @@ const CabList = () => {
                   <strong>Price/Day:</strong> ${cab.pricePerDay}
                 </p>
                 <img
-                  src={`https://aaditgroups.com/api/${cab.image}`}
+                  src={`${import.meta.env.VITE_API_URL}/api/${cab.image}`}
                   alt={cab.name}
                   className="cab-image"
                 />

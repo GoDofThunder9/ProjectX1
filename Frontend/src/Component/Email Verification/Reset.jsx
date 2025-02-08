@@ -55,7 +55,7 @@ function Reset() {
   const handleSubmission = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://aaditgroups.com/api/verify-reset-token', {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/verify-reset-token`, {
         email: code.email,
         token: code.token.join(''), // Join array to form the complete token
       });

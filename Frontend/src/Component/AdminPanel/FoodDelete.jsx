@@ -13,7 +13,7 @@ const FoodList = () => {
 
     const fetchFoodItems = async () => { 
       try {
-        const response = await axios.get('https://aaditgroups.com/api/foods');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/foods`);
         // console.log(response);
         if (response.status === 200) {
           setFoodItems(response.data.foods); // Assuming backend returns an array in `foodItems`
@@ -30,7 +30,7 @@ const FoodList = () => {
   // Handle delete request
   const handleDelete = async (name) => {
     try {
-      const response = await axios.delete('https://aaditgroups.com/api/foodDelete', {
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/foodDelete`, {
         data: { name },
       });
       console.log(response);
@@ -64,7 +64,7 @@ const FoodList = () => {
             <strong>Price:</strong> ${food.price}
           </p>
           <img
-            src={`http://65.0.199.218:8080${food.image}`}
+            src={`${import.meta.env.VITE_API_URL}/api/${food.image}`}
             alt={food.name}
             className="food-image"
           />

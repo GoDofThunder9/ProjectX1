@@ -46,7 +46,7 @@ const AdminPortal = () => {
 
     try {
       const response = await axios.post(
-        "https://aaditgroups.com/api/cabUpload", // Your API endpoint
+        `${import.meta.env.VITE_API_URL}/api/cabUpload`, // Your API endpoint
         formDataToSend,
         {
           headers: {
