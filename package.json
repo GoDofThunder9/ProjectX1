@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^9.1.2",
+    "env": "^0.0.2",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.1",
     "swiper": "^11.2.0"
