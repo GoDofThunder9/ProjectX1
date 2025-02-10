@@ -15,7 +15,7 @@ const FeaturedCabs = ({ searchCriteria }) => {
   const [error, setError] = useState(null); // State to handle errors
 
   const categories = ["ALL", "SUV", "Sedan", "Hatchback", "Luxury"];
-
+  const storedUserId = localStorage.getItem('userId');
   // Fetch cab items from the backend
   useEffect(() => {
     const fetchCabs = async () => {
@@ -32,15 +32,13 @@ const FeaturedCabs = ({ searchCriteria }) => {
   }, []);
 
   // Function to handle booking a cab
-  const handleBookNow = async (cabId) => {
+  const handleBookNow = async (cabId, userId) => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/invoice`, {
-        cabId: cabId,
-      });
-
-      if (response.data.success) {
-        alert("Invoice generated successfully!");
-      } else {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/invoicecar/${cabId}/${userId}`);
+  
+      if (response.status === 200 && response.data.whatsappUrl) {
+        window.open(response.data.whatsappUrl, "_blank"); // Open WhatsApp link in a new tab
+    } else {
         alert("Failed to generate invoice.");
       }
     } catch (error) {
@@ -48,6 +46,7 @@ const FeaturedCabs = ({ searchCriteria }) => {
       alert("Error processing your request.");
     }
   };
+  
 
   // Combine search criteria and category filtering
   const filteredCabs = cabs.filter((cab) => {
@@ -126,7 +125,7 @@ const FeaturedCabs = ({ searchCriteria }) => {
                 <button
                   key={cab._id} // Added key here
                   className="order-button"
-                  onClick={() => handleBookNow(cab._id)}
+                  onClick={() => handleBookNow(cab._id,storedUserId)}
                 >
                   Book Now
                 </button>
