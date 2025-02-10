@@ -2,72 +2,60 @@ const express = require("express");
 const mongoose = require('mongoose');
 const User = require('../model/user');
 const Tourism = require('../model/Tourism');
-const axios = require('axios');
-
 
 module.exports.invoice = async function (req, res) {
-      const { tourId, userId } = req.params; // Extract IDs from route parameters
-      console.log("Tour ID:", tourId, "User ID:", userId);
+    const { tourId, userId } = req.params; // Extract IDs from route parameters
+    console.log("Tour ID:", tourId, "User ID:", userId);
 
-      try {
+    try {
         // Fetch tourism data using tourId
         const tourismData = await Tourism.findById(tourId);
-
         if (!tourismData) {
-          return res.status(404).json({ message: "Tourism data not found." });
+            return res.status(404).json({ message: "Tourism data not found." });
         }
 
-        // Optionally, fetch user data using userId (if required)
+        // Fetch user data using userId
         const userData = await User.findById(userId);
-
         if (!userData) {
-          return res.status(404).json({ message: "User data not found." });
+            return res.status(404).json({ message: "User data not found." });
         }
+        // Generate WhatsApp message URL
+        const whatsappUrl = sendDirectWhatsAppMessage(
+            userData.phone,
+            tourismData.title,
+            tourismData.price,
+        );
+
+        console.log("WhatsApp Message URL:", whatsappUrl);
 
         // Respond with both tourism and user data
         res.status(200).json({
-          message: "Data fetched successfully.",
-        //   tourism: tourismData,
-        //   user: userData,
+            message: "Data fetched successfully.",
+            whatsappUrl
         });
 
-        
-    // Define the API endpoint and payload
-        const url = 'https://graph.facebook.com/v21.0/537449016112360/messages';
-        const token = 'EAAH8EiLPkWcBO282ZAetsZBi42DVZCtWduv2PnguFoQ2fobWlIZC5Wmazc1pyJppmwZAtKpjHeZCgrn8qsBuZA5gmZBZCMDIZBGLp8k1LNEapOM1vXHaCjiMU4CdeGBllTKLkUxQNwacljGWgOnZCcDpR4Tmd0SMrLPIa3Qo43KyW9gjLjUd9JJgrIZA1TxOTigkLZAmeZAgADZByPxqD26H53bzauWtQGwbBsZD';
-
-        const data = {
-          messaging_product: 'whatsapp',
-          to: `${userData.phone}`,
-          type: 'template',
-          template: {
-            name: 'hello_world',
-            language: {
-              code: 'en_US'
-            }
-          }
-        };
-
-        // Make the POST request
-        axios.post(url, data, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        })
-        .then(response => {
-          console.log('Message sent successfully:', response.data);
-        })
-        .catch(error => {
-          console.error('Error sending message:', error.response ? error.response.data : error.message);
-        });
-
-
-
-      } catch (error) {
+    } catch (error) {
         console.error("Error fetching data:", error);
-        res.status(500).json({ message: "An error occurred while fetching data." });
-      }
+        res.status(500).json({ message: "Internal server error." });
+    }
 };
 
+// Function to generate WhatsApp message URL
+const sendDirectWhatsAppMessage = (phone, tourismName, price) => {
+    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+    const currentDate = new Date().toLocaleDateString('en-US', options);
 
+    const message = `🌍 *Tour Confirmation* 🌍
+    
+Hello! Your booking for *${tourismName}* is placed. 🎉
+
+📅 *Date:* ${currentDate}  
+💰 *Price:* ${price}  
+
+For more details, feel free to contact us! 📞
+
+See you soon! ✈️🚀`;
+
+    const encodedMessage = encodeURIComponent(message);
+    return `https://wa.me/${phone}?text=${encodedMessage}`;
+};
