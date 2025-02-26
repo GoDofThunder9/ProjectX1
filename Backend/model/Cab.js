@@ -16,6 +16,12 @@ const CabSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  currency: { 
+    type: String, 
+    enum: ["USD", "EUR", "GBP", "INR", "JPY", "CAD", "AUD"],  // Currency names
+    required: true 
+  }
+  ,
   image: {
     type: String,
     required: true,

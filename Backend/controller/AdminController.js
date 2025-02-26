@@ -250,8 +250,7 @@ module.exports.CabUpload = async function (req, res) {
     }
 
     // Extract form fields and uploaded file information
-    const { name, category, price, capacity, fuelType, mileage, transmission } =
-      req.body;
+    const { name, category, price, currency, capacity, fuelType, mileage, transmission } = req.body;
 
     // Construct the image path if the file was uploaded
     const image = req.file
@@ -262,25 +261,16 @@ module.exports.CabUpload = async function (req, res) {
 
     try {
       // Validate if the required fields are provided
-      if (
-        !name ||
-        !category ||
-        !price ||
-        !capacity ||
-        !fuelType ||
-        !mileage ||
-        !transmission
-      ) {
-        return res
-          .status(400)
-          .json({ message: "Required fields are missing" });
+      if (!name || !category || !price || !currency || !capacity || !fuelType || !mileage || !transmission) {
+        return res.status(400).json({ message: "Required fields are missing" });
       }
 
-      // Create a new cab document
+      // Create a new cab document with currency included
       const newCab = new CabSchema({
         name,
         category,
         price,
+        currency,  // Now storing the currency symbol
         capacity,
         fuelType,
         mileage,
@@ -291,17 +281,15 @@ module.exports.CabUpload = async function (req, res) {
       // Save to the database
       await newCab.save();
       console.log(newCab);
+
       // Respond with success
-      res
-        .status(201)
-        .json({ message: "Cab item created successfully", cab: newCab });
+      res.status(201).json({ message: "Cab item created successfully", cab: newCab });
     } catch (err) {
       console.error("Error saving cab item:", err);
       res.status(500).json({ message: "Server error", error: err.message });
     }
   });
 };
-
 module.exports.deleteCab = async function (req, res) {
   try {
     const { name } = req.body;
