@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../assets/Style/AuthenticationStyle/signup.css";
-
+import { notifyError,notifySuccess,notifyWarning } from "../../Tostify";
 const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -28,11 +28,13 @@ const Signup = () => {
 
     if (!formData.Fullname || !formData.email || !formData.Password || !confirmPassword) {
       setMessage("All fields are required!");
+      notifyWarning("All fields are required!");
       return;
     }
 
     if (formData.Password !== confirmPassword) {
       setMessage("Passwords do not match!");
+      notifyWarning("Passwords do not match!");
       return;
     }
 
@@ -48,10 +50,11 @@ const Signup = () => {
         setConfirmPassword("");
         navigate("/verify", { state: { email } });
       } else {
-        setMessage("Signup failed!");
+        notifyError("Signup failed!");
       }
     } catch (error) {
       setMessage(error.response?.data?.message || "An error occurred. Please try again.");
+      notifyWarning(error.response?.data?.message || "An error occurred. Please try again.");
     }
   };
 

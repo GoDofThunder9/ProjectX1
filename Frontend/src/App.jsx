@@ -47,10 +47,15 @@ import { CartProvider } from './Component/Food/CardContext.jsx';
 import { Projector } from "lucide-react";
 import PosterCab from "./Component/CabBooking/PosterCab";
 import PosterFood from "./Component/Food/PosterFood";
+import { ToastContainer } from "react-toastify";
+
 // import FoodUpdate from "./Component/AdminPanel/FoodUpdate"; 
 function App() { 
   return ( 
     <> 
+       <div>
+      <ToastContainer />
+    </div>
       <BrowserRouter> 
         <Routes> 
           <Route 

@@ -3,6 +3,7 @@ import '../../assets/Style/HomeStyle/Navbar.css';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../Authentication/axiosInstance';
 import logo from "../../assets/Images/logo.jpeg";
+import { notifySuccess } from '../../Tostify';
 const Navbar = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -25,7 +26,8 @@ const Navbar = () => {
     localStorage.removeItem('userName');
     localStorage.removeItem('userId');
     setIsAuthenticated(false); // Redirect to login page after logout
-    navigate('/');
+    notifySuccess('Logout successful!');
+    setTimeout(() => navigate('/'), 2000);
   };
 
   const [isOpen, setIsOpen] = useState(false);

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaUser, FaEnvelope, FaPhone, FaCommentAlt, FaPaperPlane } from 'react-icons/fa';
 import '../../assets/Style/HomeStyle/Form.css';
 import axios from 'axios';
+import { notifySuccess, notifyError } from "../../Tostify"; // Import reusable toast functions
 
 function Form() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,33 +22,42 @@ function Form() {
     }));
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+  
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/send-feedback` , formData);
-
-      if(response.status == 200)
-      {
-        alert("Feedback Submitted Successfully");
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/send-feedback`,
+        formData
+      );
+  
+      if (response.status === 200) {
         setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          problem: '',
-          feedback: ''
+          name: "",
+          email: "",
+          phone: "",
+          problem: "",
+          feedback: "",
         });
+  
+        // Use your notifySuccess function
+        notifySuccess("✅ Feedback submitted successfully!");
       }
     } catch (error) {
-      console.log("Error submitting the feedback" , error);
-      alert(
-        error.response?.data?.message || "Failed to submit feedback. Please try again"
+      console.error("Error submitting the feedback", error);
+  
+      // Use your notifyError function
+      notifyError(
+        error.response?.data?.message ||
+          "❌ Failed to submit feedback. Please try again."
       );
-    }
-    finally{
+    } finally {
       setIsSubmitting(false);
     }
   };
+  
 
   return (
     <div className="home-form-container" id='Form-container'>

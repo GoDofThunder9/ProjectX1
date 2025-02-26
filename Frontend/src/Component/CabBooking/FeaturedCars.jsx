@@ -9,6 +9,15 @@ import {
   IoHardwareChipOutline,
 } from "react-icons/io5";
 
+const currencyOptions = {
+  "USD": "$",
+  "EUR": "€",
+  "GBP": "£",
+  "INR": "₹",
+  "AUD": "A$",
+  "CAD": "C$"
+};
+
 const FeaturedCabs = ({ searchCriteria }) => {
   const [cabs, setCabs] = useState([]); // State to store fetched cab items
   const [activeCategory, setActiveCategory] = useState("ALL");
@@ -16,12 +25,12 @@ const FeaturedCabs = ({ searchCriteria }) => {
 
   const categories = ["ALL", "SUV", "Sedan", "Hatchback", "Luxury"];
   const storedUserId = localStorage.getItem('userId');
-  // Fetch cab items from the backend
+
   useEffect(() => {
     const fetchCabs = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/cabs`); // Replace with your backend endpoint
-        setCabs(Array.isArray(response.data.cabs) ? response.data.cabs : []); // Safeguard against undefined or non-array
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/cabs`);
+        setCabs(Array.isArray(response.data.cabs) ? response.data.cabs : []);
       } catch (err) {
         console.error("Error fetching cab items:", err);
         setError("Failed to load cab items. Please try again later.");
@@ -31,14 +40,13 @@ const FeaturedCabs = ({ searchCriteria }) => {
     fetchCabs();
   }, []);
 
-  // Function to handle booking a cab
   const handleBookNow = async (cabId, userId) => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/invoicecar/${cabId}/${userId}`);
   
       if (response.status === 200 && response.data.whatsappUrl) {
-        window.open(response.data.whatsappUrl, "_blank"); // Open WhatsApp link in a new tab
-    } else {
+        window.open(response.data.whatsappUrl, "_blank");
+      } else {
         alert("Failed to generate invoice.");
       }
     } catch (error) {
@@ -47,8 +55,6 @@ const FeaturedCabs = ({ searchCriteria }) => {
     }
   };
   
-
-  // Combine search criteria and category filtering
   const filteredCabs = cabs.filter((cab) => {
     const matchesCategory =
       activeCategory === "ALL" || cab.category === activeCategory;
@@ -100,7 +106,7 @@ const FeaturedCabs = ({ searchCriteria }) => {
                 alt={cab.name}
                 className="menu-item-image"
               />
-              <span className="menu-item-price">${cab.price} / day</span>
+              <span className="menu-item-price">{currencyOptions[cab.currency] || cab.currency} {cab.price}/day</span>
               <h3 className="menu-item-title">{cab.name}</h3>
               <p className="menu-item-category">{cab.category}</p>
               <ul className="menu-item-details">
@@ -123,9 +129,9 @@ const FeaturedCabs = ({ searchCriteria }) => {
               </ul>
               <div className="menu-item-actions">
                 <button
-                  key={cab._id} // Added key here
+                  key={cab._id}
                   className="order-button"
-                  onClick={() => handleBookNow(cab._id,storedUserId)}
+                  onClick={() => handleBookNow(cab._id, storedUserId)}
                 >
                   Book Now
                 </button>

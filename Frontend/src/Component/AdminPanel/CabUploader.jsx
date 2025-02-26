@@ -9,6 +9,7 @@ const AdminPortal = () => {
     name: "",
     category: "",
     price: "",
+    currency: "USD", // Default to currency code
     image: null,
     capacity: "",
     fuelType: "",
@@ -22,9 +23,23 @@ const AdminPortal = () => {
   const fuelOptions = ["Petrol", "Diesel", "Electric"];
   const transmissionOptions = ["Automatic", "Manual"];
 
+  // Currency options (now using codes)
+  const currencyOptions = [
+    { symbol: "$", code: "USD", name: "US Dollar" },
+    { symbol: "€", code: "EUR", name: "Euro" },
+    { symbol: "£", code: "GBP", name: "British Pound" },
+    { symbol: "₹", code: "INR", name: "Indian Rupee" },
+    { symbol: "A$", code: "AUD", name: "Australian Dollar" },
+    { symbol: "C$", code: "CAD", name: "Canadian Dollar" },
+  ];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleCurrencyChange = (e) => {
+    setFormData({ ...formData, currency: e.target.value }); // Store currency code
   };
 
   const handleFileChange = (e) => {
@@ -36,25 +51,15 @@ const AdminPortal = () => {
     setIsLoading(true);
 
     const formDataToSend = new FormData();
-    formDataToSend.append("name", formData.name);
-    formDataToSend.append("category", formData.category);
-    formDataToSend.append("price", formData.price);
-    formDataToSend.append("image", formData.image);
-    formDataToSend.append("capacity", formData.capacity);
-    formDataToSend.append("fuelType", formData.fuelType);
-    formDataToSend.append("mileage", formData.mileage);
-    formDataToSend.append("transmission", formData.transmission);
+    Object.keys(formData).forEach((key) => {
+      formDataToSend.append(key, formData[key]);
+    });
 
     try {
       const response = await axios.post(
-        "https://aaditgroups.com/api/cabUpload",
-        //  "http://localhost:8080/api/cabUpload" ,// Your API endpoint
+        `${import.meta.env.VITE_API_URL}/api/cabUpload`,
         formDataToSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
 
       if (response.status === 201) {
@@ -63,6 +68,7 @@ const AdminPortal = () => {
           name: "",
           category: "",
           price: "",
+          currency: "USD", // Reset to default currency code
           image: null,
           capacity: "",
           fuelType: "",
@@ -71,8 +77,7 @@ const AdminPortal = () => {
         });
       }
     } catch (error) {
-      const errorMsg =
-        error.response?.data?.message || "Failed to upload cab item.";
+      const errorMsg = error.response?.data?.message || "Failed to upload cab item.";
       toast.error(errorMsg);
     } finally {
       setIsLoading(false);
@@ -87,25 +92,12 @@ const AdminPortal = () => {
       <form className="admin-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
           <label htmlFor="category">Category:</label>
-          <select
-            id="category"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            required
-          >
+          <select id="category" name="category" value={formData.category} onChange={handleChange} required>
             <option value="">Select Category</option>
             {categories.map((category) => (
               <option key={category} value={category}>
@@ -115,39 +107,37 @@ const AdminPortal = () => {
           </select>
         </div>
 
+        {/* Price with Currency Selection */}
         <div className="form-group">
           <label htmlFor="price">Price:</label>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
+          <div className="price-input">
+            <input
+              type="text"
+              id="price"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              required
+              placeholder="Enter amount"
+            />
+            <select id="currency" name="currency" value={formData.currency} onChange={handleCurrencyChange}>
+              {currencyOptions.map(({ code, name }) => (
+                <option key={code} value={code}>
+                  {name} ({code})
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div className="form-group">
           <label htmlFor="capacity">Capacity:</label>
-          <input
-            type="text"
-            id="capacity"
-            name="capacity"
-            value={formData.capacity}
-            onChange={handleChange}
-            required
-          />
+          <input type="text" id="capacity" name="capacity" value={formData.capacity} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
           <label htmlFor="fuelType">Fuel Type:</label>
-          <select
-            id="fuelType"
-            name="fuelType"
-            value={formData.fuelType}
-            onChange={handleChange}
-            required
-          >
+          <select id="fuelType" name="fuelType" value={formData.fuelType} onChange={handleChange} required>
             <option value="">Select Fuel Type</option>
             {fuelOptions.map((fuel) => (
               <option key={fuel} value={fuel}>
@@ -159,25 +149,12 @@ const AdminPortal = () => {
 
         <div className="form-group">
           <label htmlFor="mileage">Mileage:</label>
-          <input
-            type="text"
-            id="mileage"
-            name="mileage"
-            value={formData.mileage}
-            onChange={handleChange}
-            required
-          />
+          <input type="text" id="mileage" name="mileage" value={formData.mileage} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
           <label htmlFor="transmission">Transmission:</label>
-          <select
-            id="transmission"
-            name="transmission"
-            value={formData.transmission}
-            onChange={handleChange}
-            required
-          >
+          <select id="transmission" name="transmission" value={formData.transmission} onChange={handleChange} required>
             <option value="">Select Transmission</option>
             {transmissionOptions.map((trans) => (
               <option key={trans} value={trans}>
@@ -189,21 +166,10 @@ const AdminPortal = () => {
 
         <div className="form-group">
           <label htmlFor="image">Image:</label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            onChange={handleFileChange}
-            required
-          />
+          <input type="file" id="image" name="image" accept="image/*" onChange={handleFileChange} required />
         </div>
 
-        <button
-          type="submit"
-          className="submit-button"
-          disabled={isLoading}
-        >
+        <button type="submit" className="submit-button" disabled={isLoading}>
           {isLoading ? "Uploading..." : "Upload"}
         </button>
       </form>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../assets/Style/AuthenticationStyle/signin.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { notifySuccess, notifyError,notifyWarning } from "../../Tostify";
 const Signin = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -34,9 +34,8 @@ const Signin = () => {
         localStorage.setItem('userName', userName);
 
         console.log('User logged in successfully:', response);
-        setMessage('Login successful!');
-        // Redirect to home page and reload
-        navigate('/'); // Force reload after navigation
+        notifySuccess("Login successful!");
+        setTimeout(() => navigate('/'), 500); // Force reload after navigation
       } else {
         setMessage(response.data.message || 'Login failed!');
       }
@@ -45,10 +44,13 @@ const Signin = () => {
         const errorMessage = error.response.data.message;
         if (errorMessage.includes('email')) {
           setMessage('The email address you entered is incorrect.');
+          notifyWarning("Email address is incorrect.");
         } else if (errorMessage.includes('password')) {
           setMessage('The password you entered is incorrect.');
+          notifyWarning("Password is incorrect.");
         } else {
           setMessage(errorMessage || 'An error occurred. Please try again.');
+          notifyError("An error occurred. Please try again.");
         }
       } else {
         setMessage('An error occurred. Please check your internet connection and try again.');

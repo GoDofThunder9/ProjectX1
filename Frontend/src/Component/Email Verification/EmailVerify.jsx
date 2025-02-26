@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import "../../assets/Style/Email_Verification/emailverification.css";
+import { notifyError, notifySuccess, notifyWarning } from "../../Tostify";
 
 function EmailVerify() {
   const location = useLocation();
   const email = location.state?.email || "your email";
   const navigate = useNavigate();
-
-  // OTP state
+  
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [message, setMessage] = useState("");
+
+  // ✅ Run notifySuccess only once on mount
+  useEffect(() => {
+    notifySuccess("Success! Provide OTP To Verify.");
+  }, []); // Runs only once when the component mounts
 
   // Handle OTP input
   const handleInputChange = (e, index) => {
@@ -19,7 +24,7 @@ function EmailVerify() {
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp);
-
+      
       // Auto-focus on the next input
       if (value && index < 3) {
         document.getElementById(`otp-${index + 1}`).focus();
@@ -34,10 +39,12 @@ function EmailVerify() {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/verify-email`, { email, otp: otpCode });
 
       if (response.status === 200) {
+        notifySuccess("Verification successful!");
         setMessage("Verification successful!");
         setTimeout(() => navigate('/login'), 2000); // Redirect to login after success
       }
     } catch (error) {
+      notifyError("Invalid OTP or verification failed. Please try again.");
       setMessage("Invalid OTP or verification failed. Please try again.");
     }
   };
@@ -46,8 +53,10 @@ function EmailVerify() {
   const resendOtp = async () => {
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/api/resendotp`, { email });
+      notifySuccess("📩 A new OTP has been sent to your email.");
       setMessage("A new OTP has been sent to your email.");
     } catch {
+      notifyError("Failed to resend OTP. Please try again.");
       setMessage("Failed to resend OTP. Please try again.");
     }
   };
