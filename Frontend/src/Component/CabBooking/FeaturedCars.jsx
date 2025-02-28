@@ -15,7 +15,8 @@ const currencyOptions = {
   "GBP": "£",
   "INR": "₹",
   "AUD": "A$",
-  "CAD": "C$"
+  "CAD": "C$",
+  "PHP": "₱",
 };
 
 const FeaturedCabs = ({ searchCriteria }) => {

@@ -9,7 +9,7 @@ const AdminPortal = () => {
     name: "",
     category: "",
     price: "",
-    currency: "USD", // Default to currency code
+    currency: "PHP", // Default to currency code
     image: null,
     capacity: "",
     fuelType: "",
@@ -31,6 +31,7 @@ const AdminPortal = () => {
     { symbol: "₹", code: "INR", name: "Indian Rupee" },
     { symbol: "A$", code: "AUD", name: "Australian Dollar" },
     { symbol: "C$", code: "CAD", name: "Canadian Dollar" },
+    { symbol: "₱", code: "PHP", name: "Philippines peso" },
   ];
 
   const handleChange = (e) => {

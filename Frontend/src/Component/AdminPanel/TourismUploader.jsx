@@ -2,13 +2,24 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./TourismUploader.css"; // Ensure this path is correct
+import "./TourismUploader.css";
+
+const currencyOptions = [
+  { symbol: "$", code: "USD", name: "US Dollar" },
+  { symbol: "€", code: "EUR", name: "Euro" },
+  { symbol: "£", code: "GBP", name: "British Pound" },
+  { symbol: "₹", code: "INR", name: "Indian Rupee" },
+  { symbol: "A$", code: "AUD", name: "Australian Dollar" },
+  { symbol: "C$", code: "CAD", name: "Canadian Dollar" },
+  { symbol: "₱", code: "PHP", name: "Philippines peso" },
+];
 
 const TourForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     duration: "",
+    currency: "USD", // Default currency
     price: "",
     rating: "",
     reviews: "",
@@ -16,7 +27,6 @@ const TourForm = () => {
   const [imageFile, setImageFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -25,12 +35,10 @@ const TourForm = () => {
     }));
   };
 
-  // Handle file input changes
   const handleFileChange = (e) => {
     setImageFile(e.target.files[0]);
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -39,6 +47,7 @@ const TourForm = () => {
     data.append("title", formData.title);
     data.append("description", formData.description);
     data.append("duration", formData.duration);
+    data.append("currency", formData.currency);
     data.append("price", formData.price);
     data.append("rating", formData.rating);
     data.append("reviews", formData.reviews);
@@ -48,9 +57,7 @@ const TourForm = () => {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/tourismUpload`,
         data,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
 
       if (response.status === 200) {
@@ -59,6 +66,7 @@ const TourForm = () => {
           title: "",
           description: "",
           duration: "",
+          currency: "USD",
           price: "",
           rating: "",
           reviews: "",
@@ -78,105 +86,50 @@ const TourForm = () => {
   return (
     <div className="form-container">
       <h2 className="form-title">Create a Tour</h2>
-
-      {/* Toastify Container */}
       <ToastContainer position="top-right" autoClose={3000} />
-
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-group">
-          <label className="label_tourism" htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            className="input_tourism"
-            value={formData.title}
-            onChange={handleChange}
-            required
-          />
+          <label htmlFor="title">Title:</label>
+          <input type="text" id="title" name="title" value={formData.title} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
-          <label className="label_tourism" htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            name="description"
-            className="textarea_tourism"
-            value={formData.description}
-            onChange={handleChange}
-            required
-          />
+          <label htmlFor="description">Description:</label>
+          <textarea id="description" name="description" value={formData.description} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
-          <label className="label_tourism" htmlFor="image">Image:</label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            className="input_tourism"
-            accept="image/*"
-            onChange={handleFileChange}
-            required
-          />
+          <label htmlFor="image">Image:</label>
+          <input type="file" id="image" name="image" accept="image/*" onChange={handleFileChange} required />
         </div>
 
         <div className="form-group">
-          <label className="label_tourism" htmlFor="duration">Duration (days):</label>
-          <input
-            type="number"
-            id="duration"
-            name="duration"
-            className="input_tourism"
-            value={formData.duration}
-            onChange={handleChange}
-            min="1"
-            required
-          />
+          <label htmlFor="duration">Duration (days):</label>
+          <input type="number" id="duration" name="duration" value={formData.duration} onChange={handleChange} min="1" required />
         </div>
 
         <div className="form-group">
-          <label className="label_tourism" htmlFor="price">Price ($):</label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            className="input_tourism"
-            value={formData.price}
-            onChange={handleChange}
-            min="0"
-            required
-          />
+          <label htmlFor="currency">Currency:</label>
+          <select id="currency" name="currency" value={formData.currency} onChange={handleChange} required>
+            {currencyOptions.map((curr) => (
+              <option key={curr.code} value={curr.code}>{`${curr.symbol} - ${curr.name}`}</option>
+            ))}
+          </select>
         </div>
 
         <div className="form-group">
-          <label className="label_tourism" htmlFor="rating">Rating (1-5):</label>
-          <input
-            type="number"
-            id="rating"
-            name="rating"
-            className="input_tourism"
-            value={formData.rating}
-            onChange={handleChange}
-            min="1"
-            max="5"
-            step="0.1"
-            required
-          />
+          <label htmlFor="price">Price:</label>
+          <input type="number" id="price" name="price" value={formData.price} onChange={handleChange} min="0" required />
         </div>
 
         <div className="form-group">
-          <label className="label_tourism" htmlFor="reviews">Reviews:</label>
-          <input
-            type="number"
-            id="reviews"
-            name="reviews"
-            className="input_tourism"
-            value={formData.reviews}
-            onChange={handleChange}
-            min="0"
-            required
-          />
+          <label htmlFor="rating">Rating (1-5):</label>
+          <input type="number" id="rating" name="rating" value={formData.rating} onChange={handleChange} min="1" max="5" step="0.1" required />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="reviews">Reviews:</label>
+          <input type="number" id="reviews" name="reviews" value={formData.reviews} onChange={handleChange} min="0" required />
         </div>
 
         <button type="submit" className="submit-button" disabled={isLoading}>

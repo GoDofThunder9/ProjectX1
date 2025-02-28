@@ -9,13 +9,10 @@ const AdminPortal = () => {
     name: "",
     category: "",
     price: "",
+    currency: "USD",
     image: null,
     description: "",
   });
-
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showNotification, setShowNotification] = useState(false);
 
   const categories = [
     "PIZZA/PASTA",
@@ -23,6 +20,16 @@ const AdminPortal = () => {
     "BRUNCH",
     "STEAK/GRILL",
     "SALAD",
+  ];
+
+  const currencyOptions = [
+    { symbol: "$", code: "USD", name: "US Dollar" },
+    { symbol: "€", code: "EUR", name: "Euro" },
+    { symbol: "£", code: "GBP", name: "British Pound" },
+    { symbol: "₹", code: "INR", name: "Indian Rupee" },
+    { symbol: "A$", code: "AUD", name: "Australian Dollar" },
+    { symbol: "C$", code: "CAD", name: "Canadian Dollar" },
+    { symbol: "₱", code: "PHP", name: "Philippines peso" },
   ];
 
   const handleChange = (e) => {
@@ -40,6 +47,7 @@ const AdminPortal = () => {
     formDataToSend.append("name", formData.name);
     formDataToSend.append("category", formData.category);
     formDataToSend.append("price", formData.price);
+    formDataToSend.append("currency", formData.currency);
     formDataToSend.append("image", formData.image);
     formDataToSend.append("description", formData.description);
 
@@ -55,121 +63,62 @@ const AdminPortal = () => {
       );
 
       if (response.status === 201) {
-        setSuccessMessage("Menu item uploaded successfully!");
+        toast.success("Menu item uploaded successfully!");
         setFormData({
           name: "",
           category: "",
           price: "",
+          currency: "USD",
           image: null,
           description: "",
         });
       }
     } catch (error) {
       console.error("Error uploading menu item:", error);
-
-      // Show error toast notification
       toast.error("Failed to upload menu item. Please try again.");
     }
   };
 
-  const handleNotificationClose = () => {
-    setShowNotification(false);
-    setSuccessMessage("");
-    setErrorMessage(""); // Clear error message if any
-  };
-  // const handleNotificationClose = () => {
-  //   setShowNotification(false);
-  //   setSuccessMessage("");
-  //   setErrorMessage(""); // Clear error message if any
-  // };
-
   return (
     <div className="admin-portal">
       <h2>Admin Portal - Add Menu Item</h2>
-
-      {/* Toastify Container */}
       <ToastContainer position="top-right" autoClose={3000} />
-
       <form className="admin-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
         </div>
-
         <div className="form-group">
           <label htmlFor="category">Category:</label>
-          <select
-            id="category"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            required
-          >
+          <select id="category" name="category" value={formData.category} onChange={handleChange} required>
             <option value="">Select Category</option>
             {categories.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
+              <option key={category} value={category}>{category}</option>
             ))}
           </select>
         </div>
-
         <div className="form-group">
           <label htmlFor="price">Price:</label>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
+          <input type="text" id="price" name="price" value={formData.price} onChange={handleChange} required />
         </div>
-
+        <div className="form-group">
+          <label htmlFor="currency">Currency:</label>
+          <select id="currency" name="currency" value={formData.currency} onChange={handleChange} required>
+            {currencyOptions.map((currency) => (
+              <option key={currency.code} value={currency.code}>{currency.symbol} - {currency.name}</option>
+            ))}
+          </select>
+        </div>
         <div className="form-group">
           <label htmlFor="image">Image:</label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            onChange={handleFileChange}
-            required
-          />
+          <input type="file" id="image" name="image" accept="image/*" onChange={handleFileChange} required />
         </div>
-
         <div className="form-group">
           <label htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            rows="4"
-            required
-          ></textarea>
+          <textarea id="description" name="description" value={formData.description} onChange={handleChange} rows="4" required></textarea>
         </div>
-
-        <button type="submit" className="submit-button">
-          Upload
-        </button>
+        <button type="submit" className="submit-button">Upload</button>
       </form>
-
-      {showNotification && (
-        <div className="notification-modal">
-          <div className="notification-content">
-            <p>{successMessage}</p>
-            <button onClick={handleNotificationClose}>OK</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

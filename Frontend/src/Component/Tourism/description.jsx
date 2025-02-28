@@ -24,7 +24,18 @@ const Description = () => {
   const [tours, setTours] = useState([]); // State to store fetched tours data
   const [error, setError] = useState(null); // State to handle errors
   const scrollContainerRef = useRef(null);
-
+  const currencySymbols = {
+    USD: "$",
+    EUR: "€",
+    GBP: "£",
+    INR: "₹",
+    JPY: "¥",
+    AUD: "A$",
+    CAD: "C$",
+    PHP: "₱",
+    // Add more currencies if needed
+  };
+  
   // Fetch tours data from the backend
   useEffect(() => {
     const fetchTours = async () => {
@@ -171,7 +182,7 @@ const Description = () => {
                     <div className="price-info">
                       <span className="price-label">From</span>
                       <span className="price-value">
-                        {tour.price}
+                      {currencySymbols[tour.currency] || tour.currency} {tour.price}
                       </span>
                     </div>
                   </div>
