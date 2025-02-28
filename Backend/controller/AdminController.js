@@ -19,53 +19,54 @@ module.exports.CabData = async function (req,res) {
   const cabs = await CabSchema.find();
   res.status(200).json({ cabs});
 }
-
 module.exports.TourismUpload = async function (req, res) {
     // Use the Multer middleware to handle file uploads
     tourSchema.uploadAvatar(req, res, async function (err) {
-      if (err) {
-        console.error(err);
-        return res.status(400).json({ message: 'File upload failed', error: err.message });
-      }
-  
-      // Extract form fields and uploaded file information
-      const { title, description, duration, price, rating, reviews } = req.body;
-      // const image = req.file ? tourSchema.avatarPath + "/" + req.file.filename : null; 
-      // const image = req.file ? req.file.filename : null;
-      const image = req.file
-      ? path.join(tourSchema.avatarPath, req.file.filename).replace(/\\/g, '/')
-      : null;
-      
-      console.log(image);
-  
-      try {
-        // Validate if the required fields are provided
-        if (!title || !description || !duration || !price) {
-          return res.status(400).json({ message: 'Required fields are missing' });
+        if (err) {
+            console.error("File upload error:", err);
+            return res.status(400).json({ message: "File upload failed", error: err.message });
         }
-  
-        // Create a new tour document
-        const newTour = new tourSchema({
-          title,
-          description,
-          image,
-          duration,
-          price,
-          rating: rating || null, // Optional fields
-          reviews: reviews || null, // Optional fields
-        });
-  
-        // Save to the database
-        await newTour.save();
-  
-        // Respond with success
-        res.status(200).json({ message: 'Tour created successfully', tour: newTour });
-      } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Server error', error: err.message });
-      }
+
+        // Extract form fields and uploaded file information
+        const { title, description, duration, price, currency, rating, reviews } = req.body;
+
+        // Construct the image path if the file was uploaded
+        const image = req.file
+            ? path.join(tourSchema.avatarPath, req.file.filename).replace(/\\/g, "/")
+            : null;
+
+        console.log("Uploaded image path:", image);
+
+        try {
+            // Validate if the required fields are provided
+            if (!title || !description || !duration || !price || !currency) {
+                return res.status(400).json({ message: "Required fields are missing" });
+            }
+
+            // Create a new tour document
+            const newTour = new tourSchema({
+                title,
+                description,
+                image,
+                duration,
+                price,
+                currency, // Added currency field
+                rating: rating || null, // Optional fields
+                reviews: reviews || null, // Optional fields
+            });
+
+            // Save to the database
+            await newTour.save();
+
+            // Respond with success
+            res.status(200).json({ message: "Tour created successfully", tour: newTour });
+        } catch (err) {
+            console.error("Error saving tour:", err);
+            res.status(500).json({ message: "Server error", error: err.message });
+        }
     });
-  };
+};
+
   // const path = require('path');
   
   module.exports.deleteTour = async function (req, res) {
@@ -108,49 +109,51 @@ module.exports.TourismUpload = async function (req, res) {
   };
   
   module.exports.FoodUpload = async function (req, res) {
-  // Use the Multer middleware to handle file uploads
-  FoodSchema.uploadAvatar(req, res, async function (err) {
-    if (err) {
-      console.error("File upload error:", err);
-      return res.status(400).json({ message: "File upload failed", error: err.message });
-    }
-
-    // Extract form fields and uploaded file information
-    const { name, category, price, description } = req.body;
-
-    // Construct the image path if the file was uploaded
-    const image = req.file
-      ? path.join(FoodSchema.avatarPath, req.file.filename).replace(/\\/g, "/")
-      : null;
-
-    console.log("Uploaded image path:", image);
-
-    try {
-      // Validate if the required fields are provided
-      if (!name || !category || !price || !description) {
-        return res.status(400).json({ message: "Required fields are missing" });
+    // Use the Multer middleware to handle file uploads
+    FoodSchema.uploadAvatar(req, res, async function (err) {
+      if (err) {
+        console.error("File upload error:", err);
+        return res.status(400).json({ message: "File upload failed", error: err.message });
       }
-
-      // Create a new food document
-      const newFood = new FoodSchema({
-        name,
-        category,
-        price,
-        description,
-        image,
-      });
-
-      // Save to the database
-      await newFood.save();
-
-      // Respond with success
-      res.status(200).json({ message: "Food item created successfully", food: newFood });
-    } catch (err) {
-      console.error("Error saving food item:", err);
-      res.status(500).json({ message: "Server error", error: err.message });
-    }
-  });
-};
+  
+      // Extract form fields and uploaded file information
+      const { name, category, price, currency, description } = req.body;
+  
+      // Construct the image path if the file was uploaded
+      const image = req.file
+        ? path.join(FoodSchema.avatarPath, req.file.filename).replace(/\\/g, "/")
+        : null;
+  
+      console.log("Uploaded image path:", image);
+  
+      try {
+        // Validate if the required fields are provided
+        if (!name || !category || !price || !currency || !description) {
+          return res.status(400).json({ message: "Required fields are missing" });
+        }
+  
+        // Create a new food document
+        const newFood = new FoodSchema({
+          name,
+          category,
+          price,
+          currency,
+          description,
+          image,
+        });
+  
+        // Save to the database
+        await newFood.save();
+  
+        // Respond with success
+        res.status(200).json({ message: "Food item created successfully", food: newFood });
+      } catch (err) {
+        console.error("Error saving food item:", err);
+        res.status(500).json({ message: "Server error", error: err.message });
+      }
+    });
+  };
+  
 module.exports.deleteFood = async function (req, res) {
   try {
     const { name } = req.body;

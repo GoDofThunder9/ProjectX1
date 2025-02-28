@@ -25,6 +25,11 @@ const FoodSchema = new mongoose.Schema({
     required: true,
     min: 0,
   },
+  currency: { 
+    type: String, 
+    enum: ["USD", "EUR", "GBP", "INR", "JPY", "CAD", "AUD"],  // Currency names
+    required: true 
+  },
   description: {
     type: String,
     required: true,

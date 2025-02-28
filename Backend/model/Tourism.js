@@ -24,6 +24,11 @@ const tourSchema = new mongoose.Schema({
     required: true,
     min: 1,
   },
+  currency: { 
+    type: String, 
+    enum: ["USD", "EUR", "GBP", "INR", "JPY", "CAD", "AUD"],  // Currency names
+    required: true 
+  },
   price: {
     type: Number,
     required: true,
