@@ -62,7 +62,7 @@ function App() {
             path="/" 
             element={ 
               <> 
-               <Navbar/> 
+              <Navbar/> 
               <Banner/> 
               <Component/> 
               <Component1/> 
